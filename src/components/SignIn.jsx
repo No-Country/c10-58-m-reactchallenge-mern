@@ -126,18 +126,48 @@ const SignIn = () => {
     <Container className='sing--in flex-col'>
       <H1 className='text-4xl'>Sign In</H1>
 
-      <Form onSubmit={handleSubmit} className='flex'>
+      <Form
+        onSubmit={handleSubmit}
+        className='flex'
+      >
         <label htmlFor='email'>Email</label>
-        <input onChange={handleChange} type='email' name='email' id='email' />
+        <input
+          onChange={handleChange}
+          type='email'
+          name='email'
+          id='email'
+        />
         <label htmlFor='password'>Password</label>
-        <input onChange={handleChange} type='password' name='password' id='password' />
+        <input
+          onChange={handleChange}
+          type='password'
+          name='password'
+          id='password'
+        />
         <button type='submit'>Sing In</button>
       </Form>
 
-      <DivLine><hr /><span>or</span><hr /></DivLine>
+      <DivLine>
+        <hr />
+        <span>or</span>
+        <hr />
+      </DivLine>
       <div>
-        <ButtonRed onClick={handleSubmitForGoogle} value='1' className=''> G</ButtonRed>
-        <ButtonRed onClick={handleSubmitForGoogle} value='2' className=''>F</ButtonRed>
+        <ButtonRed
+          onClick={handleSubmitForGoogle}
+          value='1'
+          className=''
+        >
+          {' '}
+          G
+        </ButtonRed>
+        <ButtonRed
+          onClick={handleSubmitForGoogle}
+          value='2'
+          className=''
+        >
+          F
+        </ButtonRed>
       </div>
 
       <div className=''>
