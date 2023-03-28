@@ -25,11 +25,8 @@ const Form = styled.form`
   align-items: center;
   width: 100%;
   height: 100%;
-
   color: #000;
-
   padding: 2px;
-
   label {
     padding-top: 15px;
     margin: 0px;
@@ -38,9 +35,6 @@ const Form = styled.form`
     margin: 10px;
     width: 100%;
     height: 40px;
-    
-    
-
     border: 1px solid #000;
     padding: 5px;
   }
@@ -48,7 +42,6 @@ const Form = styled.form`
     margin: 10px;
     width: 100%;
     height: 40px;
-
     border: 1px solid #000;
     padding: 5px;
     background-color: #000;
@@ -77,7 +70,6 @@ const Span = styled.span`
   margin: 10px;
   color: #000;
   font-size: 20px;
- 
 `
 const DivLine = styled.div`
   display: flex;
