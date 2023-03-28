@@ -1,0 +1,72 @@
+[
+  {
+    "nombre": "Emily",
+    "apellido": "Smith",
+    "telefono": "555-123-4567",
+    "direccion": "456 Calle Elm, Ciudad del Ejemplo",
+    "título_médico": "Doctor en Medicina Osteopática (DO)"
+  },
+  {
+    "nombre": "William",
+    "apellido": "Johnson",
+    "telefono": "555-234-5678",
+    "direccion": "789 Avenida Oak, Ciudad del Ejemplo",
+    "título_médico": "Doctor en Medicina (MD)"
+  },
+  {
+    "nombre": "Olivia",
+    "apellido": "García",
+    "telefono": "555-345-6789",
+    "direccion": "321 Camino Pine, Ciudad del Ejemplo",
+    "título_médico": "Doctor en Medicina Dental (DMD)"
+  },
+  {
+    "nombre": "James",
+    "apellido": "Brown",
+    "telefono": "555-456-7890",
+    "direccion": "654 Boulevard Cedar, Ciudad del Ejemplo",
+    "título_médico": "Doctor en Quiropráctica (DC)"
+  },
+  {
+    "nombre": "Emma",
+    "apellido": "Jones",
+    "telefono": "555-567-8901",
+    "direccion": "987 Calle Maple, Ciudad del Ejemplo",
+    "título_médico": "Doctor en Farmacia (PharmD)"
+  },
+  {
+    "nombre": "Liam",
+    "apellido": "Davis",
+    "telefono": "555-678-9012",
+    "direccion": "210 Avenida Walnut, Ciudad del Ejemplo",
+    "título_médico": "Doctor en Terapia Física (DPT)"
+  },
+  {
+    "nombre": "Ava",
+    "apellido": "Rodriguez",
+    "telefono": "555-789-0123",
+    "direccion": "543 Calle Birch, Ciudad del Ejemplo",
+    "título_médico": "Doctor en Optometría (OD)"
+  },
+  {
+    "nombre": "Noah",
+    "apellido": "Wilson",
+    "telefono": "555-890-1234",
+    "direccion": "876 Calle Chestnut, Ciudad del Ejemplo",
+    "título_médico": "Doctor en Medicina Veterinaria (DVM)"
+  },
+  {
+    "nombre": "Isabella",
+    "apellido": "Martinez",
+    "telefono": "555-901-2345",
+    "direccion": "321 Calle Oak, Ciudad del Ejemplo",
+    "título_médico": "Doctor en Práctica de Enfermería (DNP)"
+  },
+  {
+    "nombre": "Mason",
+    "apellido": "Anderson",
+    "telefono": "555-012-3456",
+    "direccion": "654 Avenida Elm, Ciudad del Ejemplo",
+    "título_médico": "Doctor en Medicina Podiátrica (DPM)"
+  }
+]
