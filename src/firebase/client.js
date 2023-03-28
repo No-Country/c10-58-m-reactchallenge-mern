@@ -1,6 +1,6 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
-import { getAnalytics } from 'firebase/analytics'
+import { getAuth } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_KEY,
@@ -12,5 +12,6 @@ const firebaseConfig = {
   measurementId: 'G-DBDQB7QJ3V'
 }
 
-const app = initializeApp(firebaseConfig)
-const analytics = getAnalytics(app)
+const firebaseApp = initializeApp(firebaseConfig)
+export const firebaseAuth = getAuth(firebaseApp)
+export const db = getFirestore(firebaseApp)
