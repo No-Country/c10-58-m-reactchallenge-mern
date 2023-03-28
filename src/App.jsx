@@ -1,9 +1,11 @@
-function App () {
-  return (
-    <div className='App'>
-      <h1>Hola mundo</h1>
-    </div>
-  )
+import Register from './components/Register';
+
+function App() {
+	return (
+		<div className='App'>
+			<Register />
+		</div>
+	);
 }
 
-export default App
+export default App;
