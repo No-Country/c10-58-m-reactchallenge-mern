@@ -1,5 +1,9 @@
 /* eslint-disable */
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { db, firebaseAuth } from '../firebase/client';
+import { useNavigate } from 'react-router-dom';
+import { doc, setDoc, Timestamp } from 'firebase/firestore';
 
 const initialValues = {
 	firstName: '',
@@ -12,23 +16,57 @@ const initialValues = {
 	terms: ''
 };
 
+const convertDate = d => `${d.split('-')[2]}-${d.split('-')[1]}-${d.split('-')[0]}`;
+
 const Register = () => {
+	const navigate = useNavigate();
 	const [form, setForm] = useState(initialValues);
 	const [showPass, setShowPass] = useState(false);
 	const [errors, setErrors] = useState({});
 
-	const handleChange = ({ target }) => {
+	const handleChange = ({ target }) =>
 		setForm({
 			...form,
 			[target.name]: target.type === 'checkbox' ? target.checked : target.value
 		});
-	};
 
 	const handleClick = () => setShowPass(!showPass);
 
-	const handleSubmit = e => {
+	const handleSubmit = async e => {
 		e.preventDefault();
-		validateForm() && alert('Formulario enviado!!');
+		if (validateForm()) {
+			try {
+				(await registerUser()) && alert(`Usuario creado exitosamente`);
+			} catch (error) {
+				alert('[!] Ocurrió un error al intentar registrarte');
+			}
+		}
+	};
+
+	const registerUser = async () => {
+		try {
+			const newUser = await createUserWithEmailAndPassword(
+				firebaseAuth,
+				form.email,
+				form.password
+			);
+			if (newUser) {
+				await setDoc(doc(db, 'users', newUser.user.uid), {
+					firstName: form.firstName,
+					lastName: form.lastName,
+					dni: Number(form.dni),
+					birthDate: Timestamp.fromDate(new Date(convertDate(form.birthDate))),
+					city: form.city,
+					appointments: []
+				});
+			}
+			return newUser;
+		} catch (error) {
+			if (error.code === 'auth/email-already-in-use')
+				setErrors({ email: 'El email ingresado ya está registrado' });
+			if (error.code === 'auth/weak-password')
+				setErrors({ password: 'La contraseña tiene que tener por lo menos 6 caracteres' });
+		}
 	};
 
 	const validateForm = () => {

@@ -387,7 +387,7 @@ input {
     border-radius: var(--border-radius);
     max-width: fit-content;
     outline: none;
-    display: block;
+    display: inline-block;
     appearance: none;
 }
 

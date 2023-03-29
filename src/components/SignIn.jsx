@@ -1,5 +1,7 @@
 import React from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
+import { signInWithEmail } from '../firebase/userEmailAndPassword'
 // styles
 const H1 = styled.h1`
   color: #000;
@@ -92,7 +94,15 @@ const DivLine = styled.div`
 `
 
 const SignIn = () => {
+  const [users,setUser]=useState({email:'',password:''})
+  //destructuring
+  const {email,password}=users
+
   // add function for google and facebook
+
+
+
+
   const handleSubmitForGoogle = (e) => {
     if (e.target.value === '1') {
       console.log('google')
@@ -101,25 +111,42 @@ const SignIn = () => {
     }
   }
   // form validation
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('submit')
+    
 
     // validate
     if (e.target.email.value === '' || e.target.password.value === '') {
-      console.log('empty')
+     
       return
-    }
-    // send data
-    console.log(e.target.email.value)
+    }else{
+      // send data to firebase
+     
+      try {
+        const user = await signInWithEmail(users)
+        console.log(user)
+      }
+      catch (error) {
+        console.log(error)
+      }
 
-    // clean form
-    e.target.email.value = ''
-    e.target.password.value = ''
+      e.target.email.value = ''
+      e.target.password.value = ''
+      setUser({email:'',password:''})
+
+    }
+   
+
   }
   // input change
   const handleChange = (e) => {
-    e.target.value
+    //destructuring
+    const {name,value}=e.target
+    setUser({...users,[name]:value})
+   
+
+
+    
   }
 
   return (
@@ -131,6 +158,7 @@ const SignIn = () => {
         className='flex'
       >
         <label htmlFor='email'>Email</label>
+<<<<<<< HEAD
         <input
           onChange={handleChange}
           type='email'
@@ -144,6 +172,11 @@ const SignIn = () => {
           name='password'
           id='password'
         />
+=======
+        <input onChange={handleChange} value={email} type='email' name='email' id='email' />
+        <label htmlFor='password'>Password</label>
+        <input onChange={handleChange} value={password} type='password' name='password' id='password' />
+>>>>>>> 34e03dc132de9a757e64f7d5dc5271810c68b7c0
         <button type='submit'>Sing In</button>
       </Form>
 
