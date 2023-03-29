@@ -2,13 +2,14 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 import { firebaseAuth, db } from './client'
 import { ERRORS_CREATING_USER, ERRORS_LOGGING_USER } from './errors'
 import { formatDateFirebase } from '../utils/formatDateFirebase'
-import { doc, setDoc, Timestamp } from 'firebase/firestore'
+import { doc, setDoc, Timestamp, getDoc } from 'firebase/firestore'
+import { getDefaultAvatar } from './storage'
 
 export async function createUserWithEmail (userDataForm) {
   try {
     const { firstName, lastName, dni, birthDate, city, email, password, terms } = userDataForm
     const newUser = await createUserWithEmailAndPassword(firebaseAuth, email, password)
-    console.log('newUser:', newUser)
+    const avatar = await getDefaultAvatar()
     if (newUser) {
       const userInfo = await setDoc(doc(db, 'users', newUser.user.uid), {
         firstName,
@@ -19,9 +20,9 @@ export async function createUserWithEmail (userDataForm) {
         email,
         appointments: [],
         password,
-        terms
+        terms,
+        avatar
       })
-      console.log('userInfo:', userInfo)
       return userInfo
     }
   } catch (error) {
@@ -34,7 +35,11 @@ export async function signInWithEmail (user) {
   try {
     const { email, password } = user
     const userSignIn = await signInWithEmailAndPassword(firebaseAuth, email, password)
-    return userSignIn.user
+    const { uid } = userSignIn.user
+    const docSnapshot = await getDoc(doc(db, 'users', uid))
+    console.log(docSnapshot.data())
+    const userData = docSnapshot.data()
+    return userData
   } catch (error) {
     const errorCode = error.code
     throw new Error(ERRORS_LOGGING_USER[errorCode])
