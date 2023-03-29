@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { signInWithEmail } from './userEmailAndPassword'
-import { getDefaultAvatar, uploadProfileImage } from './storage'
+import { getDefaultAvatar, uploadImage } from './storage'
 
 export const TestingValentin = () => {
   const [userLoggingIn, setUserLoggingIn] = useState({ email: '', password: '' })
