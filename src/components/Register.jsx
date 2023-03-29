@@ -20,17 +20,15 @@ const convertDate = d => `${d.split('-')[2]}-${d.split('-')[1]}-${d.split('-')[0
 
 const Register = () => {
 	const navigate = useNavigate();
-
 	const [form, setForm] = useState(initialValues);
 	const [showPass, setShowPass] = useState(false);
 	const [errors, setErrors] = useState({});
 
-	const handleChange = ({ target }) => {
+	const handleChange = ({ target }) =>
 		setForm({
 			...form,
 			[target.name]: target.type === 'checkbox' ? target.checked : target.value
 		});
-	};
 
 	const handleClick = () => setShowPass(!showPass);
 
@@ -38,8 +36,7 @@ const Register = () => {
 		e.preventDefault();
 		if (validateForm()) {
 			try {
-				await registerUser();
-				alert(`Usuario creado exitosamente`);
+				(await registerUser()) && alert(`Usuario creado exitosamente`);
 			} catch (error) {
 				alert('[!] Ocurrió un error al intentar registrarte');
 			}
@@ -63,6 +60,7 @@ const Register = () => {
 					appointments: []
 				});
 			}
+			return newUser;
 		} catch (error) {
 			if (error.code === 'auth/email-already-in-use')
 				setErrors({ email: 'El email ingresado ya está registrado' });
