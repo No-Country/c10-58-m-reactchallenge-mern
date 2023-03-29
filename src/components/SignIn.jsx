@@ -1,5 +1,5 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
+
 import styled from 'styled-components'
 import { signInWithEmail } from '../firebase/userEmailAndPassword'
 // styles
@@ -27,11 +27,8 @@ const Form = styled.form`
   align-items: center;
   width: 100%;
   height: 100%;
-
   color: #000;
-
   padding: 2px;
-
   label {
     padding-top: 15px;
     margin: 0px;
@@ -40,9 +37,6 @@ const Form = styled.form`
     margin: 10px;
     width: 100%;
     height: 40px;
-    
-    
-
     border: 1px solid #000;
     padding: 5px;
   }
@@ -50,7 +44,6 @@ const Form = styled.form`
     margin: 10px;
     width: 100%;
     height: 40px;
-
     border: 1px solid #000;
     padding: 5px;
     background-color: #000;
@@ -79,7 +72,6 @@ const Span = styled.span`
   margin: 10px;
   color: #000;
   font-size: 20px;
- 
 `
 const DivLine = styled.div`
   display: flex;
@@ -102,14 +94,11 @@ const DivLine = styled.div`
 `
 
 const SignIn = () => {
-  const [users,setUser]=useState({email:'',password:''})
-  //destructuring
-  const {email,password}=users
+  const [users, setUser] = useState({ email: '', password: '' })
+  // destructuring
+  const { email, password } = users
 
   // add function for google and facebook
-
-
-
 
   const handleSubmitForGoogle = (e) => {
     if (e.target.value === '1') {
@@ -121,58 +110,78 @@ const SignIn = () => {
   // form validation
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
 
     // validate
     if (e.target.email.value === '' || e.target.password.value === '') {
-     
-      return
-    }else{
+
+    } else {
       // send data to firebase
-     
+
       try {
         const user = await signInWithEmail(users)
         console.log(user)
-      }
-      catch (error) {
+      } catch (error) {
         console.log(error)
       }
 
       e.target.email.value = ''
       e.target.password.value = ''
-      setUser({email:'',password:''})
-
+      setUser({ email: '', password: '' })
     }
-   
-
   }
   // input change
   const handleChange = (e) => {
-    //destructuring
-    const {name,value}=e.target
-    setUser({...users,[name]:value})
-   
-
-
-    
+    // destructuring
+    const { name, value } = e.target
+    setUser({ ...users, [name]: value })
   }
 
   return (
     <Container className='sing--in flex-col'>
       <H1 className='text-4xl'>Sign In</H1>
 
-      <Form onSubmit={handleSubmit} className='flex'>
+      <Form
+        onSubmit={handleSubmit}
+        className='flex'
+      >
         <label htmlFor='email'>Email</label>
-        <input onChange={handleChange} value={email} type='email' name='email' id='email' />
+        <input
+          onChange={handleChange}
+          type='email'
+          name='email'
+          id='email'
+        />
         <label htmlFor='password'>Password</label>
-        <input onChange={handleChange} value={password} type='password' name='password' id='password' />
+        <input
+          onChange={handleChange}
+          type='password'
+          name='password'
+          id='password'
+        />
         <button type='submit'>Sing In</button>
       </Form>
 
-      <DivLine><hr /><span>or</span><hr /></DivLine>
+      <DivLine>
+        <hr />
+        <span>or</span>
+        <hr />
+      </DivLine>
       <div>
-        <ButtonRed onClick={handleSubmitForGoogle} value='1' className=''> G</ButtonRed>
-        <ButtonRed onClick={handleSubmitForGoogle} value='2' className=''>F</ButtonRed>
+        <ButtonRed
+          onClick={handleSubmitForGoogle}
+          value='1'
+          className=''
+        >
+          {' '}
+          G
+        </ButtonRed>
+        <ButtonRed
+          onClick={handleSubmitForGoogle}
+          value='2'
+          className=''
+        >
+          F
+        </ButtonRed>
       </div>
 
       <div className=''>

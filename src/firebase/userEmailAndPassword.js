@@ -1,14 +1,29 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
-import { firebaseAuth } from './client'
+import { firebaseAuth, db } from './client'
 import { ERRORS_CREATING_USER, ERRORS_LOGGING_USER } from './errors'
+import { formatDateFirebase } from '../utils/formatDateFirebase'
+import { doc, setDoc, Timestamp } from 'firebase/firestore'
 
-const auth = firebaseAuth
-
-export async function createUserWithEmail (user) {
+export async function createUserWithEmail (userDataForm) {
   try {
-    const { email, password } = user
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password)
-    return userCredential.user
+    const { firstName, lastName, dni, birthDate, city, email, password, terms } = userDataForm
+    const newUser = await createUserWithEmailAndPassword(firebaseAuth, email, password)
+    console.log('newUser:', newUser)
+    if (newUser) {
+      const userInfo = await setDoc(doc(db, 'users', newUser.user.uid), {
+        firstName,
+        lastName,
+        dni: Number(dni),
+        birthDate: Timestamp.fromDate(new Date(formatDateFirebase(birthDate))),
+        city,
+        email,
+        appointments: [],
+        password,
+        terms
+      })
+      console.log('userInfo:', userInfo)
+      return userInfo
+    }
   } catch (error) {
     const errorCode = error.code
     throw new Error(ERRORS_CREATING_USER[errorCode])
@@ -18,7 +33,7 @@ export async function createUserWithEmail (user) {
 export async function signInWithEmail (user) {
   try {
     const { email, password } = user
-    const userSignIn = await signInWithEmailAndPassword(auth, email, password)
+    const userSignIn = await signInWithEmailAndPassword(firebaseAuth, email, password)
     return userSignIn.user
   } catch (error) {
     const errorCode = error.code
