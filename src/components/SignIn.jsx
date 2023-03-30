@@ -17,7 +17,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
-  color: #fff;
+
   height: 500px;
   width: 350px;
   border-radius: 10px;
@@ -40,6 +40,10 @@ const P = styled.p`
   margin: 10px;
   color: #000;
   font-size: 20px;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 `
 
 const DivLine = styled.div`
@@ -62,7 +66,7 @@ const DivLine = styled.div`
   }
 `
 
-const SignIn = () => {
+const SignIn = ({ setIsRegister, isRegister }) => {
   const [users, setUser] = useState({ email: '', password: '' })
   const { login } = useFirebaseContext()
   const navigate = useNavigate()
@@ -105,51 +109,56 @@ const SignIn = () => {
     //   e.target.password.value = ''
     //   setUser({ email: '', password: '' })
     // }
+    const handleNewAccount = () => {
+      setIsRegister(!isRegister)
+    }
+
+    return (
+      <Container className="sing--in flex-col w-full flex ">
+        <H1 className="text-4xl">Sign In</H1>
+
+        <form className="w-full items-center mt-5" onSubmit={handleSubmit}>
+          <input
+            onChange={handleChange}
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+          />
+
+          <input
+            onChange={handleChange}
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+          />
+          <button type="submit">Sing In</button>
+        </form>
+
+        <DivLine>
+          <hr />
+          <span>or</span>
+          <hr />
+        </DivLine>
+        <div>
+          <ButtonRed onClick={handleSubmitForGoogle} value="1" className="">
+            {' '}
+            G
+          </ButtonRed>
+          <ButtonRed onClick={handleSubmitForGoogle} value="2" className="">
+            F
+          </ButtonRed>
+        </div>
+
+        <div className="">
+          <P onClick={handleNewAccount} className="text-2xl   ">
+            Don't have an account?
+          </P>
+        </div>
+      </Container>
+    )
   }
-
-  return (
-    <Container className="sing--in flex-col w-full flex ">
-      <H1 className="text-4xl">Sign In</H1>
-
-      <form className="w-full items-center mt-5" onSubmit={handleSubmit}>
-        <input
-          onChange={handleChange}
-          type="email"
-          name="email"
-          id="email"
-          placeholder="Email"
-        />
-
-        <input
-          onChange={handleChange}
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Password"
-        />
-        <button type="submit">Sing In</button>
-      </form>
-
-      <DivLine>
-        <hr />
-        <span>or</span>
-        <hr />
-      </DivLine>
-      <div>
-        <ButtonRed onClick={handleSubmitForGoogle} value="1" className="">
-          {' '}
-          G
-        </ButtonRed>
-        <ButtonRed onClick={handleSubmitForGoogle} value="2" className="">
-          F
-        </ButtonRed>
-      </div>
-
-      <div className="">
-        <P className="text-2xl">Don't have an account?</P>
-      </div>
-    </Container>
-  )
 }
 
 export default SignIn
