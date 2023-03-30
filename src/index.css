@@ -330,101 +330,13 @@ tbody tr:nth-child(even):hover td {
 }
 
 /* Form elements */
-input,
-button,
-select,
-optgroup,
-textarea {
-    margin: 0;
-}
 
-button,
-select,
-input[type="submit"],
-input[type="button"],
-input[type="checkbox"],
-input[type="range"],
-input[type="radio"] {
-    cursor: pointer;
-}
 
-button {
-    color: var(--text);
-    background-color: var(--background-main);
-    font-family: inherit;
-    font-size: inherit;
-    padding: 6px 15px 6px 15px;
-    border: 1px solid transparent;
-    border-radius: 6px;
-    box-shadow: 0px 1px 1.5px rgba(158, 158, 158, 0.6);
-}
 
-button:active {
-    box-shadow: none;
-    border: 1px solid var(--border);
-}
 
-button:disabled,
-button[disabled] {
-    box-shadow: none;
-    border: 1px solid var(--border);
-    cursor: initial;
-    opacity: 0.55;
-}
 
-label {
-    display: block;
-    max-width: fit-content;
-}
 
-input {
-    font-size: 1em;
-    background-color: var(--background-inputs);
-    border: 1px solid var(--border);
-    color: var(--text);
-    margin: 6px 0px;
-    padding: 11px;
-    border-radius: var(--border-radius);
-    max-width: fit-content;
-    outline: none;
-    display: inline-block;
-    appearance: none;
-}
 
-input[type="checkbox"],
-input[type="radio"] {
-    vertical-align: middle;
-    position: relative;
-    margin-right: 0.33em;
-    margin-top: 0.31em;
-}
-
-input[type="checkbox"] {
-    border-radius: 7px;
-}
-
-input[type="radio"] {
-    border-radius: 100%;
-}
-
-input[type="checkbox"]:checked,
-input[type="radio"]:checked {
-    border: 1px solid var(--links);
-    background: var(--links);
-}
-
-input[type="checkbox"]:checked {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3.5' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
-}
-
-input[type="radio"]:checked {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
-}
-
-input[type="range"] {
-    vertical-align: middle;
-    padding: 0;
-}
 
 textarea {
     font-family: inherit;

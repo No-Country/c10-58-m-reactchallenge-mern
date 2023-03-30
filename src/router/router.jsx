@@ -4,6 +4,7 @@ import App from '../App';
 import Appointment from '../components/Appointment';
 import Register from '../components/Register';
 import SignIn from '../components/SignIn';
+import Profile from '../pages/Profile';
 import { TestingValentin } from '../firebase/testValentin';
 
 export const router = createBrowserRouter([
@@ -25,7 +26,7 @@ export const router = createBrowserRouter([
 			// },
 			{
 				path: '/snow',
-				element: <SignIn />
+				element: <Profile />
 			},
 			{
 				path: '/appointment',

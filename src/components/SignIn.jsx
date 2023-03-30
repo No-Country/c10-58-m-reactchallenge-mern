@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import { Form } from '../components/MicroComponents/Form.js'
 import styled from 'styled-components'
 import { signInWithEmail } from '../firebase/userEmailAndPassword'
 // styles
@@ -20,36 +20,8 @@ const Container = styled.div`
   width: 350px;
   border-radius: 10px;
 `
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  color: #000;
-  padding: 2px;
-  label {
-    padding-top: 15px;
-    margin: 0px;
-  }
-  input {
-    margin: 10px;
-    width: 100%;
-    height: 40px;
-    border: 1px solid #000;
-    padding: 5px;
-  }
-  button {
-    margin: 10px;
-    width: 100%;
-    height: 40px;
-    border: 1px solid #000;
-    padding: 5px;
-    background-color: #000;
-    color: #fff;
-  }
-`
+
+  
 const ButtonRed = styled.button`
   background-color: #fff;
   color: #000000;
@@ -131,32 +103,38 @@ const SignIn = () => {
   }
   // input change
   const handleChange = (e) => {
+  
     // destructuring
     const { name, value } = e.target
     setUser({ ...users, [name]: value })
   }
 
   return (
-    <Container className='sing--in flex-col'>
+    <Container className='sing--in flex-col w-full flex '>
       <H1 className='text-4xl'>Sign In</H1>
 
       <Form
+      className='w-full items-center mt-5'
         onSubmit={handleSubmit}
-        className='flex'
+        
       >
-        <label htmlFor='email'>Email</label>
+        
         <input
+        
           onChange={handleChange}
+          
           type='email'
           name='email'
           id='email'
+          placeholder='Email'
         />
-        <label htmlFor='password'>Password</label>
+    
         <input
           onChange={handleChange}
           type='password'
           name='password'
           id='password'
+          placeholder='Password'
         />
         <button type='submit'>Sing In</button>
       </Form>
