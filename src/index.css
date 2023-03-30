@@ -2,8 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-<<<<<<< HEAD
-=======
+
 /**
  * Bolt.css
  * Version 0.5.0
@@ -428,4 +427,3 @@ details[open] summary {
     border-bottom: 1px solid #aaa;
     margin-bottom: 0.5em;
 }
->>>>>>> 133c4bc9a43ad1605a0f836dc4262c946cb52ade
