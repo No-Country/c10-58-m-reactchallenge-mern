@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { signInWithEmail } from './userEmailAndPassword'
 import { getDefaultAvatar, uploadImage } from './storage'
+import { fetchCollection } from './fetchCollection'
 
 export const TestingValentin = () => {
   const [userLoggingIn, setUserLoggingIn] = useState({ email: '', password: '' })
@@ -24,7 +25,8 @@ export const TestingValentin = () => {
 
   async function uploadImage (e) {
     e.preventDefault()
-    const profImage = e.target.profileImage.files[0]
+    console.log(await fetchCollection({ collectionName: 'users' }))
+    // const profImage = e.target.profileImage.files[0]
     // uploadProfileImage({ image: profImage })
     // getDefaultAvatar()
   }
