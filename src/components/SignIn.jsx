@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useFirebaseContext } from '../context/UserContext'
+import {Form}from '../components/MicroComponents/Form'
 import styled from 'styled-components'
 // styles
 const H1 = styled.h1`
@@ -97,7 +98,7 @@ const SignIn = ({ setIsRegister, isRegister }) => {
 
       <Form
       className='w-full items-center mt-5'
-        onSubmit={handleSubmit}
+        onSubmit={}
         
       >
         
