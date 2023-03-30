@@ -7,7 +7,7 @@ import { db } from '../firebase/client'
 const User = () => {
   const { user } = useFirebaseContext()
   const [showUser, setShowUser] = useState(null)
-  console.log(showUser)
+  console.log(user)
 
   useEffect(() => {
     const queryColletion = collection(db, 'users')

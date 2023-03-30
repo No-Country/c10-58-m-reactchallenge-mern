@@ -41,11 +41,7 @@ const P = styled.p`
   color: #000;
   font-size: 20px;
 `
-const Span = styled.span`
-  margin: 10px;
-  color: #000;
-  font-size: 20px;
-`
+
 const DivLine = styled.div`
   display: flex;
   flex-direction: row;
