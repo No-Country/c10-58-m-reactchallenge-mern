@@ -1,3 +1,63 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+
+:root {
+    --mainFont: 'Roboto', sans-serif;
+}
+
+* {
+    font-family: var(--mainFont);
+}
+
+.icon-eye-container {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.inp-reg {
+    width: 100%;
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 27px;
+    padding: 0.4rem 1rem;
+    background-color: #EBEBEB;
+}
+
+.inp-reg:focus {
+    outline: none;
+}
+
+.eye-icon {
+    position: absolute;
+    width: 20px;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.inp-terms {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inp-terms:checked::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    background-color: #878787;
+    border-radius: 50%;
+}
+
+.btn-reg {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 500;
+}
