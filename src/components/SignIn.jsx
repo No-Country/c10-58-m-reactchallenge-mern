@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useFirebaseContext } from '../context/UserContext'
 import styled from 'styled-components'
-import { signInWithEmail } from '../firebase/userEmailAndPassword'
 // styles
 const H1 = styled.h1`
   color: #000;
@@ -71,11 +70,7 @@ const P = styled.p`
   color: #000;
   font-size: 20px;
 `
-const Span = styled.span`
-  margin: 10px;
-  color: #000;
-  font-size: 20px;
-`
+
 const DivLine = styled.div`
   display: flex;
   flex-direction: row;
