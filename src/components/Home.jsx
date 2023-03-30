@@ -1,8 +1,11 @@
-import React from 'react'
+import { useFirebaseContext } from '../context/UserContext'
 import Footer from './Footer'
 import Header from './Header'
 
 const Home = () => {
+  const { loading } = useFirebaseContext()
+
+  if (loading) return <h1>Cargando...</h1>
   return (
     <>
       <Header />

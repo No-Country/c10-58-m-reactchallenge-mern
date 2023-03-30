@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React from 'react'
 import SingIn from './components/SigngIn'
 
@@ -20,6 +21,13 @@ function App() {
 >>>>>>> 133c4bc9a43ad1605a0f836dc4262c946cb52ade
     </div>
   );
+=======
+/* eslint-disable */
+import Router from './router/router'
+
+function App() {
+  return <Router />
+>>>>>>> dev
 }
 
 export default App;

@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { Form } from '../components/MicroComponents/Form.js'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { createUserWithEmail } from '../firebase/userEmailAndPassword'
@@ -69,7 +70,7 @@ const Register = () => {
   return (
     <section className='p-4 max-w-md mx-auto'>
       <h1 className='text-xl font-black my-4'>Registro</h1>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <div className='my-2'>
           <label
             className='block my-1'
@@ -241,7 +242,7 @@ const Register = () => {
             REGISTRARSE
           </button>
         </div>
-      </form>
+      </Form>
     </section>
   )
 }

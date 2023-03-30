@@ -1,7 +1,9 @@
+/* eslint-disable no-empty */
+/* eslint-disable jsx-quotes */
 import React, { useState } from 'react'
-import { Form } from '../components/MicroComponents/Form.js'
+import { useNavigate } from 'react-router-dom'
+import { useFirebaseContext } from '../context/UserContext'
 import styled from 'styled-components'
-import { signInWithEmail } from '../firebase/userEmailAndPassword'
 // styles
 const H1 = styled.h1`
   color: #000;
@@ -65,10 +67,12 @@ const DivLine = styled.div`
   }
 `
 
-const SignIn = () => {
+const SignIn = ({ setIsRegister, isRegister }) => {
   const [users, setUser] = useState({ email: '', password: '' })
+  const { login } = useFirebaseContext()
+  const navigate = useNavigate()
   // destructuring
-  const { email, password } = users
+  // const { email, password } = users
 
   // add function for google and facebook
 
@@ -79,31 +83,9 @@ const SignIn = () => {
       console.log('facebook')
     }
   }
-  // form validation
-  const handleSubmit = async (e) => {
-    e.preventDefault()
 
-    // validate
-    if (e.target.email.value === '' || e.target.password.value === '') {
-
-    } else {
-      // send data to firebase
-
-      try {
-        const user = await signInWithEmail(users)
-        console.log(user)
-      } catch (error) {
-        console.log(error)
-      }
-
-      e.target.email.value = ''
-      e.target.password.value = ''
-      setUser({ email: '', password: '' })
-    }
-  }
   // input change
   const handleChange = (e) => {
-  
     // destructuring
     const { name, value } = e.target
     setUser({ ...users, [name]: value })

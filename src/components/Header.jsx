@@ -1,11 +1,13 @@
+/* eslint-disable jsx-quotes */
 import React from 'react'
+import Navbar from './Navbar'
+import User from './User'
 
 const Header = () => {
   return (
-    <header>
-      <div>Logo</div>
-      <ul>páginas</ul>
-      <div>Inicio de sesión</div>
+    <header className="w-full h-12 flex justify-evenly items-center">
+      <Navbar />
+      <User />
     </header>
   )
 }
