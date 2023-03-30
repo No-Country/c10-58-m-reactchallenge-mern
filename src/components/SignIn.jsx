@@ -15,7 +15,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
-  color: #fff;
+ 
   height: 500px;
   width: 350px;
   border-radius: 10px;
@@ -39,6 +39,10 @@ const P = styled.p`
   margin: 10px;
   color: #000;
   font-size: 20px;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 `
 const Span = styled.span`
   margin: 10px;
@@ -65,7 +69,8 @@ const DivLine = styled.div`
   }
 `
 
-const SignIn = () => {
+const SignIn = ({setIsRegister,isRegister}) => {
+
   const [users, setUser] = useState({ email: '', password: '' })
   // destructuring
   const { email, password } = users
@@ -107,6 +112,10 @@ const SignIn = () => {
     // destructuring
     const { name, value } = e.target
     setUser({ ...users, [name]: value })
+  }
+  const handleNewAccount = () => {
+    setIsRegister(!isRegister)
+    
   }
 
   return (
@@ -162,8 +171,8 @@ const SignIn = () => {
         </ButtonRed>
       </div>
 
-      <div className=''>
-        <P className='text-2xl'>Don't have an account?</P>
+      <div className='' >
+        <P onClick={handleNewAccount} className='text-2xl   '>Don't have an account?</P>
       </div>
     </Container>
   )

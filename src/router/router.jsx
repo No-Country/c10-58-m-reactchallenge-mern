@@ -6,6 +6,7 @@ import Register from '../components/Register';
 import SignIn from '../components/SignIn';
 import Profile from '../pages/Profile';
 import { TestingValentin } from '../firebase/testValentin';
+import RegisterAnadLogin from '../pages/RegisterAnadLogin';
 
 export const router = createBrowserRouter([
 	{
@@ -26,7 +27,7 @@ export const router = createBrowserRouter([
 			// },
 			{
 				path: '/snow',
-				element: <Profile />
+				element: <RegisterAnadLogin />
 			},
 			{
 				path: '/appointment',

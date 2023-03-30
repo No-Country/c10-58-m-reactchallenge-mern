@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 //components
 export const Form = styled.form`
-margingh-top: 10px;
+
 display: flex;
 flex-direction: column;
 
@@ -42,5 +42,10 @@ button {
   &:shadow {
     background-color: #ebeaec;
   }
+}
+label {
+ 
+  color: #000;
+  
 }
 `
