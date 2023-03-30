@@ -1,11 +1,12 @@
 import React from 'react'
+import Navbar from './Navbar'
+import User from './User'
 
 const Header = () => {
   return (
     <header>
-      <div>Logo</div>
-      <ul>páginas</ul>
-      <div>Inicio de sesión</div>
+      <Navbar />
+      <User />
     </header>
   )
 }

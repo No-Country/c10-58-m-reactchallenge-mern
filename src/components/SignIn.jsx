@@ -1,5 +1,8 @@
+/* eslint-disable no-empty */
+/* eslint-disable jsx-quotes */
 import React, { useState } from 'react'
-
+import { useNavigate } from 'react-router-dom'
+import { useFirebaseContext } from '../context/UserContext'
 import styled from 'styled-components'
 import { signInWithEmail } from '../firebase/userEmailAndPassword'
 // styles
@@ -95,8 +98,10 @@ const DivLine = styled.div`
 
 const SignIn = () => {
   const [users, setUser] = useState({ email: '', password: '' })
+  const { login } = useFirebaseContext()
+  const navigate = useNavigate()
   // destructuring
-  const { email, password } = users
+  // const { email, password } = users
 
   // add function for google and facebook
 
@@ -107,28 +112,7 @@ const SignIn = () => {
       console.log('facebook')
     }
   }
-  // form validation
-  const handleSubmit = async (e) => {
-    e.preventDefault()
 
-    // validate
-    if (e.target.email.value === '' || e.target.password.value === '') {
-
-    } else {
-      // send data to firebase
-
-      try {
-        const user = await signInWithEmail(users)
-        console.log(user)
-      } catch (error) {
-        console.log(error)
-      }
-
-      e.target.email.value = ''
-      e.target.password.value = ''
-      setUser({ email: '', password: '' })
-    }
-  }
   // input change
   const handleChange = (e) => {
     // destructuring
@@ -136,29 +120,43 @@ const SignIn = () => {
     setUser({ ...users, [name]: value })
   }
 
-  return (
-    <Container className='sing--in flex-col'>
-      <H1 className='text-4xl'>Sign In</H1>
+  // form validation
+  const handleSubmit = async (e) => {
+    e.preventDefault()
 
-      <Form
-        onSubmit={handleSubmit}
-        className='flex'
-      >
-        <label htmlFor='email'>Email</label>
+    try {
+      await login(users.email, users.password)
+      navigate('/matias')
+    } catch (error) {
+      console.log(error)
+    }
+
+    // // validate
+    // if (e.target.email.value === '' || e.target.password.value === '') {
+    // } else {
+    //   // send data to firebase
+
+    //   e.target.email.value = ''
+    //   e.target.password.value = ''
+    //   setUser({ email: '', password: '' })
+    // }
+  }
+
+  return (
+    <Container className="sing--in flex-col">
+      <H1 className="text-4xl">Sign In</H1>
+
+      <Form onSubmit={handleSubmit} className="flex">
+        <label htmlFor="email">Email</label>
+        <input onChange={handleChange} type="email" name="email" id="email" />
+        <label htmlFor="password">Password</label>
         <input
           onChange={handleChange}
-          type='email'
-          name='email'
-          id='email'
+          type="password"
+          name="password"
+          id="password"
         />
-        <label htmlFor='password'>Password</label>
-        <input
-          onChange={handleChange}
-          type='password'
-          name='password'
-          id='password'
-        />
-        <button type='submit'>Sing In</button>
+        <button type="submit">Sing In</button>
       </Form>
 
       <DivLine>
@@ -167,25 +165,17 @@ const SignIn = () => {
         <hr />
       </DivLine>
       <div>
-        <ButtonRed
-          onClick={handleSubmitForGoogle}
-          value='1'
-          className=''
-        >
+        <ButtonRed onClick={handleSubmitForGoogle} value="1" className="">
           {' '}
           G
         </ButtonRed>
-        <ButtonRed
-          onClick={handleSubmitForGoogle}
-          value='2'
-          className=''
-        >
+        <ButtonRed onClick={handleSubmitForGoogle} value="2" className="">
           F
         </ButtonRed>
       </div>
 
-      <div className=''>
-        <P className='text-2xl'>Don't have an account?</P>
+      <div className="">
+        <P className="text-2xl">Don't have an account?</P>
       </div>
     </Container>
   )

@@ -1,30 +1,43 @@
+/* eslint-disable no-sequences */
+/* eslint-disable comma-dangle */
 import { createContext, useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { db } from '../firebase/client'
-import { getDocs, collection, query, where } from 'firebase/firestore'
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from 'firebase/auth'
+import { firebaseAuth } from '../firebase/client'
 
 const FirebaseContext = createContext()
 export const useFirebaseContext = () => useContext(FirebaseContext)
-const email = 'valentingt22@gmail.com'
 
 const FirebaseProvider = ({ children }) => {
   const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  const login = (email, password) => {
+    return signInWithEmailAndPassword(firebaseAuth, email, password)
+  }
 
   useEffect(() => {
-    const queryColletion = collection(db, 'users')
-    const queryFilter = query(queryColletion, where('email', '==', email))
-    getDocs(queryFilter).then((res) =>
-      res.docs.forEach((user) => setUser(user.data()))
-    )
-  }, [email])
+    const unSubscribe = onAuthStateChanged(firebaseAuth, (currentUser) => {
+      setUser(currentUser)
+      setLoading(false)
+    })
+    return () => unSubscribe()
+  }, [])
 
+  const logout = () => signOut(firebaseAuth)
   return (
-    <FirebaseContext.Provider value={user}>{children}</FirebaseContext.Provider>
+    <FirebaseContext.Provider value={{ login, user, logout, loading }}>
+      {children}
+    </FirebaseContext.Provider>
   )
 }
 
 FirebaseProvider.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 }
 
 export default FirebaseProvider

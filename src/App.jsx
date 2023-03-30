@@ -1,14 +1,8 @@
 /* eslint-disable */
-import { Outlet } from "react-router-dom";
-import { TestingValentin } from "./firebase/testValentin";
+import Router from './router/router'
 
 function App() {
-  return (
-    <div className="App">
-      <h1>APP</h1>
-      <Outlet />
-    </div>
-  );
+  return <Router />
 }
 
-export default App;
+export default App
