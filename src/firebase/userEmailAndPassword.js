@@ -3,13 +3,20 @@ import { firebaseAuth, db } from './client'
 import { ERRORS_CREATING_USER, ERRORS_LOGGING_USER } from './errors'
 import { formatDateFirebase } from '../utils/formatDateFirebase'
 import { doc, setDoc, Timestamp, getDoc } from 'firebase/firestore'
-import { getDefaultAvatar } from './storage'
+import { getDefaultAvatar, uploadImage } from './storage'
+import { validateForm } from '../utils/validateForm'
 
 export async function createUserWithEmail (userDataForm) {
+  validateForm(userDataForm)
+  const { firstName, lastName, dni, birthDate, city, email, terms, avatarImage, password } = userDataForm
   try {
-    const { firstName, lastName, dni, birthDate, city, email, password, terms } = userDataForm
     const newUser = await createUserWithEmailAndPassword(firebaseAuth, email, password)
-    const avatar = await getDefaultAvatar()
+    let avatarURL
+    if (!avatarImage) {
+      avatarURL = await getDefaultAvatar()
+    } else {
+      avatarURL = uploadImage({ path: 'profileImages', image: avatarImage })
+    }
     if (newUser) {
       const userInfo = await setDoc(doc(db, 'users', newUser.user.uid), {
         firstName,
@@ -19,9 +26,8 @@ export async function createUserWithEmail (userDataForm) {
         city,
         email,
         appointments: [],
-        password,
         terms,
-        avatar
+        avatarURL
       })
       return userInfo
     }
