@@ -11,9 +11,6 @@ export async function uploadImage ({ path, image }) {
   if (!image) {
     throw new Error('There was a problem loading your image')
   }
-  console.log(image)
-  console.log(image.name)
-  console.log(image.size)
   const { size, type, name } = image
   if (size > (512 * 1024)) {
     throw new Error('Error: image must be less than 512kB')
@@ -23,12 +20,10 @@ export async function uploadImage ({ path, image }) {
   }
   try {
     const dateNow = new Date().getTime()
-    console.log(dateNow)
     const regex = /\.(jpg|png)/gi
     const imageName = name.replace(regex, '')
     const imgPath = ref(storage, `${path}/${imageName}${dateNow}`)
     const snapshot = await uploadBytes(imgPath, image)
-    // const userProfile = await getDoc(doc(db, 'users', uid))
     const downloadURL = await getDownloadURL(snapshot.ref)
     return downloadURL
   } catch (error) {
