@@ -5,9 +5,9 @@ export async function fetchCollection ({ collectionName }) {
   try {
     const collectionRef = await getDocs(collection(db, collectionName))
     const dataArray = []
-    collectionRef.forEach(medico => {
-      const id = medico.id
-      const data = medico.data()
+    collectionRef.forEach(document => {
+      const id = document.id
+      const data = document.data()
       dataArray.push({ id, ...data })
     })
     return dataArray
