@@ -2,15 +2,9 @@ import styled from 'styled-components'
 
 // components
 export const Form = styled.form`
-<<<<<<< HEAD
-  margingh-top: 10px;
-  display: flex;
-  flex-direction: column;
-=======
 
 display: flex;
 flex-direction: column;
->>>>>>> 722d5c71aa1102ff9a6832c13b2d9fd1ca30f518
 
   width: 100%;
   height: 100%;
@@ -47,14 +41,10 @@ flex-direction: column;
       background-color: #ebeaec;
     }
   }
-<<<<<<< HEAD
-`
-=======
-}
+
 label {
  
   color: #000;
   
 }
 `
->>>>>>> 722d5c71aa1102ff9a6832c13b2d9fd1ca30f518
