@@ -5,7 +5,7 @@ import Header from './Header'
 const Home = () => {
   const { loading } = useFirebaseContext()
 
-  if (loading) return <h1>Cargando...</h1>
+  if (!loading) return <h1>Cargando...</h1>
   return (
     <>
       <Header />
