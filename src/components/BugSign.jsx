@@ -100,65 +100,64 @@ const SignIn = ({ setIsRegister, isRegister }) => {
       console.log(error)
     }
 
-     validate
-   if (e.target.email.value === '' || e.target.password.value === '') {
-     } else {
-     // send data to firebase
+    if (e.target.email.value === '' || e.target.password.value === '') {
+    } else {
+      // send data to firebase
 
-     e.target.email.value = ''
+      e.target.email.value = ''
       e.target.password.value = ''
-       setUser({ email: '', password: '' })
+      setUser({ email: '', password: '' })
     }
-    const handleNewAccount = () => {
-      setIsRegister(!isRegister)
-    }
-
-    return (
-      <Container className="sing--in flex-col w-full flex ">
-        <H1 className="text-4xl">Sign In</H1>
-
-        <form className="w-full items-center mt-5" onSubmit={handleSubmit}>
-          <input
-            onChange={handleChange}
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Email"
-          />
-
-          <input
-            onChange={handleChange}
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Password"
-          />
-          <button type="submit">Sing In</button>
-        </form>
-
-        <DivLine>
-          <hr />
-          <span>or</span>
-          <hr />
-        </DivLine>
-        <div>
-          <ButtonRed onClick={handleSubmitForGoogle} value="1" className="">
-            {' '}
-            G
-          </ButtonRed>
-          <ButtonRed onClick={handleSubmitForGoogle} value="2" className="">
-            F
-          </ButtonRed>
-        </div>
-
-        <div className="">
-          <P onClick={handleNewAccount} className="text-2xl   ">
-            Don't have an account?
-          </P>
-        </div>
-      </Container>
-    )
   }
+  const handleNewAccount = () => {
+    setIsRegister(!isRegister)
+  }
+
+  return (
+    <Container className="sing--in flex-col w-full flex ">
+      <H1 className="text-4xl">Sign In</H1>
+
+      <form className="w-full items-center mt-5" onSubmit={handleSubmit}>
+        <input
+          onChange={handleChange}
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email"
+        />
+
+        <input
+          onChange={handleChange}
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+        <button type="submit">Sing In</button>
+      </form>
+
+      <DivLine>
+        <hr />
+        <span>or</span>
+        <hr />
+      </DivLine>
+      <div>
+        <ButtonRed onClick={handleSubmitForGoogle} value="1" className="">
+          {' '}
+          G
+        </ButtonRed>
+        <ButtonRed onClick={handleSubmitForGoogle} value="2" className="">
+          F
+        </ButtonRed>
+      </div>
+
+      <div className="">
+        <P onClick={handleNewAccount} className="text-2xl   ">
+          Don't have an account?
+        </P>
+      </div>
+    </Container>
+  )
 }
 
 export default SignIn

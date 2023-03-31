@@ -1,3 +1,4 @@
+/* eslint-disable jsx-quotes */
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
@@ -16,16 +17,12 @@ const ButtonRed = styled.button`
   }
 `
 
-
 const SignIn = () => {
   return (
     <div>
-      <h1> temporal SignIn 	😀 </h1>
+      <h1> temporal SignIn 😀 </h1>
       <Link to="/esteban">
-      <ButtonRed>
-
-     click to register
-      </ButtonRed>
+        <ButtonRed>click to register</ButtonRed>
       </Link>
     </div>
   )
