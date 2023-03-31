@@ -7,7 +7,6 @@ export async function updateProfileImage ({ image }) {
   const { uid } = firebaseAuth.currentUser
   try {
     const userToUpdate = await getDoc(doc(db, 'users', uid))
-    console.log(userToUpdate.data())
     const userData = userToUpdate.data()
     const imageUpdated = await uploadImage({ path: 'profileImage', image })
     const updatedUser = { ...userData, avatarURL: imageUpdated }

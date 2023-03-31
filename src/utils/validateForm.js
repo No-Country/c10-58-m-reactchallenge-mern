@@ -1,6 +1,6 @@
 export function validateForm (userDataForm) {
-  const { firstName, lastName, dni, birthDate, city, email, password, terms } = userDataForm
-  if (!firstName || !lastName || !dni || !birthDate || !city || !email || !password || !terms) {
+  const { firstName, lastName, dni, email, password, terms } = userDataForm
+  if (!firstName || !lastName || !dni || !email || !password || !terms) {
     throw new Error('Todos los campos deben estar completos')
   }
   if (firstName.length < 2 || firstName.length > 20) {
@@ -12,8 +12,6 @@ export function validateForm (userDataForm) {
   }
   if (lastName === '') { throw new Error('El campo apellido no puede estar vacío') }
   if (dni === '') throw new Error('El campo DNI no puede estar vacío')
-  if (birthDate === '') { throw new Error('Selecciona la fecha de tu nacimiento') }
-  if (city === '') throw new Error('El campo ciudad no puede estar vacío')
   if (email === '') throw new Error('El campo email no puede estar vacío')
   const pattern = /^(?=.{1,256})(?=.{1,64}@)[A-Za-z0-9_-]+(?:\.[A-Za-z0-9_-]+)*@[A-Za-z0-9_-]+(?:\.[A-Za-z0-9_-]+)*\.[A-Za-z]{2,}$/
   if (!pattern.test(email)) throw new Error('Ingresa un email válido')

@@ -1,14 +1,13 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 import { firebaseAuth, db } from './client'
 import { ERRORS_CREATING_USER, ERRORS_LOGGING_USER } from './errors'
-import { formatDateFirebase } from '../utils/formatDateFirebase'
-import { doc, setDoc, Timestamp, getDoc } from 'firebase/firestore'
+import { doc, setDoc, getDoc } from 'firebase/firestore'
 import { getDefaultAvatar, uploadImage } from './storage'
 import { validateForm } from '../utils/validateForm'
 
 export async function createUserWithEmail (userDataForm) {
   validateForm(userDataForm)
-  const { firstName, lastName, dni, birthDate, city, email, terms, avatarImage, password } = userDataForm
+  const { names, lastName, dni, email, terms, avatarImage, password } = userDataForm
   try {
     const newUser = await createUserWithEmailAndPassword(firebaseAuth, email, password)
     let avatarURL
@@ -17,19 +16,18 @@ export async function createUserWithEmail (userDataForm) {
     } else {
       avatarURL = uploadImage({ path: 'profileImages', image: avatarImage })
     }
+    const newUserData = {
+      avatarURL,
+      names,
+      lastName,
+      dni: Number(dni),
+      email,
+      appointments: [],
+      terms
+    }
     if (newUser) {
-      const userInfo = await setDoc(doc(db, 'users', newUser.user.uid), {
-        firstName,
-        lastName,
-        dni: Number(dni),
-        birthDate: Timestamp.fromDate(new Date(formatDateFirebase(birthDate))),
-        city,
-        email,
-        appointments: [],
-        terms,
-        avatarURL
-      })
-      return userInfo
+      await setDoc(doc(db, 'users', newUser.user.uid), newUserData)
+      return newUserData
     }
   } catch (error) {
     const errorCode = error.code

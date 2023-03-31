@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { signInWithEmail } from './userEmailAndPassword'
 import { fetchCollection } from './fetchCollection'
-import { deleteUser, getCurrentUserInfo, logOutUser, updateProfileImage, updateUserInfo } from './user'
+import { deleteUser, getCurrentUserInfo, logOutUser, updateProfileImage } from './user'
 
 export const TestingValentin = () => {
   const [userLoggingIn, setUserLoggingIn] = useState({ email: '', password: '' })
