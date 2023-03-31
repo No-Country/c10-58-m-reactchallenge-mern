@@ -14,11 +14,69 @@ const initialValues = {
 	terms: ''
 };
 
+const Loading = () => {
+	return (
+		<div
+			style={{
+				position: 'fixed',
+				top: 0,
+				left: 0,
+				width: '100%',
+				height: '100%',
+				backgroundColor: 'rgba(0, 0, 0, 0.8)',
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'center',
+				zIndex: 100
+			}}>
+			<div style={{ fontSize: '4rem' }}>LOADING</div>
+		</div>
+	);
+};
+
+const Message = ({ handleAlert, msg }) => {
+	return (
+		<div
+			style={{
+				position: 'fixed',
+				top: 0,
+				left: 0,
+				width: '100%',
+				height: '100%',
+				backgroundColor: 'rgba(0, 0, 0, 0.8)',
+				color: '#fff',
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'center',
+				zIndex: 100
+			}}>
+			<div style={{ border: '1px solid #fff', padding: '2rem', borderRadius: '10px' }}>
+				<h1 style={{ margin: '2rem 0' }}>{msg}</h1>
+				<div style={{ display: 'flex', justifyContent: 'center' }}>
+					<button
+						style={{
+							padding: '0.4rem 0.8rem',
+							border: '1px solid #fff',
+							borderRadius: '10px'
+						}}
+						onClick={handleAlert}>
+						Aceptar
+					</button>
+				</div>
+			</div>
+		</div>
+	);
+};
+
 const Register = () => {
 	const navigate = useNavigate();
 	const [form, setForm] = useState(initialValues);
 	const [showPass, setShowPass] = useState({ password: false, confirmPassword: false });
 	const [errors, setErrors] = useState({});
+	const [loading, setLoading] = useState(false);
+	const [alert, setAlert] = useState(false);
+
+	const handleAlert = () => setAlert('');
 
 	const handleChange = ({ target: { name, type, checked, value } }) =>
 		setForm({
@@ -36,43 +94,58 @@ const Register = () => {
 		e.preventDefault();
 		if (validateForm()) {
 			try {
-				const userRegistered = await createUserWithEmail(form);
-				alert('Usuario creado exitosamente');
-				console.log(userRegistered);
-				// Una vez registrado se va a redireccionar al perfil
-				// navigate('')
+				setLoading(true);
+				const { profilePic, names, lastName, dni, email, password } = form;
+				const userRegistered = await createUserWithEmail({
+					profilePic,
+					names,
+					lastName,
+					dni,
+					email,
+					password
+				});
+				console.log({ userRegistered });
+				if (userRegistered) {
+					setLoading(false);
+					setAlert('Usuario registrado exitosamente');
+					// Una vez registrado se va a redireccionar al perfil
+					// navigate('')
+				}
 			} catch (error) {
-				console.error(error);
-				alert('[!] Ocurrió un error al intentar registrarte');
+				console.log({ error });
+				setLoading(false);
+				setAlert('[ ! ] Ocurrió un error al intentar registrarte');
 			}
 		}
 	};
 
 	const validateForm = () => {
 		const errs = {};
-		if (form.names.length < 2 || form.names.length > 30)
+		const { names, lastName, email, dni, password, confirmPassword, terms } = form;
+		if (names.length < 2 || names.length > 30)
 			errs.names = 'El nombre debe contener mas de un caracter y menos de 20';
-		if (form.names === '') errs.names = 'El campo nombre no puede estar vacío';
-		if (form.lastName.length < 2 || form.lastName.length > 20)
+		if (names === '') errs.names = 'El campo nombre no puede estar vacío';
+		if (lastName.length < 2 || lastName.length > 20)
 			errs.lastName = 'El apellido debe contener mas de un caracter y menos de 20';
-		if (form.lastName === '') errs.lastName = 'El campo apellido no puede estar vacío';
-		if (form.email === '') errs.email = 'El campo email no puede estar vacío';
+		if (lastName === '') errs.lastName = 'El campo apellido no puede estar vacío';
+		if (email === '') errs.email = 'El campo email no puede estar vacío';
 		const pattern =
 			/^(?=.{1,256})(?=.{1,64}@)[A-Za-z0-9_-]+(?:\.[A-Za-z0-9_-]+)*@[A-Za-z0-9_-]+(?:\.[A-Za-z0-9_-]+)*\.[A-Za-z]{2,}$/;
-		if (!pattern.test(form.email)) errs.email = 'Ingresa un email válido';
-		if (form.dni === '') errs.dni = 'El campo DNI no puede estar vacío';
-		if (form.password === '') errs.password = 'El campo contraseña no puede estar vacío';
-		if (form.confirmPassword === '')
+		if (!pattern.test(email)) errs.email = 'Ingresa un email válido';
+		if (dni === '') errs.dni = 'El campo DNI no puede estar vacío';
+		if (password === '') errs.password = 'El campo contraseña no puede estar vacío';
+		if (confirmPassword === '')
 			errs.confirmPassword = 'El campo contraseña no puede estar vacío';
-		if (form.confirmPassword !== form.password)
-			errs.confirmPassword = 'Las contraseñas no coinciden';
-		if (!form.terms) errs.terms = 'Debes aceptar los términos y condiciones';
+		if (confirmPassword !== password) errs.confirmPassword = 'Las contraseñas no coinciden';
+		if (!terms) errs.terms = 'Debes aceptar los términos y condiciones';
 		setErrors(errs);
 		return Object.keys(errs).length < 1;
 	};
 
 	return (
 		<section className='p-4 max-w-md mx-auto'>
+			{loading && <Loading />}
+			{alert && <Message handleAlert={handleAlert} msg={alert} />}
 			<div className='flex'>
 				<Link to='/'>
 					<img
