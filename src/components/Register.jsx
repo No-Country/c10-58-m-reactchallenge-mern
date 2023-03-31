@@ -29,7 +29,9 @@ const Loading = () => {
 				alignItems: 'center',
 				zIndex: 100
 			}}>
-			<div style={{ fontSize: '4rem' }}>LOADING</div>
+			<svg className='loader'>
+				<circle cx='70' cy='70' r='70'></circle>
+			</svg>
 		</div>
 	);
 };
@@ -104,15 +106,14 @@ const Register = () => {
 					email,
 					password
 				});
-				console.log({ userRegistered });
 				if (userRegistered) {
 					setLoading(false);
 					setAlert('Usuario registrado exitosamente');
+					setForm(initialValues);
 					// Una vez registrado se va a redireccionar al perfil
 					// navigate('')
 				}
 			} catch (error) {
-				console.log({ error });
 				setLoading(false);
 				setAlert('[ ! ] Ocurrió un error al intentar registrarte');
 			}
