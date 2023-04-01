@@ -4,7 +4,7 @@ import Home from '../components/Home'
 import Register from '../components/Register'
 import SignIn from '../components/SignIn'
 import Profile from '../pages/Profile'
-import BugSign from '../components/BugSign'
+
 
 const Router = () => {
   return (

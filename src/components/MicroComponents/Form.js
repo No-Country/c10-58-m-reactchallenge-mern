@@ -1,50 +1,47 @@
 import styled from 'styled-components'
 
 // components
+//form for the login page mobile
 export const Form = styled.form`
-
-display: flex;
-flex-direction: column;
-
-  width: 100%;
-  height: 100%;
-  color: #000;
-  padding: 2px;
-
-  input {
-    background-color: #f0f0f2;
-    margin: 10px;
-
-    width: 80%;
-    height: 40px;
-    border: 1px solid #ebeaec;
-    border-radius: 20px;
-    padding: 5px;
-    color: #000;
-    padding-left: 15px;
-  }
-
-  button {
-    margin: 10px;
-    width: 40%;
-    border-radius: 25px;
-    height: 45px;
-    border: 1px solid #ebeaec;
-    padding: 5px;
-    background-color: #f0f0f2;
-    color: black;
-
-    &:hover {
-      background-color: #ebeaec;
-    }
-    &:shadow {
-      background-color: #ebeaec;
-    }
-  }
-
-label {
- 
-  color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   
-}
+  padding: 0 1rem;
+  margin: 0 auto;
+  background-color: #fff;
+ 
+  
+ 
+  input {
+    width: 100%;
+    height: 3.0rem;
+    margin: 0.5rem 0;
+    padding: 0 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 1rem;
+    &:focus {
+      outline: none;
+      border-color: #000;
+    }
+  }
+  button {
+    width: 50%;
+    height: 3.0rem;
+    margin: 0.5rem 0;
+    padding: 0 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 1rem;
+    background-color: #000;
+    color: #fff;
+    &:focus {
+      outline: none;
+      border-color: #000;
+    }
+  }
+
 `
+

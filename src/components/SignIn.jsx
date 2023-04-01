@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFirebaseContext } from '../context/UserContext'
 import styled from 'styled-components'
+import { Form } from './MicroComponents/Form'
 
 // styles
 const H1 = styled.h1`
@@ -13,12 +14,13 @@ const H1 = styled.h1`
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+place-content: center;
+place-items: center;
+place-self: center;
+
   align-items: center;
   background-color: #ffffff;
-  height: 500px;
-  width: 350px;
+ 
   border-radius: 10px;
 `
 
@@ -116,10 +118,10 @@ const SignIn = () => {
   }
 
     return (
-      <Container className="sing--in flex-col w-full flex ">
+      <Container className="sing--in flex-col w-full flex   ">
         <H1 className="text-4xl">Sign In</H1>
 
-        <form className="w-full items-center mt-5" onSubmit={handleSubmit}>
+        <Form className=" items-center mt-5 w-9/12" onSubmit={handleSubmit}>
           <input
             onChange={handleChange}
             type="email"
@@ -136,7 +138,7 @@ const SignIn = () => {
             placeholder="Password"
           />
           <button type="submit">Sing In</button>
-        </form>
+        </Form>
 
         <DivLine>
           <hr />
