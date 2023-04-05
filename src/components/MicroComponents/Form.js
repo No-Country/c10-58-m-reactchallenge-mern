@@ -16,11 +16,12 @@ export const Form = styled.form`
  
   input {
     width: 100%;
-    height: 3.0rem;
+   
+    background-color: #EBEBEB;
     margin: 0.5rem 0;
-    padding: 0 0.5rem;
+    padding: 0.4rem 1rem;
     border: 1px solid #ccc;
-    border-radius: 20px;
+    border-radius: 27px;
     font-size: 1rem;
     &:focus {
       outline: none;
@@ -32,7 +33,10 @@ export const Form = styled.form`
     height: 3.0rem;
     margin: 0.5rem 0;
     padding: 0 0.5rem;
-    border: 1px solid #ccc;
+    border: none;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+   
     border-radius: 20px;
     font-size: 1rem;
     background-color: #000;

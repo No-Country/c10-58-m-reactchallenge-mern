@@ -13,6 +13,7 @@ export async function fetchMedicos () {
       medicosArr.push({ id, ...data })
     })
     return medicosArr
+   
   } catch (error) {
     const errorCode = error.code
     throw new Error(`Hubo un error al comunicarse con la base de datos de medicos, error: ${errorCode}: ${error.message}`)

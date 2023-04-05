@@ -100,6 +100,7 @@ const SignIn = () => {
 
     // validate
     if (e.target.email.value === '' || e.target.password.value === '') {
+      console.log('error')
     } else {
       // send data to firebase
       e.target.email.value = ''
@@ -121,7 +122,8 @@ const SignIn = () => {
       <Container className="sing--in flex-col w-full flex   ">
         <H1 className="text-4xl">Sign In</H1>
 
-        <Form className=" items-center mt-5 w-9/12" onSubmit={handleSubmit}>
+        <Form className=" items-center mt-5 w-96"
+         onSubmit={handleSubmit}>
           <input
             onChange={handleChange}
             type="email"
