@@ -1,9 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
-
 
 :root {
     --mainFont: 'Roboto', sans-serif;
@@ -60,4 +59,46 @@
     border: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     font-weight: 500;
+}
+
+.loader {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader circle {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke-width: 10;
+    stroke: #444444;
+    stroke-linecap: round;
+    transform: translate(5px, 5px);
+    stroke-dasharray: 440;
+    stroke-dashoffset: 440;
+    animation: ani 4s linear infinite;
+}
+
+@keyframes ani {
+
+    0%,
+    100% {
+        stroke-dashoffset: 440;
+    }
+
+    50% {
+        stroke-dashoffset: 0;
+    }
+
+    50.1% {
+        stroke-dashoffset: 880;
+    }
 }

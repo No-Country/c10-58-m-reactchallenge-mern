@@ -29,7 +29,9 @@ const Loading = () => {
 				alignItems: 'center',
 				zIndex: 100
 			}}>
-			<div style={{ fontSize: '4rem' }}>LOADING</div>
+			<svg className='loader'>
+				<circle cx='70' cy='70' r='70'></circle>
+			</svg>
 		</div>
 	);
 };
@@ -75,15 +77,17 @@ const Register = () => {
 	const [errors, setErrors] = useState({});
 	const [loading, setLoading] = useState(false);
 	const [alert, setAlert] = useState(false);
+	const [previewImg, setPreviewImg] = useState('');
 
 	const handleAlert = () => setAlert('');
 
-	const handleChange = ({ target: { name, type, checked, value } }) =>
+	const handleChange = ({ target: { name, type, checked, value, files } }) => {
+		if (type === 'file' && value != '') setPreviewImg(URL.createObjectURL(files[0]));
 		setForm({
 			...form,
 			[name]: type === 'checkbox' ? checked : value
 		});
-
+	};
 	const handleClick = ({ target: { id } }) =>
 		setShowPass({
 			...showPass,
@@ -104,15 +108,15 @@ const Register = () => {
 					email,
 					password
 				});
-				console.log({ userRegistered });
 				if (userRegistered) {
 					setLoading(false);
 					setAlert('Usuario registrado exitosamente');
+					setForm(initialValues);
+					setPreviewImg('');
 					// Una vez registrado se va a redireccionar al perfil
 					// navigate('')
 				}
 			} catch (error) {
-				console.log({ error });
 				setLoading(false);
 				setAlert('[ ! ] Ocurrió un error al intentar registrarte');
 			}
@@ -155,10 +159,10 @@ const Register = () => {
 					/>
 				</Link>
 			</div>
-			<div className='flex justify-center my-10'>
+			<div className='flex justify-center my-10 relative'>
 				<label htmlFor='profile-pic'>
 					<input
-						className='hidden'
+						className='hidden '
 						type='file'
 						id='profile-pic'
 						name='profilePic'
@@ -166,12 +170,28 @@ const Register = () => {
 						value={form.profilePic}
 						onChange={handleChange}
 					/>
-					<img
-						className='cursor-pointer'
-						src='./uploadprofilepic.png'
-						alt='Upload your profile picture'
-					/>
+					{previewImg ? (
+						<img
+							className='cursor-pointer w-28 h-28 rounded-full object-cover'
+							src={previewImg ? previewImg : './uploadprofilepic.png'}
+							alt='Upload your profile picture'
+						/>
+					) : (
+						<img
+							className='cursor-pointer object-cover'
+							src={previewImg ? previewImg : './uploadprofilepic.png'}
+							alt='Upload your profile picture'
+						/>
+					)}
 				</label>
+				{previewImg && (
+					<img
+						className='w-7 h-7 absolute bottom-3 right-36 cursor-pointer'
+						src='./btn_del_img.png'
+						alt='Button to remove profile picture'
+						onClick={() => setPreviewImg('')}
+					/>
+				)}
 			</div>
 			<form onSubmit={handleSubmit}>
 				<div>

@@ -1,30 +1,168 @@
 /* eslint-disable jsx-quotes */
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useFirebaseContext } from '../context/UserContext'
 import styled from 'styled-components'
+import { Form } from './MicroComponents/Form'
+
 // styles
+const H1 = styled.h1`
+  color: #000;
+  font-size: 40px;
+  font-weight: 700;
+  margin: 10px;
+`
+
+const Container = styled.div`
+  display: flex;
+  place-content: center;
+  place-items: center;
+  place-self: center;
+
+  align-items: center;
+  background-color: #ffffff;
+
+  border-radius: 10px;
+`
+
 const ButtonRed = styled.button`
   background-color: #fff;
   color: #000000;
   width: 70px;
-  height: 60px;
+  height: 40px;
   border: 1px solid #000;
   border-radius: 5px;
   margin: 10px;
+
   &:hover {
     background-color: #000;
     color: #fff;
   }
 `
 
+const P = styled.p`
+  margin: 10px;
+  color: #000;
+  font-size: 20px;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+`
+
+const DivLine = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 10px;
+
+  span {
+    margin: 10px;
+    color: #000;
+    font-size: 20px;
+  }
+
+  hr {
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+  }
+`
+
 const SignIn = () => {
+  const [users, setUser] = useState({ email: '', password: '' })
+  const { login } = useFirebaseContext()
+  const navigate = useNavigate()
+
+  // destructuring
+  const { email, password } = users
+
+  // input change
+  const handleChange = (e) => {
+    // destructuring
+    const { name, value } = e.target
+    setUser({ ...users, [name]: value })
+  }
+
+  // form validation
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try {
+      await login(email, password)
+      navigate('/matias')
+    } catch (error) {
+      console.log(error)
+    }
+
+    // validate
+    if (e.target.email.value === '' || e.target.password.value === '') {
+      console.log('error')
+    } else {
+      // send data to firebase
+      e.target.email.value = ''
+      e.target.password.value = ''
+      setUser({ email: '', password: '' })
+    }
+  }
+
+  // add function for google and facebook
+  const handleSubmitForGoogle = (e) => {
+    if (e.target.value === '1') {
+      console.log('google')
+    } else {
+      console.log('facebook')
+    }
+  }
+
   return (
-    <div>
-      <h1> temporal SignIn 😀 </h1>
-      <Link to="/esteban">
-        <ButtonRed>click to register</ButtonRed>
-      </Link>
-    </div>
+    <Container className="sing--in flex-col w-full flex   ">
+      <H1 className="text-4xl">Sign In</H1>
+
+      <Form className=" items-center mt-5 w-96" onSubmit={handleSubmit}>
+        <input
+          onChange={handleChange}
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email"
+        />
+
+        <input
+          onChange={handleChange}
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+        <button type="submit">Sing In</button>
+      </Form>
+
+      <DivLine>
+        <hr />
+        <span>or</span>
+        <hr />
+      </DivLine>
+      <div>
+        <ButtonRed onClick={handleSubmitForGoogle} value="1" className="">
+          {' '}
+          G
+        </ButtonRed>
+        <ButtonRed onClick={handleSubmitForGoogle} value="2" className="">
+          F
+        </ButtonRed>
+      </div>
+
+      <div className="">
+        <Link to="/esteban">
+          <P className="text-2xl   ">Don't have an account?</P>
+        </Link>
+      </div>
+    </Container>
   )
 }
 

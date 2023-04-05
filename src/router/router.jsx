@@ -3,7 +3,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from '../components/Home'
 import Register from '../components/Register'
 import SignIn from '../components/SignIn'
-import Profile from '../pages/Profile'
+import CardContainer from '../components/CardContainer'
+
 
 const Router = () => {
   return (
@@ -12,6 +13,7 @@ const Router = () => {
         <Route path="/" element={<SignIn />} />
         <Route path="/esteban" element={<Register />} />
         <Route path="/matias" element={<Home />} />
+        <Route path="/card" element={<CardContainer />} />
       </Routes>
     </BrowserRouter>
   )
