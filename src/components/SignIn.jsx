@@ -139,7 +139,7 @@ const SignIn = () => {
             id="password"
             placeholder="Password"
           />
-          <button type="submit">Sing In</button>
+          <button type="submit">Sign In</button>
         </Form>
 
         <DivLine>
