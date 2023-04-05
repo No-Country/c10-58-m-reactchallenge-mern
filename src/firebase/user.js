@@ -75,3 +75,14 @@ export async function deleteUser () {
 export async function logOutUser () {
   return signOut(firebaseAuth)
 }
+
+export async function getUserData ({ userId }) {
+  try {
+    const userRef = doc(db, 'users', userId)
+    const userDoc = await getDoc(userRef)
+    const userData = userDoc.data()
+    return userData
+  } catch (error) {
+    throw new Error(error)
+  }
+}

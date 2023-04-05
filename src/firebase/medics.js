@@ -1,15 +1,26 @@
 import { db } from './client'
-import { addDoc, doc, collection } from 'firebase/firestore'
+import { getDoc, addDoc, doc, collection } from 'firebase/firestore'
 
 export async function createMedic () {
   const medicData = {
-    apellido: 'García',
-    especialidad: 'Psicopediatria',
-    nombre: 'Olivia',
-    profilePhoto: 'https://st2.depositphotos.com/1006318/8387/v/950/depositphotos_83877780-stock-illustration-medical-doctor-profile-icon.jpg',
-    direccion: '321 Camino Pine, Ciudad Ejemplo',
-    telefono: '555-345-6789',
+    apellido: 'Smith',
+    especialidad: 'Psicologia',
+    nombre: 'Emily',
+    profilePhoto: 'https://st2.depositphotos.com/5934840/11980/v/950/depositphotos_119808072-stock-illustration-medic-or-doctor-icon.jpg',
+    direccion: '456 Calle Elm, Ciudad Ejemplo',
+    telefono: '123-345-4567',
     appointments: []
   }
   await addDoc(collection(db, 'medicos'), medicData)
+}
+
+export async function getMedicData ({ medicId }) {
+  try {
+    const medicRef = doc(db, 'medicos', medicId)
+    const medicDoc = await getDoc(medicRef)
+    const medicData = medicDoc.data()
+    return medicData
+  } catch (error) {
+    throw new Error(error)
+  }
 }
