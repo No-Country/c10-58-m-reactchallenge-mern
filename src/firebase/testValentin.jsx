@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { signInWithEmail } from './userEmailAndPassword'
-import { fetchCollection } from './fetchCollection'
+import { fetchCategories, fetchCollection } from './fetchCollection'
 import { deleteUser, getCurrentUserInfo, logOutUser, updateProfileImage } from './user'
+import { createAppointment } from './appointment'
+import { createMedic } from './medics'
 
 export const TestingValentin = () => {
   const [userLoggingIn, setUserLoggingIn] = useState({ email: '', password: '' })
@@ -23,13 +25,13 @@ export const TestingValentin = () => {
     }
   }
 
-  async function uploadImage (e) {
-    e.preventDefault()
-    console.log(await fetchCollection({ collectionName: 'users' }))
-    const profImage = e.target.profileImage.files[0]
-    const updatedUser = await updateProfileImage({ image: profImage })
-    setUser(updatedUser)
-  }
+  // async function uploadImage (e) {
+  //   e.preventDefault()
+  //   console.log(await fetchCollection({ collectionName: 'users' }))
+  //   const profImage = e.target.profileImage.files[0]
+  //   const updatedUser = await updateProfileImage({ image: profImage })
+  //   setUser(updatedUser)
+  // }
 
   async function handleLogOut () {
     await logOutUser()
@@ -38,10 +40,19 @@ export const TestingValentin = () => {
 
   async function checkUser () {
     const user = await getCurrentUserInfo()
+    // await createMedic()
+
     console.log(user)
     setUser(user)
     return user
     // await updateUserInfo({ firstName: 'Hugo' })
+  }
+
+  async function uploadDate (e) {
+    e.preventDefault()
+    const date = e.target.dateTime.value
+    console.log((date))
+    await createAppointment({ date, hour: '17', medico: 'eVrCCOYx7MFkOeWDcZaI' })
   }
 
   return (
@@ -51,10 +62,16 @@ export const TestingValentin = () => {
         <input placeholder='password' name='password' type='password' onChange={e => handleChangeSignIn(e)} required />
         <button>SignIn</button>
       </form>
-      <form onSubmit={(e) => uploadImage(e)}>
+      <form onSubmit={(e) => uploadDate(e)}>
+        <input type='date' name='dateTime' />
+        {/* <input type='time' name='dateTime' min='09:00' max='18:00' required /> */}
+        <button>Upload</button>
+
+      </form>
+      {/* <form onSubmit={(e) => uploadImage(e)}>
         <input type='file' name='profileImage' accept='image/jpeg, image/png' />
         <button>Upload</button>
-      </form>
+      </form> */}
       <button onClick={deleteUser}>Delete user</button>
       <button onClick={handleLogOut}>LogOut user</button>
       <button onClick={checkUser}>check user signed in</button>

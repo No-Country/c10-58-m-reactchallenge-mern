@@ -13,7 +13,7 @@ export async function updateProfileImage ({ image }) {
     await setDoc(doc(db, 'users', uid), updatedUser)
     return updatedUser
   } catch (error) {
-    console.error('Hubo un error en la subida de la imagen')
+    console.error(error)
   }
 }
 
