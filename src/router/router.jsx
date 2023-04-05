@@ -1,8 +1,8 @@
 /* eslint-disable */
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from '../pages/Home';
-import Register from '../components/Register';
-import SignIn from '../components/SignIn';
+import Register from '../pages/Register';
+import SignIn from '../pages/SignIn';
 import App from '../App';
 import List from '../pages/List';
 import Profile from '../pages/Profile';
