@@ -1,8 +1,10 @@
+/* eslint-disable jsx-quotes */
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFirebaseContext } from '../context/UserContext'
 import styled from 'styled-components'
 import { Form } from './MicroComponents/Form'
+import Header from './Header'
 
 // styles
 const H1 = styled.h1`
@@ -14,13 +16,13 @@ const H1 = styled.h1`
 
 const Container = styled.div`
   display: flex;
-place-content: center;
-place-items: center;
-place-self: center;
+  place-content: center;
+  place-items: center;
+  place-self: center;
 
   align-items: center;
   background-color: #ffffff;
- 
+
   border-radius: 10px;
 `
 
@@ -118,55 +120,52 @@ const SignIn = () => {
     }
   }
 
-    return (
-      <Container className="sing--in flex-col w-full flex   ">
-        <H1 className="text-4xl">Sign In</H1>
+  return (
+    <Container className="sing--in flex-col w-full min-h-screen flex   ">
+      <Header />
+      <H1 className="text-4xl">Sign In</H1>
 
-        <Form className=" items-center mt-5 w-96"
-         onSubmit={handleSubmit}>
-          <input
-            onChange={handleChange}
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Email"
-          />
+      <Form className=" items-center mt-5 w-full" onSubmit={handleSubmit}>
+        <input
+          onChange={handleChange}
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email"
+        />
 
-          <input
-            onChange={handleChange}
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Password"
-          />
-          <button type="submit">Sing In</button>
-        </Form>
+        <input
+          onChange={handleChange}
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+        <button type="submit">Sing In</button>
+      </Form>
 
-        <DivLine>
-          <hr />
-          <span>or</span>
-          <hr />
-        </DivLine>
-        <div>
-          <ButtonRed onClick={handleSubmitForGoogle} value="1" className="">
-            {' '}
-            G
-          </ButtonRed>
-          <ButtonRed onClick={handleSubmitForGoogle} value="2" className="">
-            F
-          </ButtonRed>
-        </div>
+      <DivLine>
+        <hr />
+        <span>or</span>
+        <hr />
+      </DivLine>
+      <div>
+        <ButtonRed onClick={handleSubmitForGoogle} value="1" className="">
+          {' '}
+          G
+        </ButtonRed>
+        <ButtonRed onClick={handleSubmitForGoogle} value="2" className="">
+          F
+        </ButtonRed>
+      </div>
 
-        <div className="">
-            <Link to="/esteban">
-          <P  className="text-2xl   ">
-            Don't have an account?
-          </P>
-            </Link>
-        </div>
-      </Container>
-    )
-  }
-
+      <div className="">
+        <Link to="/esteban">
+          <P className="text-2xl   ">Don't have an account?</P>
+        </Link>
+      </div>
+    </Container>
+  )
+}
 
 export default SignIn

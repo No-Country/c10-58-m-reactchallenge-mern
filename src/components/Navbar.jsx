@@ -1,19 +1,56 @@
-/* eslint-disable */
-import React from 'react';
-import { Link } from 'react-router-dom';
+/* eslint-disable jsx-quotes */
+import { Link, useLocation } from 'react-router-dom';
+// import navbarIcon from '../../public/navbar_icon.svg'
+import homeIcon from '../../public/home_icon.svg';
+import variantHomeIcon from '../../public/home_variant.svg';
+import { useState, useEffect } from 'react';
+import emergencyIcon from '../../public/emergency_icon.svg';
+import variantEmergencyIcon from '../../public/emergency_variant.svg';
+import profileIcon from '../../public/profile_icon.svg';
+import variantProfileIcon from '../../public/profile_variant.svg';
 
 const Navbar = () => {
+	const [selected, setSelected] = useState('');
+	const location = useLocation();
+
+	useEffect(() => {
+		switch (location.pathname) {
+			case '/':
+				return setSelected('homeIcon');
+			case '/matias':
+				return setSelected('emergencyIcon');
+			case '/esteban':
+				return setSelected('profileIcon');
+			default:
+				return setSelected('homeIcon');
+		}
+	}, []);
+
 	return (
-		<nav className='w-80'>
-			<ul className='w-full flex gap-5'>
-				<li className='w-24'>
-					<Link to='/matias'> Ir al home</Link>
+		<nav className='w-full h-[50px] fixed bottom-0'>
+			<ul className='w-full h-full flex justify-evenly items-center'>
+				<li className=''>
+					<Link to='/'>
+						<img src={selected === 'homeIcon' ? homeIcon : variantHomeIcon} alt='' />
+					</Link>
 				</li>
-				<li className='w-24'>
-					<Link to='/esteban'> Ir al registro</Link>
+				<li className=''>
+					<Link to='/matias'>
+						<img
+							src={
+								selected === 'emergencyIcon' ? emergencyIcon : variantEmergencyIcon
+							}
+							alt=''
+						/>
+					</Link>
 				</li>
-				<li className='w-24'>
-					<Link to='/'> Ir al login</Link>
+				<li className=''>
+					<Link to='/esteban'>
+						<img
+							src={selected === 'profileIcon' ? profileIcon : variantProfileIcon}
+							alt=''
+						/>
+					</Link>
 				</li>
 			</ul>
 		</nav>
