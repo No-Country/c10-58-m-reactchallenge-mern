@@ -1,23 +1,21 @@
-/* eslint-disable jsx-quotes */
-// import Card from './Card'
-// import { fetchMedicos } from '../firebase/fetchMedicos'
-// import { useState, useEffect } from 'react'
+import React from 'react'
+import Card from './Card'
+import {fetchCollection} from '../firebase/fetchCollection'
+import { useState,useEffect } from 'react'
 
-// const CardContainer = () => {
-//   const [medicos, setMedicos] = useState([])
-//   useEffect(() => {
-//     fetchMedicos().then((medicos) => {
-//       setMedicos(medicos)
-//     })
-//   }, [])
-//   console.log(medicos)
-//   return (
-//     <div className="flex justify-center flex-col">
-//       {medicos.map((medico) => {
-//         return <Card key={medico.id} medico={medico} />
-//       })}
-//     </div>
-//   )
-// }
+const CardContainer = () => {
+    const [medicos, setMedicos] = useState([])
+    useEffect(() => {
+        fetchCollection ({collectionName: 'medicos'}).then((medicos) => {
+            setMedicos(medicos)
+        })
+    }, [])
+   console.log(medicos)
+  return (
+    <div className='flex justify-center flex-col'>
+       {
+              medicos.map((medico) => {
+                    return <Card key={medico.id} medico={medico} />
+                })
 
 // export default CardContainer
