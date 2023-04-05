@@ -1,12 +1,12 @@
 import React from 'react'
 import Card from './Card'
-import {fetchMedicos} from '../firebase/fetchMedicos'
+import {fetchCollection} from '../firebase/fetchCollection'
 import { useState,useEffect } from 'react'
 
 const CardContainer = () => {
     const [medicos, setMedicos] = useState([])
     useEffect(() => {
-        fetchMedicos().then((medicos) => {
+        fetchCollection ({collectionName: 'medicos'}).then((medicos) => {
             setMedicos(medicos)
         })
     }, [])

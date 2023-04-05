@@ -4,6 +4,7 @@ import Home from '../components/Home'
 import Register from '../components/Register'
 import SignIn from '../components/SignIn'
 import CardContainer from '../components/CardContainer'
+import HomeTemp from '../components/HomeTemp'
 
 
 const Router = () => {
