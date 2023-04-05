@@ -26,14 +26,11 @@ const User = () => {
   return (
     <div className="flex items-center">
       {showUser && (
-        <>
-          <img
-            className="w-8 h-8 bg-slate-300 rounded-full"
-            src={showUser.avatar}
-            alt=""
-          />
-          <h4 className="inline">{showUser.firstName}</h4>
-        </>
+        <img
+          className="w-8 h-8 bg-slate-300 rounded-full"
+          src={showUser.avatar}
+          alt=""
+        />
       )}
     </div>
   )
