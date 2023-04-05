@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { signInWithEmail } from './userEmailAndPassword'
 import { fetchCategories, fetchCollection } from './fetchCollection'
-import { deleteUser, getCurrentUserInfo, logOutUser, updateProfileImage } from './user'
-import { createAppointment } from './appointment'
-import { createMedic } from './medics'
+import { deleteUser, getCurrentUserInfo, getUserData, logOutUser, updateProfileImage } from './user'
+import { cancelAppointment, createAppointment, getAppointmentData } from './appointment'
+import { createMedic, getMedicData } from './medics'
 
 export const TestingValentin = () => {
   const [userLoggingIn, setUserLoggingIn] = useState({ email: '', password: '' })
@@ -40,7 +40,7 @@ export const TestingValentin = () => {
 
   async function checkUser () {
     const user = await getCurrentUserInfo()
-    // await createMedic()
+    await createMedic()
 
     console.log(user)
     setUser(user)
@@ -51,8 +51,11 @@ export const TestingValentin = () => {
   async function uploadDate (e) {
     e.preventDefault()
     const date = e.target.dateTime.value
-    console.log((date))
-    await createAppointment({ date, hour: '17', medico: 'eVrCCOYx7MFkOeWDcZaI' })
+    // await createAppointment({ date, hour: '17', medicId: 'eVrCCOYx7MFkOeWDcZaI' })
+    // await cancelAppointment({ appointmentId: '5zrcdkFHtCG4x3uMBW5Q' })
+    const { medicId, userId } = await getAppointmentData({ appointmentId: 'dhBB12W0Wh8jUp42nND6' })
+    console.log(await getUserData({ userId }))
+    console.log(await getMedicData({ medicId }))
   }
 
   return (
