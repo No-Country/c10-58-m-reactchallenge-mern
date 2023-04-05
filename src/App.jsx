@@ -1,8 +1,14 @@
 /* eslint-disable */
-import Router from './router/router'
+import { Outlet } from 'react-router-dom';
+import Header from './components/Header';
 
 function App() {
-  return <Router />
+	return (
+		<>
+			<Outlet />
+			<Header />
+		</>
+	);
 }
 
-export default App
+export default App;
