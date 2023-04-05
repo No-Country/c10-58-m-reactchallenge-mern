@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useFirebaseContext } from '../context/UserContext'
 import styled from 'styled-components'
 import { Form } from './MicroComponents/Form'
+import Header from './Header'
 
 // styles
 const H1 = styled.h1`
@@ -120,10 +121,11 @@ const SignIn = () => {
   }
 
   return (
-    <Container className="sing--in flex-col w-full flex   ">
+    <Container className="sing--in flex-col w-full min-h-screen flex   ">
+      <Header />
       <H1 className="text-4xl">Sign In</H1>
 
-      <Form className=" items-center mt-5 w-96" onSubmit={handleSubmit}>
+      <Form className=" items-center mt-5 w-full" onSubmit={handleSubmit}>
         <input
           onChange={handleChange}
           type="email"

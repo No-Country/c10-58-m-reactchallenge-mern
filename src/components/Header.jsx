@@ -1,13 +1,13 @@
 /* eslint-disable jsx-quotes */
 import React from 'react'
 import Navbar from './Navbar'
-import User from './User'
+// import User from './User'
 
 const Header = () => {
   return (
-    <header className="w-full h-12 flex justify-evenly items-center bg-slate-200">
+    <header className="fixed bottom-0 w-full h-12 flex justify-evenly items-center bg-slate-200">
       <Navbar />
-      <User />
+      {/* <User /> */}
     </header>
   )
 }

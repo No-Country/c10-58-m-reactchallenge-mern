@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react'
 import { useFirebaseContext } from '../context/UserContext'
 // import Footer from './Footer'
-// import Header from './Header'
+import Header from './Header'
 import { motion } from 'framer-motion'
 import searchIcon from './assets/icon.svg'
 
@@ -44,7 +44,7 @@ const Home = () => {
   if (!loading) return <h1>Cargando...</h1>
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <main className="w-full h-screen overflow-x-hidden ">
         <section className="flex items-center flex-col gap-5">
           <div className="w-[200px] h-[120px] bg-slate-200 mt-[80px] flex justify-center items-center">

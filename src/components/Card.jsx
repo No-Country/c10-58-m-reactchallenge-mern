@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { Botonpildora } from "./MicroComponents/BotonesPildoras";
+import React from 'react'
+import styled from 'styled-components'
+import { Botonpildora } from './MicroComponents/BotonesPildoras'
 
-const img = "https://picsum.photos/seed/picsum/200/300";
+const img = 'https://picsum.photos/seed/picsum/200/300'
 
 //styled components
 const Img = styled.img`
@@ -10,7 +10,7 @@ const Img = styled.img`
   height: 100px;
   border-radius: 10%;
   margin: 10px;
-`;
+`
 const CardContainer = styled.div`
   background-color: #fff;
   border-radius: 10px;
@@ -26,11 +26,11 @@ const CardContainer = styled.div`
   &:hover {
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   }
-`;
+`
 
 const Card = ({ medico }) => {
-  const { nombre,profilePhoto
-,    apellido, departamento, telefono, direccion } = medico;
+  const { nombre, profilePhoto, apellido, departamento, telefono, direccion } =
+    medico
   return (
     <CardContainer className="w-80 bg-red-200">
       <div className="dates flex flex-col">
@@ -38,7 +38,7 @@ const Card = ({ medico }) => {
           <Img src={profilePhoto} alt="images--Dr." />
           <div className="date pt-5">
             <h3>
-              {nombre} <span>{apellido}</span>{" "}
+              {nombre} <span>{apellido}</span>{' '}
             </h3>
             <p>{departamento}</p>
             <span>{telefono}</span>
@@ -53,7 +53,7 @@ const Card = ({ medico }) => {
         </div>
       </div>
     </CardContainer>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

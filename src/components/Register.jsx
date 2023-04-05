@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { createUserWithEmail } from '../firebase/userEmailAndPassword'
+import Header from './Header'
 
 const initialValues = {
   profilePic: '',
@@ -165,7 +166,8 @@ const Register = () => {
   }
 
   return (
-    <section className="p-4 max-w-md mx-auto">
+    <section className=" max-w-md mx-auto">
+      <Header />
       {loading && <Loading />}
       {alert && <Message handleAlert={handleAlert} msg={alert} />}
       <div className="flex">
@@ -177,7 +179,7 @@ const Register = () => {
           />
         </Link>
       </div>
-      <div className="flex justify-center my-10 relative">
+      <div className="flex justify-center my-10 relative p-4">
         <label htmlFor="profile-pic">
           <input
             className="hidden "
@@ -211,10 +213,10 @@ const Register = () => {
           />
         )}
       </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="p-4">
         <div>
           <input
-            className="inp-reg"
+            className="inp-reg "
             type="text"
             id="names"
             name="names"
