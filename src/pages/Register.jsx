@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { createUserWithEmail } from '../firebase/userEmailAndPassword';
+import Header from '../components/Header';
 
 const initialValues = {
 	profilePic: '',
@@ -52,7 +53,12 @@ const Message = ({ handleAlert, msg }) => {
 				alignItems: 'center',
 				zIndex: 100
 			}}>
-			<div style={{ border: '1px solid #fff', padding: '2rem', borderRadius: '10px' }}>
+			<div
+				style={{
+					border: '1px solid #fff',
+					padding: '2rem',
+					borderRadius: '10px'
+				}}>
 				<h1 style={{ margin: '2rem 0' }}>{msg}</h1>
 				<div style={{ display: 'flex', justifyContent: 'center' }}>
 					<button
@@ -73,7 +79,10 @@ const Message = ({ handleAlert, msg }) => {
 const Register = () => {
 	const navigate = useNavigate();
 	const [form, setForm] = useState(initialValues);
-	const [showPass, setShowPass] = useState({ password: false, confirmPassword: false });
+	const [showPass, setShowPass] = useState({
+		password: false,
+		confirmPassword: false
+	});
 	const [errors, setErrors] = useState({});
 	const [loading, setLoading] = useState(false);
 	const [alert, setAlert] = useState(false);
@@ -147,7 +156,8 @@ const Register = () => {
 	};
 
 	return (
-		<section className='p-4 max-w-md mx-auto'>
+		<section className=' max-w-md mx-auto'>
+			<Header />
 			{loading && <Loading />}
 			{alert && <Message handleAlert={handleAlert} msg={alert} />}
 			<div className='flex'>
@@ -159,7 +169,7 @@ const Register = () => {
 					/>
 				</Link>
 			</div>
-			<div className='flex justify-center my-10 relative'>
+			<div className='flex justify-center my-10 relative p-4'>
 				<label htmlFor='profile-pic'>
 					<input
 						className='hidden '
@@ -193,10 +203,10 @@ const Register = () => {
 					/>
 				)}
 			</div>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} className='p-4'>
 				<div>
 					<input
-						className='inp-reg'
+						className='inp-reg '
 						type='text'
 						id='names'
 						name='names'
