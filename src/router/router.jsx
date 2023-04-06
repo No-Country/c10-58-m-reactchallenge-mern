@@ -6,6 +6,7 @@ import SignIn from '../pages/SignIn';
 import App from '../App';
 import List from '../pages/List';
 import Profile from '../pages/Profile';
+import Calendar from '../pages/Calendar';
 
 export const router = createBrowserRouter([
 	{
@@ -26,7 +27,7 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: '/list/:id/calendar',
-				element: <h1>Calendario</h1>
+				element: <Calendar />
 			},
 			{
 				path: '/login',
