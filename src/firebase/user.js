@@ -1,7 +1,8 @@
-import { doc, getDoc, setDoc, deleteDoc } from 'firebase/firestore'
+import { doc, getDoc, getDocs, where, query, setDoc, deleteDoc, Timestamp } from 'firebase/firestore'
 import { signOut, updatePassword } from 'firebase/auth'
 import { db, firebaseAuth } from './client'
 import { uploadImage } from './storage'
+import { dateToSeconds } from './../utils/formatDateFirebase'
 
 export async function updateProfileImage ({ image }) {
   const { uid } = firebaseAuth.currentUser
