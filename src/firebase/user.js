@@ -1,7 +1,8 @@
-import { doc, getDoc, setDoc, deleteDoc } from 'firebase/firestore'
+import { doc, getDoc, getDocs, where, query, setDoc, deleteDoc, Timestamp } from 'firebase/firestore'
 import { signOut, updatePassword } from 'firebase/auth'
 import { db, firebaseAuth } from './client'
 import { uploadImage } from './storage'
+import { dateToSeconds } from './../utils/formatDateFirebase'
 
 export async function updateProfileImage ({ image }) {
   const { uid } = firebaseAuth.currentUser
@@ -13,7 +14,7 @@ export async function updateProfileImage ({ image }) {
     await setDoc(doc(db, 'users', uid), updatedUser)
     return updatedUser
   } catch (error) {
-    console.error('Hubo un error en la subida de la imagen')
+    console.error(error)
   }
 }
 
@@ -74,4 +75,15 @@ export async function deleteUser () {
 
 export async function logOutUser () {
   return signOut(firebaseAuth)
+}
+
+export async function getUserData ({ userId }) {
+  try {
+    const userRef = doc(db, 'users', userId)
+    const userDoc = await getDoc(userRef)
+    const userData = userDoc.data()
+    return userData
+  } catch (error) {
+    throw new Error(error)
+  }
 }
