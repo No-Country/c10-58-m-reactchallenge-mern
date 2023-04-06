@@ -1,13 +1,11 @@
+import { dateToSeconds } from '../utils/formatDateFirebase'
 import { db, firebaseAuth } from './client'
 import { Timestamp, deleteDoc, getDoc, doc, addDoc, collection, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore'
 
 export async function createAppointment ({ date, hour, medicId }) {
   const { uid } = firebaseAuth.currentUser
   try {
-    const dateString = `${date}T${hour}:00:00`
-    const ISODate = new Date(dateString)
-    const seconds = Date.parse(ISODate) / 1000
-    const dateTime = new Timestamp(seconds, 0)
+    const dateTime = new Timestamp(dateToSeconds(date, hour), 0)
     const appointment = { date: dateTime, medicId, userId: uid }
     const appointmentAdded = await addDoc(collection(db, 'appointments'), appointment)
     console.log(appointmentAdded.id, dateTime)
