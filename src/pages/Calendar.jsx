@@ -2,6 +2,7 @@
 
 import { Link } from 'react-router-dom';
 import { Btn } from '../components/MicroComponents/Btn';
+import { useEffect } from 'react';
 
 const week = [
 	{ id: 1, day: 'Lun' },
@@ -27,6 +28,7 @@ const hours = [
 ];
 
 const Calendar = () => {
+	useEffect(() => {}, []);
 	return (
 		<div>
 			<Link to='/'>
