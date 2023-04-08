@@ -108,15 +108,7 @@ const Register = () => {
 		if (validateForm()) {
 			try {
 				setLoading(true);
-				const { profilePic, names, lastName, dni, email, password } = form;
-				const userRegistered = await createUserWithEmail({
-					profilePic,
-					names,
-					lastName,
-					dni,
-					email,
-					password
-				});
+				const userRegistered = await createUserWithEmail(form);
 				if (userRegistered) {
 					setLoading(false);
 					setAlert('Usuario registrado exitosamente');
