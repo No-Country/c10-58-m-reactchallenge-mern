@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useFirebaseContext } from '../context/UserContext';
 import styled from 'styled-components';
 import { Form } from '../components/MicroComponents/Form';
+
 import Header from '../components/Header';
 
 // styles
@@ -15,9 +16,9 @@ const H1 = styled.h1`
 `;
 
 const Container = styled.div`
-	display: flex;
-	place-content: center;
-	place-items: center;
+	
+	
+
 	place-self: center;
 
 	align-items: center;
@@ -121,11 +122,15 @@ const SignIn = () => {
 	};
 
 	return (
-		<Container className='sing--in flex-col w-full min-h-screen flex   '>
+		<Container className='sing--in flex-col w-full min-h-screen flex pt-10    '>
 			<Header />
-			<H1 className='text-4xl'>Sign In</H1>
+			<div className='flex flex-col w-full pl-10 pb-20'>
+			<H1 className='text-4xl'>Hola!</H1>
+			<span>Inicia sesion en tu cuenta</span>
 
-			<Form className=' items-center mt-5 w-full' onSubmit={handleSubmit}>
+			</div>
+
+			<Form className=' items-center mt-5 w-11/12' onSubmit={handleSubmit}>
 				<input
 					onChange={handleChange}
 					type='email'
@@ -141,6 +146,7 @@ const SignIn = () => {
 					id='password'
 					placeholder='Password'
 				/>
+				<P className='text-2xl   '>Olvide mi password</P>
 				<button type='submit'>Sing In</button>
 			</Form>
 
@@ -160,7 +166,7 @@ const SignIn = () => {
 			</div>
 
 			<div className=''>
-				<Link to='/esteban'>
+				<Link to='/register'>
 					<P className='text-2xl   '>Don't have an account?</P>
 				</Link>
 			</div>
