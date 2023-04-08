@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import { useFirebaseContext } from '../context/UserContext';
 // import Footer from './Footer'
 import Header from '../components/Header';
-import { motion } from 'framer-motion';
+import { m, motion } from 'framer-motion';
 
 const Home = () => {
 	const [show, setShow] = useState(true);
@@ -39,6 +39,13 @@ const Home = () => {
 		'Drogadicción',
 		'Orientación profesional'
 	];
+	const faq = [
+		'Busca un profesional',
+		'Elige un profesional',
+		'Elige horario de tu cita',
+		'Ten el cuidado que mereces',
+		'Califica el servicio',
+	]
 
 	if (!loading) return <h1>Cargando...</h1>;
 	return (
@@ -127,8 +134,16 @@ const Home = () => {
 						</motion.div>
 					</div>
 				</section>
-				<section>
+				<section className='mt-5 text-center'>
 					<h3>¿Cómo funciona?</h3>
+					<div className='flex justify-center mt-5 gap-5 flex-wrap'>
+					{faq.map((question, i) => (
+						<div key={i} style={{ width: '80px', height: '100px', display: 'flex', borderRadius: '5px', padding:'4px', justifyContent: 'center', alignItems:'center', backgroundColor: '#d7d7d7' }}>
+							<span> {question} </span>
+						</div>
+					))}
+					</div>
+					
 				</section>
 			</main>
 			{/* <Footer /> */}
