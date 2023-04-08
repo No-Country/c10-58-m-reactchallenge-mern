@@ -2,6 +2,8 @@
 
 import { Link } from 'react-router-dom';
 import { Btn } from '../components/MicroComponents/Btn';
+import { useEffect } from 'react';
+import { getMedicAppointments } from '../firebase/medics';
 
 const week = [
 	{ id: 1, day: 'Lun' },
@@ -49,8 +51,7 @@ const Calendar = () => {
 								{hours.map(({ id, hour }) => (
 									<li
 										className='border-[1px] border-gray-400 rounded-md py-0 px-2 my-2 text-xs text-center cursor-pointer'
-										key={id}
-										onClick={() => console.log(`DAY: ${day} - HOUR: ${hour}`)}>
+										key={id}>
 										{hour}
 									</li>
 								))}

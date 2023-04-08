@@ -16,3 +16,8 @@ export async function fetchCollection ({ collectionName }) {
     throw new Error(`Hubo un error al comunicarse con la base de datos de ${collectionName}, error: ${errorCode}: ${error.message}`)
   }
 }
+
+export async function fetchCategories () {
+  const medicosData = await fetchCollection({ collectionName: 'medicos' })
+  return medicosData.map(medico => medico.departamento)
+}
