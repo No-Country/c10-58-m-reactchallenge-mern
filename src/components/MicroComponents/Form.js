@@ -7,17 +7,15 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+
   padding: 0 1rem;
   margin: 0 auto;
   background-color: #fff;
- 
-  
- 
+
   input {
     width: 100%;
-   
-    background-color: #EBEBEB;
+
+    background-color: #ebebeb;
     margin: 0.5rem 0;
     padding: 0.4rem 1rem;
     border: 1px solid #ccc;
@@ -30,13 +28,13 @@ export const Form = styled.form`
   }
   button {
     width: 50%;
-    height: 3.0rem;
+    height: 3rem;
     margin: 0.5rem 0;
     padding: 0 0.5rem;
     border: none;
     font-weight: 500;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-   
+
     border-radius: 20px;
     font-size: 1rem;
     background-color: #000;
@@ -46,6 +44,4 @@ export const Form = styled.form`
       border-color: #000;
     }
   }
-
 `
-

@@ -22,8 +22,7 @@ const Navbar = () => {
     <nav className="w-full h-[50px] fixed bottom-0">
       <ul className="w-full h-full flex justify-evenly items-center">
         <li className="">
-          <NavLink to="/"
-           onClick={() => handleNavLinkClick('homeIcon')}>
+          <NavLink to="/" onClick={() => handleNavLinkClick('homeIcon')}>
             <img
               src={selected === 'homeIcon' ? homeIcon : variantHomeIcon}
               alt=""
