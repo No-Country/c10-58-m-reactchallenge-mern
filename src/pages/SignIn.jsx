@@ -91,12 +91,12 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-		try {
-			await login(email, password);
-			navigate('/profile');
-		} catch (error) {
-			console.log(error);
-		}
+    try {
+      await login(email, password)
+      navigate('/profile')
+    } catch (error) {
+      console.log(error)
+    }
 
     // validate
     if (e.target.email.value === '' || e.target.password.value === '') {
@@ -118,52 +118,53 @@ const SignIn = () => {
     }
   }
 
-	return (
-		<Container className='sing--in flex-col w-full min-h-screen flex pt-10 mb-10   '>
-			<Header />
-			<div className='flex flex-col w-full pl-10 pb-20'>
-			<H1 className='text-4xl'>Hola!</H1>
-			<span>Inicia sesion en tu cuenta</span>
+  return (
+    <Container className='sing--in flex-col w-full min-h-screen flex pt-10 mb-10   '>
+      <Header />
+      <div className='flex flex-col w-full pl-10 pb-20'>
+        <H1 className='text-4xl'>Hola!</H1>
+        <span>Inicia sesion en tu cuenta</span>
 
-      <Form className=" items-center mt-5 w-11/12" onSubmit={handleSubmit}>
-        <input
-          onChange={handleChange}
-          type="email"
-          name="email"
-          id="email"
-          placeholder="Email"
-        />
+        <Form className=" items-center mt-5 w-11/12" onSubmit={handleSubmit}>
+          <input
+            onChange={handleChange}
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+          />
 
-        <input
-          onChange={handleChange}
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Password"
-        />
-        <P className="text-2xl   ">Olvide mi password</P>
-        <button type="submit">Sing In</button>
-      </Form>
+          <input
+            onChange={handleChange}
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+          />
+          <P className="text-2xl   ">Olvide mi password</P>
+          <button type="submit">Sing In</button>
+        </Form>
 
-      <DivLine>
-        <hr />
-        <span>or</span>
-        <hr />
-      </DivLine>
-      <div>
-        <ButtonRed onClick={handleSubmitForGoogle} value="1" className="">
-          {' '}
-          G
-        </ButtonRed>
-        <ButtonRed onClick={handleSubmitForGoogle} value="2" className="">
-          F
-        </ButtonRed>
-      </div>
+        <DivLine>
+          <hr />
+          <span>or</span>
+          <hr />
+        </DivLine>
+        <div>
+          <ButtonRed onClick={handleSubmitForGoogle} value="1" className="">
+            {' '}
+            G
+          </ButtonRed>
+          <ButtonRed onClick={handleSubmitForGoogle} value="2" className="">
+            F
+          </ButtonRed>
+        </div>
 
-      <div className="">
-        <Link to="/register">
-          <P className="text-2xl   ">Don't have an account?</P>
-        </Link>
+        <div className="">
+          <Link to="/register">
+            <P className="text-2xl   ">Don't have an account?</P>
+          </Link>
+        </div>
       </div>
     </Container>
   )
