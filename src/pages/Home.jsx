@@ -1,21 +1,11 @@
 /* eslint-disable */
 /* eslint-disable jsx-quotes */
-<<<<<<< HEAD
-
-import { useRef, useState } from 'react';
-import { useFirebaseContext } from '../context/UserContext';
-// import Footer from './Footer'
-import Header from '../components/Header';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-=======
 import { useRef, useState } from 'react'
 import { useFirebaseContext } from '../context/UserContext'
 // import Footer from './Footer'
 import Header from '../components/Header'
-import { m, motion } from 'framer-motion'
+import {  motion } from 'framer-motion'
 import { Search } from '../components/MicroComponents/Search'
->>>>>>> 60cf28b6976cc595dbff3458e3d6cedce6d09886
 
 const Home = () => {
   const [show, setShow] = useState(true)
