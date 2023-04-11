@@ -12,6 +12,7 @@ export const useFirebaseContext = () => useContext(FirebaseContext);
 const FirebaseProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const [loading, setLoading] = useState(false);
+	console.log(user);
 
 	const login = (email, password) => {
 		return signInWithEmailAndPassword(firebaseAuth, email, password);

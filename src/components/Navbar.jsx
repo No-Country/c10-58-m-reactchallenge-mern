@@ -8,6 +8,8 @@ import emergencyIcon from '../../public/emergency_icon.svg';
 import variantEmergencyIcon from '../../public/emergency_variant.svg';
 import profileIcon from '../../public/profile_icon.svg';
 import variantProfileIcon from '../../public/profile_variant.svg';
+import { useNavigate } from 'react-router-dom';
+import { useFirebaseContext } from '../context/UserContext';
 
 const Navbar = () => {
 	const [selected, setSelected] = useState('');
@@ -25,9 +27,23 @@ const Navbar = () => {
 				return setSelected('homeIcon');
 		}
 	}, []);
+	//navigator temporal
+	const navigate = useNavigate();
+	const { user } = useFirebaseContext();
+	
+	
+	
+	const handleClick = () => {
+		if (user) {
+			navigate('/profile');
+		} else {
+			navigate('/login');
+		}
+		
+	};
 
 	return (
-		<nav className='w-full h-[50px] fixed bottom-0'>
+		<nav className='w-full h-[50px] fixed bottom-0 '>
 			<ul className='w-full h-full flex justify-evenly items-center'>
 				<li className=''>
 					<Link to='/'>
@@ -35,7 +51,7 @@ const Navbar = () => {
 					</Link>
 				</li>
 				<li className=''>
-					<Link to='/matias'>
+					<Link to='/emergency'>
 						<img
 							src={
 								selected === 'emergencyIcon' ? emergencyIcon : variantEmergencyIcon
@@ -44,13 +60,13 @@ const Navbar = () => {
 						/>
 					</Link>
 				</li>
-				<li className=''>
-					<Link to='/esteban'>
+				<li onClick={handleClick} className=''>
+					
 						<img
 							src={selected === 'profileIcon' ? profileIcon : variantProfileIcon}
 							alt=''
 						/>
-					</Link>
+					
 				</li>
 			</ul>
 		</nav>

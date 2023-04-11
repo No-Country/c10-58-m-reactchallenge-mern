@@ -30,10 +30,10 @@ const Container = styled.div`
 const ButtonRed = styled.button`
 	background-color: #fff;
 	color: #000000;
-	width: 70px;
-	height: 40px;
+	width: 50px;
+	height: 50px;
 	border: 1px solid #000;
-	border-radius: 5px;
+	border-radius: 100%;
 	margin: 10px;
 
 	&:hover {
@@ -96,7 +96,7 @@ const SignIn = () => {
 
 		try {
 			await login(email, password);
-			navigate('/matias');
+			navigate('/profile');
 		} catch (error) {
 			console.log(error);
 		}
@@ -122,7 +122,7 @@ const SignIn = () => {
 	};
 
 	return (
-		<Container className='sing--in flex-col w-full min-h-screen flex pt-10    '>
+		<Container className='sing--in flex-col w-full min-h-screen flex pt-10 mb-10   '>
 			<Header />
 			<div className='flex flex-col w-full pl-10 pb-20'>
 			<H1 className='text-4xl'>Hola!</H1>

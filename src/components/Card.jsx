@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Botonpildora } from './MicroComponents/BotonesPildoras';
+import { Link ,useNavigate} from 'react-router-dom';
+import { useFirebaseContext } from '../context/UserContext';
 
 const img = 'https://picsum.photos/seed/picsum/200/300';
 
@@ -30,6 +32,17 @@ const CardContainer = styled.div`
 
 const Card = ({ medico }) => {
 	const { nombre, profilePhoto, apellido, departamento, telefono, direccion } = medico;
+	const {user} = useFirebaseContext();
+	const navigate = useNavigate();
+	const handleClickAgendar = () => {
+		if (user) {
+			navigate('/list/:id/calendar');
+		}else{
+			navigate('/login');
+		}
+	
+	}
+
 	return (
 		<CardContainer className='w-80 bg-red-200'>
 			<div className='dates flex flex-col'>
@@ -48,7 +61,11 @@ const Card = ({ medico }) => {
 				</div>
 				<div className='buttons gap-5 mb-3 pr-5 pt-3 flex justify-end'>
 					<Botonpildora $primary>Ver perfil</Botonpildora>
-					<Botonpildora>Agendar cita</Botonpildora>
+					<Botonpildora onClick={handleClickAgendar} >
+					
+						Agendar cita
+					</Botonpildora>
+						
 				</div>
 			</div>
 		</CardContainer>

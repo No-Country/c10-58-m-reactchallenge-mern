@@ -1,10 +1,12 @@
 /* eslint-disable */
 /* eslint-disable jsx-quotes */
+
 import { useRef, useState } from 'react';
 import { useFirebaseContext } from '../context/UserContext';
 // import Footer from './Footer'
 import Header from '../components/Header';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 	const [show, setShow] = useState(true);
@@ -41,13 +43,16 @@ const Home = () => {
 	];
 
 	if (!loading) return <h1>Cargando...</h1>;
+	
+
+		
 	return (
 		<>
 			<Header />
 			<main className='w-full h-screen overflow-x-hidden '>
 				<section className='flex items-center flex-col gap-5'>
-					<div className='w-[200px] h-[120px] bg-slate-200 mt-[80px] flex justify-center items-center'>
-						Logo
+					<div className='w-[200px] h-[120px]mt-[80px] flex justify-center items-center'>
+						<img src='/public/logo.svg' alt='escuchadero' />
 					</div>
 					<div>
 						<label className='relative block'>
@@ -119,7 +124,10 @@ const Home = () => {
 								{tiposDeTerapias.map((terapia, i) => (
 									<motion.div style={item} key={i}>
 										<span className='w-[100px] break-word text-center'>
+											<Link to='/list'>
+											
 											{terapia}
+											</Link>
 										</span>
 									</motion.div>
 								))}

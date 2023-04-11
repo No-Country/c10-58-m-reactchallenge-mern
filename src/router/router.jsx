@@ -7,6 +7,7 @@ import App from '../App';
 import List from '../pages/List';
 import Profile from '../pages/Profile';
 import Calendar from '../pages/Calendar';
+import Emergency from '../pages/Emergency';
 
 export const router = createBrowserRouter([
 	{
@@ -40,6 +41,9 @@ export const router = createBrowserRouter([
 			{
 				path: '/profile',
 				element: <Profile />
+			},
+			{	path: '/emergency',
+				element: <Emergency/>
 			}
 		]
 	}

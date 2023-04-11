@@ -11,7 +11,7 @@ const CardContainer = () => {
 			setMedicos(medicos);
 		});
 	}, []);
-	console.log(medicos);
+
 	return (
 		<div className='flex justify-center flex-col'>
 			{medicos.map(medico => {
