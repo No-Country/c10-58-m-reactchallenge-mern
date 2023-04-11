@@ -1,9 +1,8 @@
 /* eslint-disable jsx-quotes */
 import React from 'react'
 import { Form } from '../components/MicroComponents/Form.js'
-import { useFirebaseContext } from '../context/UserContext';
-import { useNavigate } from 'react-router-dom';
-
+import { useFirebaseContext } from '../context/UserContext'
+import { useNavigate } from 'react-router-dom'
 
 import styled from 'styled-components'
 // styles
@@ -25,18 +24,14 @@ const ButonLogout = styled.button`
 
 `
 
-
 const Profile = () => {
-  const {logout  } = useFirebaseContext();
-  const navigate = useNavigate();
+  const { logout } = useFirebaseContext()
+  const navigate = useNavigate()
 
-
-const handleLogout = () => {
-    logout();
-    navigate('/login');
-
- 
-};
+  const handleLogout = () => {
+    logout()
+    navigate('/login')
+  }
 
   return (
     <div className="w-full  flex justify-center text-black mb-10 ">
@@ -44,7 +39,6 @@ const handleLogout = () => {
         <div className="flex w-full justify-between">
           <div>
             <span>avatar</span>
-
 
             <div>
               <span>nombre</span>
@@ -54,7 +48,7 @@ const handleLogout = () => {
           <div>
             <span>perfil completado</span>
             <span>0%</span>
-            <ButonLogout onClick={handleLogout} >log out</ButonLogout>
+            <ButonLogout onClick={handleLogout}>log out</ButonLogout>
           </div>
         </div>
 
