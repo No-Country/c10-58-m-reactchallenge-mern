@@ -8,6 +8,7 @@ import List from '../pages/List'
 import Profile from '../pages/Profile'
 import Calendar from '../pages/Calendar'
 import Emergency from '../pages/Emergency'
+import { TestingValentin } from '../firebase/testValentin'
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
         path: '/emergency',
         element: <Emergency />,
       },
+      {
+        path: '/valentin',
+        element: <TestingValentin />,
+      }
     ],
   },
 ])
