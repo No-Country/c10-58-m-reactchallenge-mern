@@ -14,14 +14,8 @@ export const Form = styled.form`
 
   input {
     width: 100%;
-<<<<<<< HEAD
-   
-   
-    background-color: #EBEBEB;
-=======
 
     background-color: #ebebeb;
->>>>>>> matias-teijeiro
     margin: 0.5rem 0;
     padding: 0.4rem 1rem;
     border: 1px solid #ccc;
