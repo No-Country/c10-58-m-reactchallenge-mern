@@ -5,6 +5,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { firebaseAuth } from '../firebase/client';
+import { signInWithEmail } from '../firebase/userEmailAndPassword';
 
 const FirebaseContext = createContext();
 export const useFirebaseContext = () => useContext(FirebaseContext);
@@ -14,19 +15,24 @@ const FirebaseProvider = ({ children }) => {
 	const [loading, setLoading] = useState(false);
 	console.log(user);
 
-	const login = (email, password) => {
-		return signInWithEmailAndPassword(firebaseAuth, email, password);
+	const login = async (userCredentials) => {
+		setLoading(true)
+		const userLoggedIn = await signInWithEmail(userCredentials)
+		setUser(userLoggedIn)
+		setLoading(false)
 	};
 
 	useEffect(() => {
 		const unSubscribe = onAuthStateChanged(firebaseAuth, currentUser => {
-			setUser(currentUser);
 			setLoading(true);
+			setUser(currentUser);
+			setLoading(false)
 		});
 		return () => unSubscribe();
 	}, []);
 
 	const logout = () => signOut(firebaseAuth);
+
 	return (
 		<FirebaseContext.Provider value={{ login, user, logout, loading }}>
 			{children}
