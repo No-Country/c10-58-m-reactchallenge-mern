@@ -6,6 +6,7 @@ import { getMedicData } from './medics'
 
 export async function createAppointment ({ date, hour, medicId }) {
   const { uid } = firebaseAuth.currentUser
+  if (hour < 7 || hour > 18) throw new Error('La hora de atencion es de 07:00 a 18:100')
   try {
     const dateTime = new Timestamp(dateToSeconds(date, hour), 0)
     const appointment = { date: dateTime, medicId, userId: uid }
@@ -22,6 +23,7 @@ export async function createAppointment ({ date, hour, medicId }) {
 
 export async function cancelAppointment ({ appointmentId }) {
   const { uid } = firebaseAuth.currentUser
+  if (!uid) throw new Error('El usuario no se ha logueado en la pagina')
   try {
     const appointmentRef = doc(db, 'appointments', appointmentId)
     const { medicId, userId } = getAppointmentData({ appointmentId })
