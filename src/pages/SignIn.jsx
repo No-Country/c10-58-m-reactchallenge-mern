@@ -1,177 +1,173 @@
 /* eslint-disable jsx-quotes */
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useFirebaseContext } from '../context/UserContext';
-import styled from 'styled-components';
-import { Form } from '../components/MicroComponents/Form';
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useFirebaseContext } from '../context/UserContext'
+import styled from 'styled-components'
+import { Form } from '../components/MicroComponents/Form'
 
-import Header from '../components/Header';
+import Header from '../components/Header'
 
 // styles
 const H1 = styled.h1`
-	color: #000;
-	font-size: 40px;
-	font-weight: 700;
-	margin: 10px;
-`;
+  color: #000;
+  font-size: 40px;
+  font-weight: 700;
+  margin: 10px;
+`
 
 const Container = styled.div`
-	
-	
+  place-self: center;
 
-	place-self: center;
+  align-items: center;
+  background-color: #ffffff;
 
-	align-items: center;
-	background-color: #ffffff;
-
-	border-radius: 10px;
-`;
+  border-radius: 10px;
+`
 
 const ButtonRed = styled.button`
-	background-color: #fff;
-	color: #000000;
-	width: 70px;
-	height: 40px;
-	border: 1px solid #000;
-	border-radius: 5px;
-	margin: 10px;
+  background-color: #fff;
+  color: #000000;
+  width: 70px;
+  height: 40px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin: 10px;
 
-	&:hover {
-		background-color: #000;
-		color: #fff;
-	}
-`;
+  &:hover {
+    background-color: #000;
+    color: #fff;
+  }
+`
 
 const P = styled.p`
-	margin: 10px;
-	color: #000;
-	font-size: 20px;
+  margin: 10px;
+  color: #000;
+  font-size: 20px;
 
-	&:hover {
-		cursor: pointer;
-		text-decoration: underline;
-	}
-`;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+`
 
 const DivLine = styled.div`
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	height: 100%;
-	margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 10px;
 
-	span {
-		margin: 10px;
-		color: #000;
-		font-size: 20px;
-	}
+  span {
+    margin: 10px;
+    color: #000;
+    font-size: 20px;
+  }
 
-	hr {
-		width: 100%;
-		height: 1px;
-		background-color: #000;
-	}
-`;
+  hr {
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+  }
+`
 
 const SignIn = () => {
-	const [users, setUser] = useState({ email: '', password: '' });
-	const { login } = useFirebaseContext();
-	const navigate = useNavigate();
+  const [users, setUser] = useState({ email: '', password: '' })
+  const { login } = useFirebaseContext()
+  const navigate = useNavigate()
 
-	// destructuring
-	const { email, password } = users;
+  // destructuring
+  const { email, password } = users
 
-	// input change
-	const handleChange = e => {
-		// destructuring
-		const { name, value } = e.target;
-		setUser({ ...users, [name]: value });
-	};
+  // input change
+  const handleChange = (e) => {
+    // destructuring
+    const { name, value } = e.target
+    setUser({ ...users, [name]: value })
+  }
 
-	// form validation
-	const handleSubmit = async e => {
-		e.preventDefault();
+  // form validation
+  const handleSubmit = async (e) => {
+    e.preventDefault()
 
-		try {
-			await login(email, password);
-			navigate('/matias');
-		} catch (error) {
-			console.log(error);
-		}
+    try {
+      await login(email, password)
+      navigate('/matias')
+    } catch (error) {
+      console.log(error)
+    }
 
-		// validate
-		if (e.target.email.value === '' || e.target.password.value === '') {
-			console.log('error');
-		} else {
-			// send data to firebase
-			e.target.email.value = '';
-			e.target.password.value = '';
-			setUser({ email: '', password: '' });
-		}
-	};
+    // validate
+    if (e.target.email.value === '' || e.target.password.value === '') {
+      console.log('error')
+    } else {
+      // send data to firebase
+      e.target.email.value = ''
+      e.target.password.value = ''
+      setUser({ email: '', password: '' })
+    }
+  }
 
-	// add function for google and facebook
-	const handleSubmitForGoogle = e => {
-		if (e.target.value === '1') {
-			console.log('google');
-		} else {
-			console.log('facebook');
-		}
-	};
+  // add function for google and facebook
+  const handleSubmitForGoogle = (e) => {
+    if (e.target.value === '1') {
+      console.log('google')
+    } else {
+      console.log('facebook')
+    }
+  }
 
-	return (
-		<Container className='sing--in flex-col w-full min-h-screen flex pt-10    '>
-			<Header />
-			<div className='flex flex-col w-full pl-10 pb-20'>
-			<H1 className='text-4xl'>Hola!</H1>
-			<span>Inicia sesion en tu cuenta</span>
+  return (
+    <Container className="sing--in flex-col w-full min-h-screen flex pt-10    ">
+      <Header />
+      <div className="flex flex-col w-full pl-10 pb-20">
+        <H1 className="text-4xl">Hola!</H1>
+        <span>Inicia sesion en tu cuenta</span>
+      </div>
 
-			</div>
+      <Form className=" items-center mt-5 w-11/12" onSubmit={handleSubmit}>
+        <input
+          onChange={handleChange}
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email"
+        />
 
-			<Form className=' items-center mt-5 w-11/12' onSubmit={handleSubmit}>
-				<input
-					onChange={handleChange}
-					type='email'
-					name='email'
-					id='email'
-					placeholder='Email'
-				/>
+        <input
+          onChange={handleChange}
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+        <P className="text-2xl   ">Olvide mi password</P>
+        <button type="submit">Sing In</button>
+      </Form>
 
-				<input
-					onChange={handleChange}
-					type='password'
-					name='password'
-					id='password'
-					placeholder='Password'
-				/>
-				<P className='text-2xl   '>Olvide mi password</P>
-				<button type='submit'>Sing In</button>
-			</Form>
+      <DivLine>
+        <hr />
+        <span>or</span>
+        <hr />
+      </DivLine>
+      <div>
+        <ButtonRed onClick={handleSubmitForGoogle} value="1" className="">
+          {' '}
+          G
+        </ButtonRed>
+        <ButtonRed onClick={handleSubmitForGoogle} value="2" className="">
+          F
+        </ButtonRed>
+      </div>
 
-			<DivLine>
-				<hr />
-				<span>or</span>
-				<hr />
-			</DivLine>
-			<div>
-				<ButtonRed onClick={handleSubmitForGoogle} value='1' className=''>
-					{' '}
-					G
-				</ButtonRed>
-				<ButtonRed onClick={handleSubmitForGoogle} value='2' className=''>
-					F
-				</ButtonRed>
-			</div>
+      <div className="">
+        <Link to="/register">
+          <P className="text-2xl   ">Don't have an account?</P>
+        </Link>
+      </div>
+    </Container>
+  )
+}
 
-			<div className=''>
-				<Link to='/register'>
-					<P className='text-2xl   '>Don't have an account?</P>
-				</Link>
-			</div>
-		</Container>
-	);
-};
-
-export default SignIn;
+export default SignIn

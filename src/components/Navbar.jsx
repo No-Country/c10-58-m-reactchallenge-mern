@@ -1,60 +1,65 @@
+/* eslint-disable comma-dangle */
+/* eslint-disable no-tabs */
 /* eslint-disable jsx-quotes */
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom'
+import { useState } from 'react'
 // import navbarIcon from '../../public/navbar_icon.svg'
-import homeIcon from '../../public/home_icon.svg';
-import variantHomeIcon from '../../public/home_variant.svg';
-import { useState, useEffect } from 'react';
-import emergencyIcon from '../../public/emergency_icon.svg';
-import variantEmergencyIcon from '../../public/emergency_variant.svg';
-import profileIcon from '../../public/profile_icon.svg';
-import variantProfileIcon from '../../public/profile_variant.svg';
+import homeIcon from '../../public/home_icon.svg'
+import variantHomeIcon from '../../public/home_variant.svg'
+import emergencyIcon from '../../public/emergency_icon.svg'
+import variantEmergencyIcon from '../../public/emergency_variant.svg'
+import profileIcon from '../../public/profile_icon.svg'
+import variantProfileIcon from '../../public/profile_variant.svg'
 
 const Navbar = () => {
-	const [selected, setSelected] = useState('');
-	const location = useLocation();
+  const [selected, setSelected] = useState('homeIcon')
 
-	useEffect(() => {
-		switch (location.pathname) {
-			case '/':
-				return setSelected('homeIcon');
-			case '/matias':
-				return setSelected('emergencyIcon');
-			case '/esteban':
-				return setSelected('profileIcon');
-			default:
-				return setSelected('homeIcon');
-		}
-	}, []);
+  const handleNavLinkClick = (icon) => {
+    setSelected(icon)
+  }
 
-	return (
-		<nav className='w-full h-[50px] fixed bottom-0'>
-			<ul className='w-full h-full flex justify-evenly items-center'>
-				<li className=''>
-					<Link to='/'>
-						<img src={selected === 'homeIcon' ? homeIcon : variantHomeIcon} alt='' />
-					</Link>
-				</li>
-				<li className=''>
-					<Link to='/matias'>
-						<img
-							src={
-								selected === 'emergencyIcon' ? emergencyIcon : variantEmergencyIcon
-							}
-							alt=''
-						/>
-					</Link>
-				</li>
-				<li className=''>
-					<Link to='/esteban'>
-						<img
-							src={selected === 'profileIcon' ? profileIcon : variantProfileIcon}
-							alt=''
-						/>
-					</Link>
-				</li>
-			</ul>
-		</nav>
-	);
-};
+  return (
+    <nav className="w-full h-[50px] fixed bottom-0">
+      <ul className="w-full h-full flex justify-evenly items-center">
+        <li className="">
+          <NavLink to="/" onClick={() => handleNavLinkClick('homeIcon')}>
+            <img
+              src={selected === 'homeIcon' ? homeIcon : variantHomeIcon}
+              alt=""
+            />
+          </NavLink>
+        </li>
+        <li className="">
+          <NavLink
+            to="/emergency"
+            onClick={() => handleNavLinkClick('emergencyIcon')}
+          >
+            <img
+              src={
+                selected === 'emergencyIcon'
+                  ? emergencyIcon
+                  : variantEmergencyIcon
+              }
+              alt=""
+            />
+          </NavLink>
+        </li>
+        <li className="">
+          <NavLink
+            to="/profile"
+            onClick={() => handleNavLinkClick('profileIcon')}
+          >
+            <img
+              src={
+                selected === 'profileIcon' ? profileIcon : variantProfileIcon
+              }
+              alt=""
+            />
+          </NavLink>
+        </li>
+      </ul>
+    </nav>
+  )
+}
 
-export default Navbar;
+export default Navbar
