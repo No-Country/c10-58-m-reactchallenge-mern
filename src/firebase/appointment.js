@@ -1,6 +1,8 @@
 import { dateToSeconds } from '../utils/formatDateFirebase'
 import { db, firebaseAuth } from './client'
 import { Timestamp, deleteDoc, getDoc, doc, addDoc, collection, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore'
+import { getUserData } from './user'
+import { getMedicData } from './medics'
 
 export async function createAppointment ({ date, hour, medicId }) {
   const { uid } = firebaseAuth.currentUser
@@ -38,7 +40,11 @@ export async function getAppointmentData ({ appointmentId }) {
     const appointmentDoc = await getDoc(appointmentRef)
     const appointmentData = appointmentDoc.data()
     const { medicId, userId } = appointmentData
-    return { medicId, userId, appointmentId }
+    const userDoc = await getUserData(userId)
+    const userData = userDoc.data()
+    const medicDoc = await getMedicData(medicId)
+    const medicData = medicDoc.data()
+    return { medicId, userId, appointmentId, medicData, userData }
   } catch (error) {
     throw new Error(error)
   }
