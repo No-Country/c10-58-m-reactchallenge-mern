@@ -28,15 +28,16 @@ export async function getMedicData ({ medicId }) {
 
 export async function getMedicAppointments ({ medicId, date }) {
   const appointmentsCollection = collectionGroup(db, 'appointments')
-  const addOneWeek = 7 * 24 * 60 * 60
-  const date1 = new Timestamp(dateToSeconds(date, '00'), 0)
-  const date2 = new Timestamp(dateToSeconds(date, '00') + addOneWeek, 0)
+  const oneWeekToMs = 7 * 24 * 60 * 60
+  const oneDayToMs = 24 * 60 * 60
+  const date1 = new Timestamp(dateToSeconds(date, '00') + oneDayToMs, 0)
+  const date2 = new Timestamp(dateToSeconds(date, '00') + oneWeekToMs, 0)
   const query1 = query(appointmentsCollection, where('date', '>=', date1), where('medicId', '==', medicId), where('date', '<=', date2))
   console.log(query1)
   const snapshot = await getDocs(query1)
   const returnData = []
-  snapshot.forEach((medicData) => {
-    returnData.push(medicData.data())
+  snapshot.forEach((appointmentData) => {
+    returnData.push(appointmentData.data())
   })
   return returnData
 }
