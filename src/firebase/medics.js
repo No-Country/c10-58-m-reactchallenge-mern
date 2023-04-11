@@ -1,5 +1,5 @@
 import { dateToSeconds } from '../utils/formatDateFirebase'
-import { db, firebaseAuth } from './client'
+import { db } from './client'
 import { getDoc, getDocs, addDoc, doc, collection, where, query, Timestamp, collectionGroup } from 'firebase/firestore'
 
 export async function createMedic () {
