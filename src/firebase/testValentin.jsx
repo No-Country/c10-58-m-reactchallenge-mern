@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { signInWithEmail } from './userEmailAndPassword'
 import { fetchCategories, fetchCollection } from './fetchCollection'
-import { deleteUser, getCurrentUserInfo, getUserData, logOutUser, updateProfileImage } from './user'
+import { deleteUser, getCurrentUserInfo, getPastAppointments, getUserData, logOutUser, updateProfileImage } from './user'
 import { cancelAppointment, createAppointment, getAppointmentData } from './appointment'
 import { createMedic, getMedicAppointments, getMedicData } from './medics'
 
@@ -51,12 +51,12 @@ export const TestingValentin = () => {
   async function uploadDate (e) {
     e.preventDefault()
     const date = e.target.dateTime.value
-    // console.log(await createAppointment({ date, hour: '17', medicId: 'FeVmMt8cAG1GJDnbFyiG' }))
+    console.log(await createAppointment({ date, hour: '13', medicId: '8RmXqAFxfXtLQxXMRh6w' }))
     // await cancelAppointment({ appointmentId: '5zrcdkFHtCG4x3uMBW5Q' })
     // const { medicId, userId } = await getAppointmentData({ appointmentId: 'dhBB12W0Wh8jUp42nND6' })
     // console.log(await getUserData({ userId }))
     // console.log(await getMedicData({ medicId }))
-    console.log(await getMedicAppointments({ medicId: 'FeVmMt8cAG1GJDnbFyiG', date }))
+    // console.log(await getPastAppointments())
   }
 
   return (
