@@ -24,29 +24,33 @@ const Calendar = () => {
   }
 
   return (
-    <div>
+    <div className='flex flex-col items-center gap-4'>
       <Link to='/'>
         <img src='/registerarrowback.png' alt='Arrow' />
       </Link>
-      <h2 className='text-xs font-semibold text-center'>
+      <h2 className='text-lg font-semibold text-center'>
         Agenda de Laura Jiménez, psicóloga
       </h2>
-      <p className='text-xs text-center my-4'>
+      <p className='text-sm text-center'>
         Elige el dia y la hora en la que quieres tu cita
       </p>
-      <div className='max-w-sm mx-auto p-4 mb-12 flex justify-between'>
+      <div className='flex'>
         <input type='date' name='dateSelected' onChange={event => handleChange(event)} />
-
-        <p className='px-4 text-2xl text-right'>{'>'}</p>
+      </div>
+      <div className='flex mx-auto gap-2 items-center text-center justify-center'>
         {appointments
-          ? (
+			  ? (
               Object.keys(appointments).map(day => (
-                <div key={day}>
+                <div key={day} className='flex flex-col gap-1'>
                   {day}
-                  {Object.keys(appointments[day]).map(hour => <p key={`${appointments}${day}${hour}`}>{appointments[day][hour] ? '---' : 'Age'}</p>)}
+                  {Object.keys(appointments[day]).map(hour => {
+                    const keyValue = `${appointments[day]}${hour}`
+                    const keyCheck = appointments[day][hour]
+                    return (keyCheck ? <p key={keyValue}>---</p> : <button key={keyValue}>{hour}</button>)
+                  })}
                 </div>
-              )
-              )
+			      )
+			      )
             )
           : <p>Please pick a date</p>}
       </div>
