@@ -30,8 +30,8 @@ export async function getMedicAppointments ({ medicId, date }) {
   const appointmentsCollection = collectionGroup(db, 'appointments')
   const oneWeekToMs = 7 * 24 * 60 * 60
   const oneDayToMs = 24 * 60 * 60
-  const date1 = new Timestamp(dateToSeconds(date, '00') + oneDayToMs, 0)
-  const date2 = new Timestamp(dateToSeconds(date, '00') + oneWeekToMs, 0)
+  const date1 = new Timestamp(dateToSeconds(date, '0') + oneDayToMs, 0)
+  const date2 = new Timestamp(dateToSeconds(date, '0') + oneWeekToMs, 0)
   const query1 = query(appointmentsCollection, where('date', '>=', date1), where('medicId', '==', medicId), where('date', '<=', date2))
   console.log(query1)
   const snapshot = await getDocs(query1)
