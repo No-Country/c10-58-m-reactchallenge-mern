@@ -2,7 +2,8 @@ import { dateToSeconds } from '../utils/formatDateFirebase'
 import { db, firebaseAuth } from './client'
 import { Timestamp, deleteDoc, getDoc, doc, addDoc, collection, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore'
 import { getUserData } from './user'
-import { getMedicData } from './medics'
+import { getMedicAppointments, getMedicData } from './medics'
+import { format, addBusinessDays, parseISO } from 'date-fns'
 
 export async function createAppointment ({ date, hour, medicId }) {
   const { uid } = firebaseAuth.currentUser
@@ -50,4 +51,24 @@ export async function getAppointmentData ({ appointmentId }) {
   } catch (error) {
     throw new Error(error)
   }
+}
+
+export async function getOneWeekAppointments (date) {
+  if (!date) return
+  const weekDays = {}
+  const medicAppointments = await getMedicAppointments({ medicId: '8RmXqAFxfXtLQxXMRh6w', date })
+  for (let i = 0; i < 5; i++) {
+    const dateKey = format(addBusinessDays(parseISO(date), i), 'dd/MM')
+    weekDays[dateKey] = {}
+    for (let j = 7; j < 19; j++) {
+      const hour = `${j}:00`
+      weekDays[dateKey][hour] = false
+    }
+  }
+  medicAppointments.forEach(app => {
+    const dateFormatted = format(app.date.seconds * 1000, 'dd/MM-H:00')
+    const [day, hour] = dateFormatted.split('-')
+    weekDays[day][hour] = true
+  })
+  return (weekDays)
 }
