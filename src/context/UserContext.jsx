@@ -19,6 +19,7 @@ const FirebaseProvider = ({ children }) => {
 		const userLoggedIn = await signInWithEmail(userCredentials)
 		setUser(userLoggedIn)
 		setLoading(false)
+		return userLoggedIn
 	};
 
 	useEffect(() => {

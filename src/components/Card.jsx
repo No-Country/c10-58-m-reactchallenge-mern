@@ -42,6 +42,14 @@ const Card = ({ medico }) => {
     }
   }
 
+  const handleClickProfile = () => {
+    if (user) {
+      navigate(`/list/${id}/`)
+    } else {
+      navigate('/login')
+    }
+  }
+
   return (
     <CardContainer className='w-80 bg-red-200'>
       <div className='dates flex flex-col'>
@@ -59,7 +67,7 @@ const Card = ({ medico }) => {
           <p>{direccion}</p>
         </div>
         <div className='buttons gap-5 mb-3 pr-5 pt-3 flex justify-end'>
-          <Botonpildora $primary>Ver perfil</Botonpildora>
+          <Botonpildora $primary onClick={handleClickProfile}>Ver perfil</Botonpildora>
           <Botonpildora onClick={handleClickAgendar}>
             Agendar cita
           </Botonpildora>

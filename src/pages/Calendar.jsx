@@ -1,12 +1,13 @@
 import { Link, useParams } from 'react-router-dom'
 import { Btn } from '../components/MicroComponents/Btn'
 import { useEffect, useState } from 'react'
-import { getOneWeekAppointments } from '../firebase/appointment'
-import { format } from 'date-fns'
+import { createAppointment, getOneWeekAppointments } from '../firebase/appointment'
+import { format, parseISO } from 'date-fns'
 
 const Calendar = () => {
-  const [dateSelected, setDateSelected] = useState(() => (null))
+  const [dateSelected, setDateSelected] = useState(null)
   const [appointments, setAppointments] = useState([])
+  const [message, setMessage] = useState(null)
   const { id } = useParams()
 
   useEffect(() => {
@@ -22,6 +23,18 @@ const Calendar = () => {
     const date = event.target.value
     console.log(date)
     setDateSelected(date)
+  }
+
+  async function handleClickHour (valuesArr) {
+    console.log(valuesArr)
+    const [date, hour] = valuesArr
+    const [day, month] = date.split('/')
+    const dateFormatted = `2023-${month}-${day}`
+    const hourFormatted = hour.slice(0, 1)
+    console.log(dateFormatted, hourFormatted)
+    const appointment = await createAppointment({ date: dateFormatted, hour: hourFormatted, medicId: id })
+    console.log(appointment)
+    return appointment
   }
 
   return (
@@ -47,7 +60,8 @@ const Calendar = () => {
                   {Object.keys(appointments[day]).map(hour => {
                     const keyValue = `${appointments[day]}${hour}`
                     const keyCheck = appointments[day][hour]
-                    return (keyCheck ? <p key={keyValue}>---</p> : <button key={keyValue}>{hour}</button>)
+                    const clickValues = [day, hour]
+                    return (keyCheck ? <p key={keyValue}>---</p> : <button key={keyValue} onClick={e => handleClickHour(clickValues)}>{hour}</button>)
                   })}
                 </div>
 			      )
@@ -55,7 +69,9 @@ const Calendar = () => {
             )
           : <p>Please pick a date</p>}
       </div>
-      <Btn $margin>Agendar cita</Btn>
+      {/* <Btn $margin>Agendar cita</Btn> */}
+      {message && <h4>La cita ha sido agendada</h4>}
+
     </div>
   )
 }
