@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter } from 'react-router-dom'
 import Home from '../pages/Home'
 import Register from '../pages/Register'
 import SignIn from '../pages/SignIn'
@@ -8,6 +8,7 @@ import List from '../pages/List'
 import Profile from '../pages/Profile'
 import Calendar from '../pages/Calendar'
 import Emergency from '../pages/Emergency'
+import PrivateRoute from './PrivateRoute'
 
 export const router = createBrowserRouter([
   {
@@ -28,7 +29,11 @@ export const router = createBrowserRouter([
       },
       {
         path: '/list/:id/calendar',
-        element: <Calendar />,
+        element: (
+          <PrivateRoute>
+            <Calendar />
+          </PrivateRoute>
+        ),
       },
       {
         path: '/login',
@@ -44,7 +49,11 @@ export const router = createBrowserRouter([
       },
       {
         path: '/emergency',
-        element: <Emergency />,
+        element: (
+          <PrivateRoute>
+            <Emergency />
+          </PrivateRoute>
+        ),
       },
     ],
   },
