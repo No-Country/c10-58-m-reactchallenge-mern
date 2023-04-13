@@ -42,6 +42,7 @@ const Card = ({ medico }) => {
 		}
 	
 	}
+	console.log(medico);
 
 	return (
 		<CardContainer className='w-80 bg-red-200'>
