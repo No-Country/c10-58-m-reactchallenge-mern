@@ -102,3 +102,25 @@
         stroke-dashoffset: 880;
     }
 }
+
+.profile-doc {
+    width: fit-content;
+    margin-inline: auto;
+}
+
+.profile-doc-img {
+    display: block;
+    width: 100px;
+    margin-inline: auto;
+}
+
+.profile-doc-name {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.profile-doc-address {
+    padding: .5rem;
+    text-align: center;
+}
