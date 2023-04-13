@@ -1,16 +1,18 @@
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Btn } from '../components/MicroComponents/Btn'
 import { useEffect, useState } from 'react'
 import { getOneWeekAppointments } from '../firebase/appointment'
+import { format } from 'date-fns'
 
 const Calendar = () => {
-  const [dateSelected, setDateSelected] = useState(null)
+  const [dateSelected, setDateSelected] = useState(format(Date.now(), 'yyyy-dd-mm'))
   const [appointments, setAppointments] = useState([])
+  const { id } = useParams()
 
   useEffect(() => {
-    console.log('Llamado a getOneWeekApps')
+    console.log({ id, dateSelected })
     const fetchApps = async () => {
-      const appsFetched = await getOneWeekAppointments(dateSelected)
+      const appsFetched = await getOneWeekAppointments({ medicId: id, date: dateSelected })
       setAppointments(appsFetched)
     }
     fetchApps()

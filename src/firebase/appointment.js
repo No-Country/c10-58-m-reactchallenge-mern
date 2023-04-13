@@ -53,10 +53,10 @@ export async function getAppointmentData ({ appointmentId }) {
   }
 }
 
-export async function getOneWeekAppointments (date) {
+export async function getOneWeekAppointments ({ medicId, date }) {
   if (!date) return
   const weekDays = {}
-  const medicAppointments = await getMedicAppointments({ medicId: '8RmXqAFxfXtLQxXMRh6w', date })
+  const medicAppointments = await getMedicAppointments({ medicId, date })
   for (let i = 0; i < 5; i++) {
     const dateKey = format(addBusinessDays(parseISO(date), i), 'dd/MM')
     weekDays[dateKey] = {}
