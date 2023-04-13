@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useFirebaseContext } from '../context/UserContext'
 import styled from 'styled-components'
 import { Form } from '../components/MicroComponents/Form'
+import { Btn } from '../components/MicroComponents/Btn'
 
 import Header from '../components/Header'
 
@@ -42,11 +43,14 @@ const ButtonRed = styled.button`
 const P = styled.p`
   margin: 10px;
   color: #000;
-  font-size: 20px;
+  font-size: 15px;
+  padding: 10px;
+  padding-left: 135px;
+  
+  text-decoration: underline;
 
   &:hover {
     cursor: pointer;
-    text-decoration: underline;
   }
 `
 
@@ -124,6 +128,7 @@ const SignIn = () => {
 			<div className='flex flex-col w-full pl-10 pb-20'>
 			<H1 className='text-4xl'>Hola!</H1>
 			<span>Inicia sesion en tu cuenta</span>
+      </div>
 
       <Form className=" items-center mt-5 w-11/12" onSubmit={handleSubmit}>
         <input
@@ -141,8 +146,8 @@ const SignIn = () => {
           id="password"
           placeholder="Password"
         />
-        <P className="text-2xl   ">Olvide mi password</P>
-        <button type="submit">Sing In</button>
+        <P className="  ">Olvide mi password</P>
+        <Btn className='mt-10 h-10 mb-5' type="submit">Iniciar sesion</Btn>
       </Form>
 
       <DivLine>
@@ -157,14 +162,15 @@ const SignIn = () => {
         </ButtonRed>
         <ButtonRed onClick={handleSubmitForGoogle} value="2" className="">
           F
-        </ButtonRed>
+        </ButtonRed >
       </div>
 
       <div className="">
         <Link to="/register">
-          <P className="text-2xl   ">Don't have an account?</P>
+          <p className="text-2xl   ">Don't have an account?</p>
         </Link>
       </div>
+   
     </Container>
   )
 }
