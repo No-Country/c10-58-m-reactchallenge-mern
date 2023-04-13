@@ -11,7 +11,6 @@ const Calendar = () => {
     console.log('Llamado a getOneWeekApps')
     const fetchApps = async () => {
       const appsFetched = await getOneWeekAppointments(dateSelected)
-      console.log(appsFetched)
       setAppointments(appsFetched)
     }
     fetchApps()
