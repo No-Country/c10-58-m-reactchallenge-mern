@@ -3,7 +3,7 @@
 /*eslint-disable*/
 import { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { firebaseAuth } from '../firebase/client';
 import { signInWithEmail } from '../firebase/userEmailAndPassword';
 import { getCurrentUserInfo } from '../firebase/user';
@@ -26,7 +26,6 @@ const FirebaseProvider = ({ children }) => {
 	useEffect(() => {
 		const unSubscribe = onAuthStateChanged(firebaseAuth, async currentUser => {
 			setLoading(true);
-
 			if (currentUser) {
 				const userInfo = await getCurrentUserInfo()
 				setUser(userInfo)

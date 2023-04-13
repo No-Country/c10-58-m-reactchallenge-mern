@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from 'react-router-dom'
+import { Link, useLoaderData, useNavigate } from 'react-router-dom'
 import { Btn } from '../components/MicroComponents/Btn'
 
 const ProfileDoc = () => {
@@ -7,12 +7,17 @@ const ProfileDoc = () => {
     data: { profilePhoto, nombre, apellido, direccion, telefono, especialidad }
   } = useLoaderData()
 
-  console.log(medicId)
+  const navigate = useNavigate()
+
+  function goBack () {
+    navigate(-1)
+  }
+
   return (
     <div>
-      <Link to='../'>
+      <button onClick={goBack}>
         <img className='arrow-back' src='/registerarrowback.png' alt='Go Back' />
-      </Link>
+      </button>
       <div className='profile-doc'>
         <img className='profile-doc-img' src={profilePhoto} alt={`${nombre} ${apellido}`} />
         <h2 className='profile-doc-name'>

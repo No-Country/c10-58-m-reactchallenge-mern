@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useLoaderData, useNavigate } from 'react-router-dom'
 import { Btn } from '../components/MicroComponents/Btn'
 import { useEffect, useState } from 'react'
 import { createAppointment, getOneWeekAppointments } from '../firebase/appointment'
@@ -8,55 +8,67 @@ const Calendar = () => {
   const [dateSelected, setDateSelected] = useState(null)
   const [appointments, setAppointments] = useState([])
   const [message, setMessage] = useState(null)
-  const { id } = useParams()
+  const navigate = useNavigate()
+
+  const {
+    medicId,
+    data: { profilePhoto, nombre, apellido, direccion, telefono, especialidad }
+  } = useLoaderData()
 
   useEffect(() => {
-    console.log({ id, dateSelected })
     const fetchApps = async () => {
-      const appsFetched = await getOneWeekAppointments({ medicId: id, date: dateSelected })
+      const appsFetched = await getOneWeekAppointments({ medicId, date: dateSelected })
       setAppointments(appsFetched)
     }
     fetchApps()
-  }, [dateSelected])
+  }, [dateSelected, message])
 
   function handleChange (event) {
     const date = event.target.value
-    console.log(date)
     setDateSelected(date)
   }
 
   async function handleClickHour (valuesArr) {
-    console.log(valuesArr)
     const [date, hour] = valuesArr
     const [day, month] = date.split('/')
     const dateFormatted = `2023-${month}-${day}`
-    const hourFormatted = hour.slice(0, 1)
-    console.log(dateFormatted, hourFormatted)
-    const appointment = await createAppointment({ date: dateFormatted, hour: hourFormatted, medicId: id })
-    console.log(appointment)
+    const hourFormatted = hour.split(':')[0]
+    const appointment = await createAppointment({ date: dateFormatted, hour: hourFormatted, medicId })
+    setMessage(`La cita ha sido creada el dia ${day} a las ${hour}`)
     return appointment
   }
 
+  function goBack () {
+    navigate(-1)
+  }
+
   return (
-    <div className='flex flex-col items-center gap-4'>
-      <Link to='/'>
+    <div className='flex flex-col items-center gap-4 min-h-screen'>
+      <button onClick={goBack}>
         <img src='/registerarrowback.png' alt='Arrow' />
-      </Link>
-      <h2 className='text-lg font-semibold text-center'>
-        Agenda de Laura Jiménez, psicóloga
-      </h2>
-      <p className='text-sm text-center'>
-        Elige el dia y la hora en la que quieres tu cita
-      </p>
-      <div className='flex'>
-        <input type='date' name='dateSelected' onChange={event => handleChange(event)} />
+      </button>
+      <div className='flex h-10 items-center gap-4'>
+        <h2 className='text-lg font-semibold text-center'>
+          Agenda de {nombre} {apellido}
+        </h2>
+        <img className='h-10 rounded-full' src={profilePhoto} />
       </div>
-      <div className='flex mx-auto gap-2 items-center text-center justify-center'>
+      <h3>Especialidad: {especialidad}</h3>
+
+      <div className='flex'>
+        <label className='flex flex-col items-center gap-2'>
+          <p className='text-sm text-center'>
+            Elige el dia y la hora en la que quieres tu cita
+          </p>
+          <input type='date' name='dateSelected' onChange={event => handleChange(event)} />
+        </label>
+      </div>
+      <div className='flex mx-auto gap-2 items-center text-center justify-center h-full'>
         {appointments
 			  ? (
               Object.keys(appointments).map(day => (
-                <div key={day} className='flex flex-col gap-1'>
-                  {day}
+                <div key={day} className='flex flex-col gap-2'>
+                  <p className='text-lg font-bold'>{day}</p>
                   {Object.keys(appointments[day]).map(hour => {
                     const keyValue = `${appointments[day]}${hour}`
                     const keyCheck = appointments[day][hour]
@@ -67,10 +79,10 @@ const Calendar = () => {
 			      )
 			      )
             )
-          : <p>Please pick a date</p>}
+          : <p className='font-bold'>Elija un dia para ver las citas disponibles</p>}
       </div>
       {/* <Btn $margin>Agendar cita</Btn> */}
-      {message && <h4>La cita ha sido agendada</h4>}
+      {message && <h4>{message}</h4>}
 
     </div>
   )

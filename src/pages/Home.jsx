@@ -153,19 +153,10 @@ const Home = () => {
             {faq.map((question, i) => (
               <div
                 key={i}
-                style={{
-                  width: '80px',
-                  height: '100px',
-                  display: 'flex',
-                  borderRadius: '5px',
-                  padding: '4px',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backgroundColor: '#d7d7d7',
-                }}
+                className='text-center bg-slate-300 justify-center p-2 w-1/6 flex items-center rounded-md'
                 onClick={goToMedics}
               >
-                <span> {question} </span>
+                {question}
               </div>
             ))}
           </div>

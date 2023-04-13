@@ -97,7 +97,7 @@ const SignIn = () => {
 
     try {
       await login(users)
-      navigate('/profile')
+      navigate(-1)
     } catch (error) {
       console.log(error)
     }

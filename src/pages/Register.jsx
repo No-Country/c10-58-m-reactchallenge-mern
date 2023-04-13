@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { createUserWithEmail } from '../firebase/userEmailAndPassword'
 import Header from '../components/Header'
+import { useFirebaseContext } from '../context/UserContext'
 
 const initialValues = {
   profilePic: '',
@@ -90,6 +91,7 @@ const Register = () => {
   const [loading, setLoading] = useState(false)
   const [alert, setAlert] = useState(false)
   const [previewImg, setPreviewImg] = useState('')
+  const { login } = useFirebaseContext()
 
   const handleAlert = () => setAlert('')
 
@@ -118,7 +120,7 @@ const Register = () => {
         setForm(initialValues)
         setPreviewImg('')
         // Una vez registrado se va a redireccionar al perfil
-        // navigate('')
+        navigate('/')
       }
     } catch (error) {
       setLoading(false)

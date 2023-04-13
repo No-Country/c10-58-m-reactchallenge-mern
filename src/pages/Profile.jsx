@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Form } from '../components/MicroComponents/Form.js'
 import { Btn } from '../components/MicroComponents/Btn.js'
 import { useFirebaseContext } from '../context/UserContext'
-import { getCurrentUserInfo, updateUserInfo, getUserData } from '../firebase/user.js'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 import styled from 'styled-components'
 // styles
@@ -51,7 +50,7 @@ const SpanAddImg = styled.span`
 `
 
 const Profile = () => {
-  const { logout, user } = useFirebaseContext()
+  const { user, logout } = useFirebaseContext()
   const navigate = useNavigate()
   console.log(user)
 
@@ -68,35 +67,42 @@ const Profile = () => {
   const handleChange = (e) => {
   }
 
+  useEffect(() => {
+    !user && navigate('/', { replace: true })
+  }, [])
+
   return (
-    <div className='w-full  flex justify-center text-black mb-10 '>
-      <div className='w-5/6  '>
-        <div className='flex flex-col w-full h-52 place-content-center place-items-center '>
-          <DivImg>
-            <img src={user.avatarURL} alt='perfil-img' />
-          </DivImg>
-          <h2>{user.firstName} {user.lastName}</h2>
-        </div>
+    <>
+      {
+     user
+       ? (
+         <div className='w-full  flex justify-center text-black mb-10 '>
+           <div className='w-5/6  '>
+             <div className='flex flex-col w-full h-52 place-content-center place-items-center '>
+               <DivImg>
+                 <img src={user.avatarURL} alt='perfil-img' />
+               </DivImg>
+               <h2>{user.firstName} {user.lastName}</h2>
+             </div>
+             <hr className='mb-5' />
+             <div className='justify-center w-full '>
+               <Form onSubmit={handleSubmit} className='flex flex-col w-full '>
+                 <input type='text' placeholder='nombres' />
+                 <input type='text' placeholder='Apellidos' />
+                 <input type='text' placeholder='Correo' />
+                 <input type='text' placeholder='documento de identidad' />
+                 <input type='text' placeholder='Pais' />
+                 <input type='text' placeholder='Ciudad' />
+                 <Btn type='submit' className='mt-20'>Guardar cambios</Btn>
+               </Form>
+             </div>
+             <Btn className='' onClick={handleLogout}>Log Out</Btn>
+           </div>
+         </div>)
+       : (<Navigate to='/' replace />)
+    }
+    </>
 
-        <hr className='mb-5' />
-        <div className='justify-center w-full '>
-          <Form onSubmit={handleSubmit} className='flex flex-col w-full '>
-            <input type='text' placeholder='nombres' />
-
-            <input type='text' placeholder='Apellidos' />
-
-            <input type='text' placeholder='Correo' />
-
-            <input type='text' placeholder='documento de identidad' />
-
-            <input type='text' placeholder='Pais' />
-
-            <input type='text' placeholder='Ciudad' />
-            <Btn type='submit' className='mt-20'>Guardar cambios</Btn>
-          </Form>
-        </div>
-      </div>
-    </div>
   )
 }
 

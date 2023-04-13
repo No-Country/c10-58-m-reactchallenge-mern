@@ -33,8 +33,12 @@ export const router = createBrowserRouter([
         }
       },
       {
-        path: '/list/:id/calendar',
-        element: <Calendar />
+        path: '/list/:medicId/calendar',
+        element: <Calendar />,
+        loader: async ({ params: { medicId } }) => {
+          const data = await getMedicData({ medicId })
+          return { medicId, data }
+        }
       },
       {
         path: '/login',

@@ -10,9 +10,12 @@ import emergencyIcon from '../../public/emergency_icon.svg'
 import variantEmergencyIcon from '../../public/emergency_variant.svg'
 import profileIcon from '../../public/profile_icon.svg'
 import variantProfileIcon from '../../public/profile_variant.svg'
+import { useFirebaseContext } from '../context/UserContext'
 
 const Navbar = () => {
   const [selected, setSelected] = useState('homeIcon')
+  const { user } = useFirebaseContext()
+  console.log(user)
 
   const handleNavLinkClick = (icon) => {
     setSelected(icon)
@@ -46,7 +49,7 @@ const Navbar = () => {
         </li>
         <li className="">
           <NavLink
-            to="/profile"
+            to={user ? '/profile' : '/login'}
             onClick={() => handleNavLinkClick('profileIcon')}
           >
             <img

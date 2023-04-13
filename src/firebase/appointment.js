@@ -60,7 +60,7 @@ export async function getOneWeekAppointments ({ medicId, date }) {
   for (let i = 0; i < 5; i++) {
     const dateKey = format(addBusinessDays(parseISO(date), i), 'dd/MM')
     weekDays[dateKey] = {}
-    for (let j = 7; j < 19; j++) {
+    for (let j = 7; j < 18; j++) {
       const hour = `${j}:00`
       weekDays[dateKey][hour] = false
     }
