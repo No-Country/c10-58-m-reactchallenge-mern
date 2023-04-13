@@ -5,7 +5,7 @@ import { getOneWeekAppointments } from '../firebase/appointment'
 import { format } from 'date-fns'
 
 const Calendar = () => {
-  const [dateSelected, setDateSelected] = useState(format(Date.now(), 'yyyy-dd-mm'))
+  const [dateSelected, setDateSelected] = useState(() => (null))
   const [appointments, setAppointments] = useState([])
   const { id } = useParams()
 
