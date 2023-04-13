@@ -8,6 +8,7 @@ import {  motion } from 'framer-motion'
 import { Search } from '../components/MicroComponents/Search'
 import { useNavigate } from 'react-router-dom'
 
+
 const Home = () => {
   const [show, setShow] = useState(true)
   const navigate = useNavigate()
@@ -61,7 +62,7 @@ const Home = () => {
       <main className="w-full  overflow-x-hidden ">
         <section className="flex items-center flex-col gap-5">
           <div className="w-[200px] h-[120px] bg-slate-200 mt-[80px] flex justify-center items-center">
-            Logo
+            <img src="" alt="" />
           </div>
           <div>
             <label className="relative block">

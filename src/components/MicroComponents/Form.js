@@ -26,22 +26,5 @@ export const Form = styled.form`
       border-color: #000;
     }
   }
-  button {
-    width: 50%;
-    height: 3rem;
-    margin: 0.5rem 0;
-    padding: 0 0.5rem;
-    border: none;
-    font-weight: 500;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 
-    border-radius: 20px;
-    font-size: 1rem;
-    background-color: #000;
-    color: #fff;
-    &:focus {
-      outline: none;
-      border-color: #000;
-    }
-  }
 `

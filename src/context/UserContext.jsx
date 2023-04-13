@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { firebaseAuth } from '../firebase/client';
 import { signInWithEmail } from '../firebase/userEmailAndPassword';
+import { getCurrentUserInfo } from '../firebase/user';
 
 const FirebaseContext = createContext();
 export const useFirebaseContext = () => useContext(FirebaseContext);
@@ -23,9 +24,15 @@ const FirebaseProvider = ({ children }) => {
 	};
 
 	useEffect(() => {
-		const unSubscribe = onAuthStateChanged(firebaseAuth, currentUser => {
+		const unSubscribe = onAuthStateChanged(firebaseAuth, async currentUser => {
 			setLoading(true);
-			setUser(currentUser);
+
+			if (currentUser) {
+				const userInfo = await getCurrentUserInfo()
+				setUser(userInfo)
+			} else {
+				setUser(null)
+			}
 			setLoading(false)
 		});
 		return () => unSubscribe();

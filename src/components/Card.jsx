@@ -4,8 +4,6 @@ import { Botonpildora } from './MicroComponents/BotonesPildoras'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFirebaseContext } from '../context/UserContext'
 
-const img = 'https://picsum.photos/seed/picsum/200/300'
-
 // styled components
 const Img = styled.img`
 	width: 100px;

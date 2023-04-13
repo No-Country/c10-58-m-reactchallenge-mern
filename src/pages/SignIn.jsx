@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useFirebaseContext } from '../context/UserContext'
 import styled from 'styled-components'
 import { Form } from '../components/MicroComponents/Form'
+import { Btn } from '../components/MicroComponents/Btn'
 
 import Header from '../components/Header'
 
@@ -42,11 +43,14 @@ const ButtonRed = styled.button`
 const P = styled.p`
   margin: 10px;
   color: #000;
-  font-size: 20px;
+  font-size: 15px;
+  padding: 10px;
+  padding-left: 135px;
+  
+  text-decoration: underline;
 
   &:hover {
     cursor: pointer;
-    text-decoration: underline;
   }
 `
 
@@ -124,48 +128,49 @@ const SignIn = () => {
       <div className='flex flex-col w-full pl-10 pb-20'>
         <H1 className='text-4xl'>Hola!</H1>
         <span>Inicia sesion en tu cuenta</span>
-
-        <Form className=" items-center mt-5 w-11/12" onSubmit={handleSubmit}>
-          <input
-            onChange={handleChange}
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Email"
-          />
-
-          <input
-            onChange={handleChange}
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Password"
-          />
-          <P className="text-2xl   ">Olvide mi password</P>
-          <button type="submit">Sing In</button>
-        </Form>
-
-        <DivLine>
-          <hr />
-          <span>or</span>
-          <hr />
-        </DivLine>
-        <div>
-          <ButtonRed onClick={handleSubmitForGoogle} value="1" className="">
-            {' '}
-            G
-          </ButtonRed>
-          <ButtonRed onClick={handleSubmitForGoogle} value="2" className="">
-            F
-          </ButtonRed>
-        </div>
-
-        <div className="">
-          <Link to="/register">
-            <P className="text-2xl   ">Don't have an account?</P>
-          </Link>
-        </div>
       </div>
+
+      <Form className=" items-center mt-5 w-11/12" onSubmit={handleSubmit}>
+        <input
+          onChange={handleChange}
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email"
+        />
+
+        <input
+          onChange={handleChange}
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+        <P className="  ">Olvide mi password</P>
+        <Btn className='mt-10 h-10 mb-5' type="submit">Iniciar sesion</Btn>
+      </Form>
+
+      <DivLine>
+        <hr />
+        <span>or</span>
+        <hr />
+      </DivLine>
+      <div>
+        <ButtonRed onClick={handleSubmitForGoogle} value="1" className="">
+          {' '}
+          G
+        </ButtonRed>
+        <ButtonRed onClick={handleSubmitForGoogle} value="2" className="">
+          F
+        </ButtonRed>
+      </div>
+
+      <div className="">
+        <Link to="/register">
+          <p className="text-2xl   ">Don't have an account?</p>
+        </Link>
+      </div>
+
     </Container>
   )
 }
