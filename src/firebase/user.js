@@ -1,10 +1,19 @@
-import { doc, getDoc, getDocs, where, query, setDoc, deleteDoc, Timestamp } from 'firebase/firestore'
+import {
+  doc,
+  getDoc,
+  getDocs,
+  where,
+  query,
+  setDoc,
+  deleteDoc,
+  Timestamp,
+} from 'firebase/firestore'
 import { signOut, updatePassword } from 'firebase/auth'
 import { db, firebaseAuth } from './client'
 import { uploadImage } from './storage'
 import { dateToSeconds } from './../utils/formatDateFirebase'
 
-export async function updateProfileImage ({ image }) {
+export async function updateProfileImage({ image }) {
   const { uid } = firebaseAuth.currentUser
   try {
     const userToUpdate = await getDoc(doc(db, 'users', uid))
@@ -18,7 +27,7 @@ export async function updateProfileImage ({ image }) {
   }
 }
 
-export async function updateUserInfo (userDataForm) {
+export async function updateUserInfo(userDataForm) {
   const { uid } = firebaseAuth.currentUser
   try {
     const userToUpdate = await getDoc(doc(db, 'users', uid))
@@ -30,7 +39,7 @@ export async function updateUserInfo (userDataForm) {
   }
 }
 
-export async function changeUserPassword (newPassword, confirmedPassword) {
+export async function changeUserPassword(newPassword, confirmedPassword) {
   const currentUser = firebaseAuth.currentUser
   if (newPassword === confirmedPassword) {
     try {
@@ -45,7 +54,7 @@ export async function changeUserPassword (newPassword, confirmedPassword) {
   }
 }
 
-export async function getCurrentUserInfo () {
+export async function getCurrentUserInfo() {
   if (firebaseAuth.currentUser === null) {
     return null
   }
@@ -60,7 +69,7 @@ export async function getCurrentUserInfo () {
   }
 }
 
-export async function deleteUser () {
+export async function deleteUser() {
   const currentUser = firebaseAuth.currentUser
   const { uid } = currentUser
   console.log(currentUser)
@@ -73,11 +82,11 @@ export async function deleteUser () {
   }
 }
 
-export async function logOutUser () {
+export async function logOutUser() {
   return signOut(firebaseAuth)
 }
 
-export async function getUserData ({ userId }) {
+export async function getUserData({ userId }) {
   try {
     const userRef = doc(db, 'users', userId)
     const userDoc = await getDoc(userRef)

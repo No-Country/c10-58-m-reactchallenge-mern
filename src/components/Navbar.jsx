@@ -1,3 +1,4 @@
+/* eslint-disable multiline-ternary */
 /* eslint-disable comma-dangle */
 /* eslint-disable no-tabs */
 /* eslint-disable jsx-quotes */
@@ -10,9 +11,12 @@ import emergencyIcon from '../../public/emergency_icon.svg'
 import variantEmergencyIcon from '../../public/emergency_variant.svg'
 import profileIcon from '../../public/profile_icon.svg'
 import variantProfileIcon from '../../public/profile_variant.svg'
+import { useFirebaseContext } from '../context/UserContext'
+import User from './User'
 
 const Navbar = () => {
   const [selected, setSelected] = useState('homeIcon')
+  const { user } = useFirebaseContext()
 
   const handleNavLinkClick = (icon) => {
     setSelected(icon)
@@ -22,9 +26,16 @@ const Navbar = () => {
     <nav className="w-full h-[50px] fixed bottom-0">
       <ul className="w-full h-full flex justify-evenly items-center">
         <li className="">
-          <NavLink to="/" onClick={() => handleNavLinkClick('homeIcon')}>
+          <NavLink
+            className="relative"
+            to="/"
+            onClick={() => handleNavLinkClick('homeIcon')}
+          >
             {selected === 'homeIcon' && (
-              <img className="ml-[10px]" src={navbarIcon} />
+              <img
+                className="absolute top-[-5px] left-[9px]"
+                src={navbarIcon}
+              />
             )}
             <img
               src={selected === 'homeIcon' ? variantHomeIcon : homeIcon}
@@ -34,11 +45,15 @@ const Navbar = () => {
         </li>
         <li className="">
           <NavLink
+            className="relative"
             to="/emergency"
             onClick={() => handleNavLinkClick('emergencyIcon')}
           >
             {selected === 'emergencyIcon' && (
-              <img className="ml-[10px]" src={navbarIcon} />
+              <img
+                className="absolute top-[-5px] left-[10px]"
+                src={navbarIcon}
+              />
             )}
             <img
               src={
@@ -52,18 +67,26 @@ const Navbar = () => {
         </li>
         <li className="">
           <NavLink
+            className="relative"
             to="/profile"
             onClick={() => handleNavLinkClick('profileIcon')}
           >
             {selected === 'profileIcon' && (
-              <img className="ml-[10px]" src={navbarIcon} />
+              <img
+                className="absolute top-[-12px] left-[3px] "
+                src={navbarIcon}
+              />
             )}
-            <img
-              src={
-                selected === 'profileIcon' ? variantProfileIcon : profileIcon
-              }
-              alt=""
-            />
+            {user ? (
+              <User />
+            ) : (
+              <img
+                src={
+                  selected === 'profileIcon' ? variantProfileIcon : profileIcon
+                }
+                alt=""
+              />
+            )}
           </NavLink>
         </li>
       </ul>

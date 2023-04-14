@@ -4,9 +4,8 @@ import { useRef, useState } from 'react'
 import { useFirebaseContext } from '../context/UserContext'
 // import Footer from './Footer'
 import Header from '../components/Header'
-import {  motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Search } from '../components/MicroComponents/Search'
-
 
 const Home = () => {
   const [show, setShow] = useState(true)
@@ -29,7 +28,6 @@ const Home = () => {
   }
   const positionSlider = useRef()
 
-  const { loading } = useFirebaseContext()
   const tiposDeTerapias = [
     'Psicología online',
     'Terapia familiar',
@@ -49,10 +47,8 @@ const Home = () => {
     'Califica el servicio',
   ]
 
-  if (!loading) return <h1>Cargando...</h1>
   return (
     <>
-      <Header />
       <main className="w-full  overflow-x-hidden ">
         <section className="flex items-center flex-col gap-5">
           <div className="w-[200px] h-[120px] bg-slate-200 mt-[80px] flex justify-center items-center">
