@@ -78,7 +78,7 @@ const DivLine = styled.div`
 
 const SignIn = () => {
   const [users, setUser] = useState({ email: '', password: '' })
-  const { login } = useFirebaseContext()
+  const { login, user } = useFirebaseContext()
   const navigate = useNavigate()
 
   // destructuring
@@ -96,8 +96,8 @@ const SignIn = () => {
     e.preventDefault()
 
     try {
-      await login(email, password)
-      navigate('/profile')
+      await login(users)
+      navigate(-1)
     } catch (error) {
       console.log(error)
     }

@@ -1,12 +1,16 @@
 /* eslint-disable jsx-quotes */
-import React from "react";
-import { Form } from "../components/MicroComponents/Form.js";
-import { Btn } from '../components/MicroComponents/Btn.js';
-import { useFirebaseContext } from "../context/UserContext";
-import { getCurrentUserInfo,updateUserInfo,getUserData } from "../firebase/user.js";
-import { useNavigate } from "react-router-dom";
+import React from 'react'
+import { Form } from '../components/MicroComponents/Form.js'
+import { Btn } from '../components/MicroComponents/Btn.js'
+import { useFirebaseContext } from '../context/UserContext'
+import {
+  getCurrentUserInfo,
+  updateUserInfo,
+  getUserData,
+} from '../firebase/user.js'
+import { useNavigate } from 'react-router-dom'
 
-import styled from "styled-components";
+import styled from 'styled-components'
 // styles
 
 const ButonLogout = styled.button`
@@ -16,7 +20,7 @@ const ButonLogout = styled.button`
   margin: 10px;
   padding-left: 10px;
   border: 1px solid #000;
-`;
+`
 // imagen de perfil redonda
 const DivImg = styled.div`
   display: flex;
@@ -35,7 +39,7 @@ const DivImg = styled.div`
     border-radius: 100%;
   }
 
-`;
+`
 const SpanAddImg = styled.span`
   color: #ffffff;
   font-size: 30px;
@@ -49,33 +53,25 @@ const SpanAddImg = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
+`
 
 const Profile = () => {
-  const { logout, user } = useFirebaseContext();
-  const navigate = useNavigate();
-  console.log(user);
-  const { displayName, email, photoURL } = user;
+  const { logout, user } = useFirebaseContext()
+  const navigate = useNavigate()
+  console.log(user)
+  const { displayName, email, photoURL } = user
 
   const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
-//validate form
+    logout()
+    navigate('/login')
+  }
+  //validate form
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("enviando");
-  
-    
-  };
+    e.preventDefault()
+    console.log('enviando')
+  }
   //change input
-  const handleChange = (e) => {
-   
-
-  };
-  
-  
-
+  const handleChange = (e) => {}
 
   return (
     <div className="w-full  flex justify-center text-black mb-10 ">
@@ -89,23 +85,25 @@ const Profile = () => {
         <hr className="mb-5" />
         <div className="justify-center w-full ">
           <Form onSubmit={handleSubmit} className="flex flex-col w-full ">
-            <input type="text"  placeholder="nombres" />
+            <input type="text" placeholder="nombres" />
 
-            <input type="text"  placeholder="Apellidos" />
+            <input type="text" placeholder="Apellidos" />
 
-            <input type="text"  placeholder="Correo" />
+            <input type="text" placeholder="Correo" />
 
             <input type="text" placeholder="documento de identidad" />
 
             <input type="text" placeholder="Pais" />
 
             <input type="text" placeholder="Ciudad" />
-            <Btn type="submit" className="mt-20"  >Guardar cambios</Btn>
+            <Btn type="submit" className="mt-20">
+              Guardar cambios
+            </Btn>
           </Form>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile

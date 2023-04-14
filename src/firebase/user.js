@@ -7,11 +7,11 @@ import {
   setDoc,
   deleteDoc,
   Timestamp,
+  collectionGroup,
 } from 'firebase/firestore'
 import { signOut, updatePassword } from 'firebase/auth'
 import { db, firebaseAuth } from './client'
 import { uploadImage } from './storage'
-import { dateToSeconds } from './../utils/formatDateFirebase'
 
 export async function updateProfileImage({ image }) {
   const { uid } = firebaseAuth.currentUser
@@ -95,4 +95,22 @@ export async function getUserData({ userId }) {
   } catch (error) {
     throw new Error(error)
   }
+}
+
+export async function getPastAppointments() {
+  const { uid } = firebaseAuth.currentUser
+  const returnData = []
+  const dateNow = Date.now()
+  const todaySecs = new Timestamp(dateNow / 1000, 0)
+  const appointmentsCollection = collectionGroup(db, 'appointments')
+  const query1 = query(
+    appointmentsCollection,
+    where('userId', '==', uid),
+    where('date', '<=', todaySecs)
+  )
+  const snapshot = await getDocs(query1)
+  snapshot.forEach((appointment) => {
+    returnData.push(appointment.data())
+  })
+  return returnData
 }

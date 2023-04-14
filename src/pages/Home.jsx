@@ -6,9 +6,11 @@ import { useFirebaseContext } from '../context/UserContext'
 import Header from '../components/Header'
 import { motion } from 'framer-motion'
 import { Search } from '../components/MicroComponents/Search'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
   const [show, setShow] = useState(true)
+  const navigate = useNavigate()
 
   const slider = {
     cursor: 'grab',
@@ -47,6 +49,11 @@ const Home = () => {
     'Califica el servicio',
   ]
 
+  function goToMedics() {
+    navigate('/list')
+  }
+
+  if (loading) return <h1>Cargando...</h1>
   return (
     <>
       <main className="w-full  overflow-x-hidden ">
@@ -143,18 +150,10 @@ const Home = () => {
             {faq.map((question, i) => (
               <div
                 key={i}
-                style={{
-                  width: '80px',
-                  height: '100px',
-                  display: 'flex',
-                  borderRadius: '5px',
-                  padding: '4px',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backgroundColor: '#d7d7d7',
-                }}
+                className="text-center bg-slate-300 justify-center p-2 w-1/6 flex items-center rounded-md"
+                onClick={goToMedics}
               >
-                <span> {question} </span>
+                {question}
               </div>
             ))}
           </div>

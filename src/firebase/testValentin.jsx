@@ -1,25 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { signInWithEmail } from './userEmailAndPassword'
 import { fetchCategories, fetchCollection } from './fetchCollection'
-import { deleteUser, getCurrentUserInfo, getUserData, logOutUser, updateProfileImage } from './user'
+import { deleteUser, getCurrentUserInfo, getPastAppointments, getUserData, logOutUser, updateProfileImage } from './user'
 import { cancelAppointment, createAppointment, getAppointmentData } from './appointment'
 import { createMedic, getMedicAppointments, getMedicData } from './medics'
+import { useFirebaseContext } from '../context/UserContext'
 
 export const TestingValentin = () => {
   const [userLoggingIn, setUserLoggingIn] = useState({ email: '', password: '' })
-  const [user, setUser] = useState(null)
-
+  const { user, login, logout } = useFirebaseContext()
   function handleChangeSignIn (event) {
     const { name, value } = event.target
     setUserLoggingIn(user => ({ ...user, [name]: value }))
   }
+  const [userLoggedIn, setUserLoggedIn] = useState(null)
+
+  useEffect(() => {
+    async function getUserInfo () {
+      const userInfo = await getCurrentUserInfo()
+      userInfo ? setUserLoggedIn(userInfo) : setUserLoggedIn(null)
+    }
+    getUserInfo()
+  }, [user])
 
   async function handleSubmitSignIn (event) {
     event.preventDefault()
     try {
-      const user = await signInWithEmail(userLoggingIn)
-      setUser(user)
-      return user
+      await login(userLoggingIn)
     } catch (error) {
       console.error(error)
     }
@@ -34,16 +41,12 @@ export const TestingValentin = () => {
   // }
 
   async function handleLogOut () {
-    await logOutUser()
-    setUser(null)
+    logout()
   }
 
   async function checkUser () {
     const user = await getCurrentUserInfo()
-    await createMedic()
-
-    console.log(user)
-    setUser(user)
+    // await createMedic()
     return user
     // await updateUserInfo({ firstName: 'Hugo' })
   }
@@ -51,21 +54,24 @@ export const TestingValentin = () => {
   async function uploadDate (e) {
     e.preventDefault()
     const date = e.target.dateTime.value
-    // console.log(await createAppointment({ date, hour: '17', medicId: 'FeVmMt8cAG1GJDnbFyiG' }))
+    console.log(date)
+    // console.log(await createAppointment({ date, hour: '13', medicId: '8RmXqAFxfXtLQxXMRh6w' }))
     // await cancelAppointment({ appointmentId: '5zrcdkFHtCG4x3uMBW5Q' })
     // const { medicId, userId } = await getAppointmentData({ appointmentId: 'dhBB12W0Wh8jUp42nND6' })
     // console.log(await getUserData({ userId }))
     // console.log(await getMedicData({ medicId }))
-    console.log(await getMedicAppointments({ medicId: 'FeVmMt8cAG1GJDnbFyiG', date }))
+    // console.log(await getPastAppointments())
   }
 
   return (
     <div>
-      <form onSubmit={e => handleSubmitSignIn(e)}>
-        <input placeholder='email' name='email' onChange={e => handleChangeSignIn(e)} required />
-        <input placeholder='password' name='password' type='password' onChange={e => handleChangeSignIn(e)} required />
-        <button>SignIn</button>
-      </form>
+      {!userLoggedIn
+        ? (<form onSubmit={e => handleSubmitSignIn(e)}>
+          <input placeholder='email' name='email' onChange={e => handleChangeSignIn(e)} required />
+          <input placeholder='password' name='password' type='password' onChange={e => handleChangeSignIn(e)} required />
+          <button>SignIn</button>
+        </form>)
+        : <button onClick={handleLogOut}>LogOut userLoggedIn</button>}
       <form onSubmit={(e) => uploadDate(e)}>
         <input type='date' name='dateTime' />
         {/* <input type='time' name='dateTime' min='09:00' max='18:00' required /> */}
@@ -76,11 +82,10 @@ export const TestingValentin = () => {
         <input type='file' name='profileImage' accept='image/jpeg, image/png' />
         <button>Upload</button>
       </form> */}
-      <button onClick={deleteUser}>Delete user</button>
-      <button onClick={handleLogOut}>LogOut user</button>
-      <button onClick={checkUser}>check user signed in</button>
-      {user && <div>{user.firstName}</div>}
-      {user && <img src={user.avatarURL} />}
+      <button onClick={deleteUser}>Delete userLoggedIn</button>
+      <button onClick={checkUser}>check userLoggedIn signed in</button>
+      {userLoggedIn && <div>{userLoggedIn.firstName}</div>}
+      {userLoggedIn && <img src={userLoggedIn.avatarURL} />}
     </div>
   )
 }

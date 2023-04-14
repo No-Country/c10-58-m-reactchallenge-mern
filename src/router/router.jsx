@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { createBrowserRouter } from 'react-router-dom'
 import Home from '../pages/Home'
 import Register from '../pages/Register'
@@ -8,6 +7,8 @@ import List from '../pages/List'
 import Profile from '../pages/Profile'
 import Calendar from '../pages/Calendar'
 import Emergency from '../pages/Emergency'
+import ProfileDoc from '../pages/ProfileDoc'
+import { getMedicData } from '../firebase/medics'
 import PrivateRoute from './PrivateRoute'
 
 export const router = createBrowserRouter([
@@ -24,16 +25,24 @@ export const router = createBrowserRouter([
         element: <List />,
       },
       {
-        path: '/list/:id',
-        element: <h1>Perfil Médico</h1>,
+        path: '/list/:medicId',
+        element: <ProfileDoc />,
+        loader: async ({ params: { medicId } }) => {
+          const data = await getMedicData({ medicId })
+          return { medicId, data }
+        },
       },
       {
-        path: '/list/:id/calendar',
+        path: '/list/:medicId/calendar',
         element: (
           <PrivateRoute>
-            <Calendar />
+            <Calendar />{' '}
           </PrivateRoute>
         ),
+        loader: async ({ params: { medicId } }) => {
+          const data = await getMedicData({ medicId })
+          return { medicId, data }
+        },
       },
       {
         path: '/login',
