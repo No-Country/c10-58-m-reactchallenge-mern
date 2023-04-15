@@ -2,7 +2,7 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable no-tabs */
 /* eslint-disable jsx-quotes */
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { useState } from 'react'
 import navbarIcon from '../../public/navbar_icon.svg'
 import homeIcon from '../../public/home_icon.svg'
@@ -15,7 +15,8 @@ import { useFirebaseContext } from '../context/UserContext'
 import User from './User'
 
 const Navbar = () => {
-  const [selected, setSelected] = useState('homeIcon')
+  const location = useLocation()
+  const [selected, setSelected] = useState(location.pathname)
   const { user } = useFirebaseContext()
 
   const handleNavLinkClick = (icon) => {
@@ -23,67 +24,47 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="w-full h-[50px] fixed bottom-0">
+    <nav className="w-full h-[50px] sticky bottom-0">
       <ul className="w-full h-full flex justify-evenly items-center">
-        <li className="">
-          <NavLink
-            className="relative"
-            to="/"
-            onClick={() => handleNavLinkClick('homeIcon')}
-          >
-            {selected === 'homeIcon' && (
-              <img
-                className="absolute top-[-5px] left-[9px]"
-                src={navbarIcon}
-              />
-            )}
-            <img
-              src={selected === 'homeIcon' ? variantHomeIcon : homeIcon}
-              alt=""
-            />
+        <li className="relative">
+          {selected === '/' && (
+            <img className="absolute top-[-5px] left-[9px]" src={navbarIcon} />
+          )}
+          <NavLink to="/" onClick={() => handleNavLinkClick('/')}>
+            <img src={selected === '/' ? variantHomeIcon : homeIcon} alt="" />
           </NavLink>
         </li>
-        <li className="">
+        <li className="relative">
+          {selected === 'emergency' && (
+            <img className="absolute top-[-5px] left-[10px]" src={navbarIcon} />
+          )}
           <NavLink
-            className="relative"
+            className=""
             to="/emergency"
-            onClick={() => handleNavLinkClick('emergencyIcon')}
+            onClick={() => handleNavLinkClick('emergency')}
           >
-            {selected === 'emergencyIcon' && (
-              <img
-                className="absolute top-[-5px] left-[10px]"
-                src={navbarIcon}
-              />
-            )}
             <img
               src={
-                selected === 'emergencyIcon'
-                  ? variantEmergencyIcon
-                  : emergencyIcon
+                selected === 'emergency' ? variantEmergencyIcon : emergencyIcon
               }
               alt=""
             />
           </NavLink>
         </li>
-        <li className="">
+        <li className="relative">
+          {selected === 'profile' && (
+            <img className="absolute top-[-5px] left-[8px] " src={navbarIcon} />
+          )}
           <NavLink
-            className="relative"
+            className=""
             to="/profile"
-            onClick={() => handleNavLinkClick('profileIcon')}
+            onClick={() => handleNavLinkClick('profile')}
           >
-            {selected === 'profileIcon' && (
-              <img
-                className="absolute top-[-12px] left-[3px] "
-                src={navbarIcon}
-              />
-            )}
             {user ? (
               <User />
             ) : (
               <img
-                src={
-                  selected === 'profileIcon' ? variantProfileIcon : profileIcon
-                }
+                src={selected === 'profile' ? variantProfileIcon : profileIcon}
                 alt=""
               />
             )}

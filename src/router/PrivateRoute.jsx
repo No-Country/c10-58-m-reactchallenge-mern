@@ -1,13 +1,17 @@
-import { useNavigate } from 'react-router-dom'
 import { useFirebaseContext } from '../context/UserContext'
-
+import { useNavigate } from 'react-router-dom'
 const PrivateRoute = ({ children }) => {
   const { user } = useFirebaseContext()
   const navigate = useNavigate()
-
   if (!user) {
-    navigate('/404')
+    return (
+      <div>
+        <h1>Debes iniciar sesión para ingresar a esta sección</h1>
+        <button onClick={() => navigate('/login')}>Ingresar</button>
+      </div>
+    )
   }
+
   return children
 }
 

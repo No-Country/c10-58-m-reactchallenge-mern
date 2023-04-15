@@ -8,10 +8,13 @@ import {
   deleteDoc,
   Timestamp,
   collectionGroup,
+  orderBy,
+  limit,
 } from 'firebase/firestore'
 import { signOut, updatePassword } from 'firebase/auth'
 import { db, firebaseAuth } from './client'
 import { uploadImage } from './storage'
+import { getAppointmentData } from './appointment'
 
 export async function updateProfileImage({ image }) {
   const { uid } = firebaseAuth.currentUser
@@ -98,19 +101,53 @@ export async function getUserData({ userId }) {
 }
 
 export async function getPastAppointments() {
-  const { uid } = firebaseAuth.currentUser
-  const returnData = []
-  const dateNow = Date.now()
-  const todaySecs = new Timestamp(dateNow / 1000, 0)
-  const appointmentsCollection = collectionGroup(db, 'appointments')
-  const query1 = query(
-    appointmentsCollection,
-    where('userId', '==', uid),
-    where('date', '<=', todaySecs)
-  )
-  const snapshot = await getDocs(query1)
-  snapshot.forEach((appointment) => {
-    returnData.push(appointment.data())
-  })
-  return returnData
+  try {
+    const { uid } = firebaseAuth.currentUser
+    const dateNow = Date.now()
+    const todaySecs = new Timestamp(dateNow / 1000, 0)
+    const appointmentsCollection = collectionGroup(db, 'appointments')
+    const query1 = query(
+      appointmentsCollection,
+      where('userId', '==', uid),
+      where('date', '<=', todaySecs),
+      orderBy('date')
+    )
+    const snapshot = await getDocs(query1)
+    const appointmentsIdArray = []
+    snapshot.forEach((appointment) => appointmentsIdArray.push(appointment.id))
+    const appointmentsDataPromiseArray = await Promise.all(
+      appointmentsIdArray.map((appointmentId) =>
+        getAppointmentData({ appointmentId })
+      )
+    )
+    return appointmentsDataPromiseArray
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
+export async function getFutureAppointments() {
+  try {
+    const { uid } = firebaseAuth.currentUser
+    const dateNow = Date.now()
+    const todaySecs = new Timestamp(dateNow / 1000, 0)
+    const appointmentsCollection = collectionGroup(db, 'appointments')
+    const query1 = query(
+      appointmentsCollection,
+      where('userId', '==', uid),
+      where('date', '>=', todaySecs),
+      orderBy('date')
+    )
+    const snapshot = await getDocs(query1)
+    const appointmentsIdArray = []
+    snapshot.forEach((appointment) => appointmentsIdArray.push(appointment.id))
+    const appointmentsDataPromiseArray = await Promise.all(
+      appointmentsIdArray.map((appointmentId) =>
+        getAppointmentData({ appointmentId })
+      )
+    )
+    return appointmentsDataPromiseArray
+  } catch (error) {
+    throw new Error(error)
+  }
 }
