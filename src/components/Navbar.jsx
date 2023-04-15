@@ -15,14 +15,13 @@ import { useFirebaseContext } from '../context/UserContext'
 const Navbar = () => {
   const [selected, setSelected] = useState('homeIcon')
   const { user } = useFirebaseContext()
-  console.log(user)
 
   const handleNavLinkClick = (icon) => {
     setSelected(icon)
   }
 
   return (
-    <nav className="w-full h-[50px] fixed bottom-0">
+    <nav className="w-full h-[50px] sticky bottom-0">
       <ul className="w-full h-full flex justify-evenly items-center">
         <li className="">
           <NavLink to="/" onClick={() => handleNavLinkClick('homeIcon')}>

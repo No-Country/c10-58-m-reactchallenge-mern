@@ -5,127 +5,127 @@
 @tailwind utilities;
 
 :root {
-    --mainFont: 'Roboto', sans-serif;
+  --mainFont: 'Roboto', sans-serif;
 }
 
 * {
-    font-family: var(--mainFont);
+  font-family: var(--mainFont);
 }
 
 .icon-eye-container {
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .inp-reg {
-    width: 100%;
-    margin: 0.5rem 0;
-    border: none;
-    border-radius: 27px;
-    padding: 0.4rem 1rem;
-    background-color: #EBEBEB;
+  width: 100%;
+  margin: 0.5rem 0;
+  border: none;
+  border-radius: 27px;
+  padding: 0.4rem 1rem;
+  background-color: #ebebeb;
 }
 
 .inp-reg:focus {
-    outline: none;
+  outline: none;
 }
 
 .eye-icon {
-    position: absolute;
-    width: 20px;
-    margin-right: 1rem;
-    cursor: pointer;
+  position: absolute;
+  width: 20px;
+  margin-right: 1rem;
+  cursor: pointer;
 }
 
 .inp-terms {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .inp-terms:checked::after {
-    content: '';
-    position: absolute;
-    width: 50%;
-    height: 50%;
-    background-color: #878787;
-    border-radius: 50%;
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background-color: #878787;
+  border-radius: 50%;
 }
 
 .btn-reg {
-    border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    font-weight: 500;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: 500;
 }
 
 .loader {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    animation: rotate 2s linear infinite;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  animation: rotate 2s linear infinite;
 }
 
 @keyframes rotate {
-    100% {
-        transform: rotate(360deg);
-    }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .loader circle {
-    width: 100%;
-    height: 100%;
-    fill: none;
-    stroke-width: 10;
-    stroke: #444444;
-    stroke-linecap: round;
-    transform: translate(5px, 5px);
-    stroke-dasharray: 440;
-    stroke-dashoffset: 440;
-    animation: ani 4s linear infinite;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke-width: 10;
+  stroke: #444444;
+  stroke-linecap: round;
+  transform: translate(5px, 5px);
+  stroke-dasharray: 440;
+  stroke-dashoffset: 440;
+  animation: ani 4s linear infinite;
 }
 
 @keyframes ani {
+  0%,
+  100% {
+    stroke-dashoffset: 440;
+  }
 
-    0%,
-    100% {
-        stroke-dashoffset: 440;
-    }
+  50% {
+    stroke-dashoffset: 0;
+  }
 
-    50% {
-        stroke-dashoffset: 0;
-    }
-
-    50.1% {
-        stroke-dashoffset: 880;
-    }
+  50.1% {
+    stroke-dashoffset: 880;
+  }
 }
 
 .profile-doc {
-    width: fit-content;
-    margin-inline: auto;
+  width: fit-content;
+  margin-inline: auto;
 }
 
 .profile-doc-img {
-    display: block;
-    width: 100px;
-    margin-inline: auto;
+  display: block;
+  width: 100px;
+  margin-inline: auto;
 }
 
 .profile-doc-name {
-    font-size: 20px;
-    font-weight: 600;
-    text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
 }
 
 .profile-doc-address {
-    padding: .5rem;
-    text-align: center;
+  padding: 0.5rem;
+  text-align: center;
 }
 
 html,
-body {
-    height: 100vh;
+body,
+main {
+  min-height: 100vh;
 }
