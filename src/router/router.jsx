@@ -10,6 +10,7 @@ import Emergency from '../pages/Emergency'
 import { TestingValentin } from '../firebase/testValentin'
 import ProfileDoc from '../pages/ProfileDoc'
 import { getMedicData } from '../firebase/medics'
+import { Appointments } from '../pages/Appointments'
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
       {
         path: '/profile',
         element: <Profile />
+      },
+      {
+        path: '/profile/appointments',
+        element: <Appointments />
       },
       {
         path: '/emergency',
