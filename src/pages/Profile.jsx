@@ -58,7 +58,6 @@ const SpanAddImg = styled.span`
 const Profile = () => {
   const { logout, user } = useFirebaseContext()
   const navigate = useNavigate()
-  console.log(user)
   const { displayName, email, photoURL } = user
 
   const handleLogout = () => {

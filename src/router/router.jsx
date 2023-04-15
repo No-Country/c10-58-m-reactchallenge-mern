@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
         path: '/list/:medicId/calendar',
         element: (
           <PrivateRoute>
-            <Calendar />{' '}
+            <Calendar />
           </PrivateRoute>
         ),
         loader: async ({ params: { medicId } }) => {

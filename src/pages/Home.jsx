@@ -52,6 +52,7 @@ const Home = () => {
   function goToMedics() {
     navigate('/list')
   }
+  const { loading } = useFirebaseContext()
 
   if (loading) return <h1>Cargando...</h1>
   return (
