@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, setPersistence, signInWithEmailAndPassword, browserSessionPersistence } from 'firebase/auth'
 import { firebaseAuth, db } from './client'
 import { ERRORS_CREATING_USER, ERRORS_LOGGING_USER } from './errors'
 import { doc, setDoc, getDoc } from 'firebase/firestore'
@@ -38,6 +38,7 @@ export async function createUserWithEmail (userDataForm) {
 export async function signInWithEmail (user) {
   try {
     const { email, password } = user
+    await setPersistence(firebaseAuth, browserSessionPersistence)
     const userSignIn = await signInWithEmailAndPassword(firebaseAuth, email, password)
     const { uid } = userSignIn.user
     const docSnapshot = await getDoc(doc(db, 'users', uid))
