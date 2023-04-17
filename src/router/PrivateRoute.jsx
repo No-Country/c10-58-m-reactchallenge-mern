@@ -1,3 +1,4 @@
+import { Btn } from '../components/MicroComponents/Btn'
 import { useFirebaseContext } from '../context/UserContext'
 import { useNavigate } from 'react-router-dom'
 const PrivateRoute = ({ children }) => {
@@ -7,7 +8,7 @@ const PrivateRoute = ({ children }) => {
     return (
       <div>
         <h1>Debes iniciar sesión para ingresar a esta sección</h1>
-        <button onClick={() => navigate('/login')}>Ingresar</button>
+        <Btn onClick={() => navigate('/login')}>Ingresar</Btn>
       </div>
     )
   }

@@ -42,17 +42,43 @@ const Home = () => {
     'Orientación profesional',
   ]
   const faq = [
-    'Busca un profesional',
-    'Elige un profesional',
-    'Elige horario de tu cita',
-    'Ten el cuidado que mereces',
-    'Califica el servicio',
+    {
+      option: '¿Cómo buscar un profesional?',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce convallis dui eget eros varius, in vestibulum dolor auctor. Suspendisse vitae enim sed lorem eleifend laoreet. Aliquam vitae massa euismod, gravida nisi a, tempor nibh. Suspendisse potenti. Sed quis felis ac leo bibendum faucibus. Nam in mi non justo aliquam pulvinar. Integer ac neque vel purus vehicula bibendum.',
+    },
+    {
+      option: '¿Qué tipo de especialistas están disponibles?',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce convallis dui eget eros varius, in vestibulum dolor auctor. Suspendisse vitae enim sed lorem eleifend laoreet. Aliquam vitae massa euismod, gravida nisi a, tempor nibh. Suspendisse potenti. Sed quis felis ac leo bibendum faucibus. Nam in mi non justo aliquam pulvinar. Integer ac neque vel purus vehicula bibendum.',
+    },
+    {
+      option:
+        '¿¿Cómo se llevan a cabo las consultas virtuales y presenciales en su sitio web??',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce convallis dui eget eros varius, in vestibulum dolor auctor. Suspendisse vitae enim sed lorem eleifend laoreet. Aliquam vitae massa euismod, gravida nisi a, tempor nibh. Suspendisse potenti. Sed quis felis ac leo bibendum faucibus. Nam in mi non justo aliquam pulvinar. Integer ac neque vel purus vehicula bibendum.',
+    },
+    {
+      option: '¿Cuál es el costo de la consulta?',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce convallis dui eget eros varius, in vestibulum dolor auctor. Suspendisse vitae enim sed lorem eleifend laoreet. Aliquam vitae massa euismod, gravida nisi a, tempor nibh. Suspendisse potenti. Sed quis felis ac leo bibendum faucibus. Nam in mi non justo aliquam pulvinar. Integer ac neque vel purus vehicula bibendum.',
+    },
+    {
+      option: '¿Cuál es el tiempo de la consulta?',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce convallis dui eget eros varius, in vestibulum dolor auctor. Suspendisse vitae enim sed lorem eleifend laoreet. Aliquam vitae massa euismod, gravida nisi a, tempor nibh. Suspendisse potenti. Sed quis felis ac leo bibendum faucibus. Nam in mi non justo aliquam pulvinar. Integer ac neque vel purus vehicula bibendum.',
+    },
+    {
+      option: '¿Cómo obtengo un horario?',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce convallis dui eget eros varius, in vestibulum dolor auctor. Suspendisse vitae enim sed lorem eleifend laoreet. Aliquam vitae massa euismod, gravida nisi a, tempor nibh. Suspendisse potenti. Sed quis felis ac leo bibendum faucibus. Nam in mi non justo aliquam pulvinar. Integer ac neque vel purus vehicula bibendum.',
+    },
   ]
 
   function goToMedics() {
     navigate('/list')
   }
-  const { loading } = useFirebaseContext()
+  const { loading, logout } = useFirebaseContext()
 
   if (loading) return <h1>Cargando...</h1>
   return (
@@ -152,13 +178,19 @@ const Home = () => {
               <div
                 key={i}
                 className="text-center bg-slate-300 justify-center p-2 w-1/6 flex items-center rounded-md"
-                onClick={goToMedics}
               >
-                {question}
+                {question.option}
               </div>
             ))}
           </div>
         </section>
+        <button
+          className="ml-5 bg-[#35d3ff] text-black rounded-md p-2 w-[150px] mt-5"
+          type="button"
+          onClick={logout}
+        >
+          Logout
+        </button>
       </main>
       {/* <Footer /> */}
     </>
