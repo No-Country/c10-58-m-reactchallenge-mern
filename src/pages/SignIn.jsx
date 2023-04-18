@@ -1,4 +1,3 @@
-/* eslint-disable jsx-quotes */
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFirebaseContext } from '../context/UserContext'
@@ -130,24 +129,24 @@ const SignIn = () => {
         <span>Inicia sesion en tu cuenta</span>
       </div>
 
-      <Form className=" items-center mt-5 w-11/12" onSubmit={handleSubmit}>
+      <Form className=' items-center mt-5 w-11/12' onSubmit={handleSubmit}>
         <input
           onChange={handleChange}
-          type="email"
-          name="email"
-          id="email"
-          placeholder="Email"
+          type='email'
+          name='email'
+          id='email'
+          placeholder='Email'
         />
 
         <input
           onChange={handleChange}
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Password"
+          type='password'
+          name='password'
+          id='password'
+          placeholder='Password'
         />
-        <P className="  ">Olvide mi password</P>
-        <Btn className='mt-10 h-10 mb-5' type="submit">Iniciar sesion</Btn>
+        <P className='  '>Olvide mi password</P>
+        <Btn className='mt-10 h-10 mb-5' type='submit'>Iniciar sesion</Btn>
       </Form>
 
       <DivLine>
@@ -156,18 +155,18 @@ const SignIn = () => {
         <hr />
       </DivLine>
       <div>
-        <ButtonRed onClick={handleSubmitForGoogle} value="1" className="">
+        <ButtonRed onClick={handleSubmitForGoogle} value='1' className=''>
           {' '}
           G
         </ButtonRed>
-        <ButtonRed onClick={handleSubmitForGoogle} value="2" className="">
+        <ButtonRed onClick={handleSubmitForGoogle} value='2' className=''>
           F
         </ButtonRed>
       </div>
 
-      <div className="">
-        <Link to="/register">
-          <p className="text-2xl   ">Don't have an account?</p>
+      <div className=''>
+        <Link to='/register'>
+          <p className='text-2xl   '>Don't have an account?</p>
         </Link>
       </div>
 
