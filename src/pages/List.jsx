@@ -2,7 +2,7 @@
 import CardContainer from '../components/CardContainer';
 
 const List = () => {
-	return <div className='mb-5'>
+	return <div className='pb-8'>
 		<CardContainer />;
 	</div>
 };
