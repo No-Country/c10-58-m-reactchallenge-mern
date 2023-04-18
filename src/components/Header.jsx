@@ -8,7 +8,7 @@ const Header = () => {
   const { user } = useFirebaseContext()
 
   return (
-    <header className="fixed bottom-0 w-full h-12 flex justify-evenly items-center bg-slate-200">
+    <header className="fixed bottom-0 w-full h-14 flex justify-evenly items-center bg-slate-200 z-10">
       <Navbar />
       <div className="hidden lg:block">{user && <User />}</div>
     </header>

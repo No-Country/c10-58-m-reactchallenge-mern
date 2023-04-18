@@ -29,7 +29,7 @@ const Navbar = () => {
       <ul className="w-full h-full flex justify-evenly items-center">
         <li className="relative">
           {selected === '/' && (
-            <img className="absolute top-[-5px] left-[9px]" src={navbarIcon} />
+            <img className="absolute top-[-10px] left-[9px]" src={navbarIcon} />
           )}
           <NavLink to="/">
             <img src={selected === '/' ? variantHomeIcon : homeIcon} alt="" />
@@ -37,7 +37,10 @@ const Navbar = () => {
         </li>
         <li className="relative">
           {selected === '/emergency' && (
-            <img className="absolute top-[-5px] left-[10px]" src={navbarIcon} />
+            <img
+              className="absolute top-[-10px] left-[10px]"
+              src={navbarIcon}
+            />
           )}
           <NavLink className="" to="/emergency">
             <img
@@ -50,7 +53,10 @@ const Navbar = () => {
         </li>
         <li className="relative">
           {selected === '/profile' && (
-            <img className="absolute top-[-5px] left-[8px] " src={navbarIcon} />
+            <img
+              className="absolute top-[-10px] left-[8px] "
+              src={navbarIcon}
+            />
           )}
           <NavLink className="" to="/profile">
             {user ? (

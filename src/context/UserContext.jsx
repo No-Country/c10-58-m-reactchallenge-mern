@@ -14,6 +14,7 @@ export const useFirebaseContext = () => useContext(FirebaseContext)
 const FirebaseProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [showAllMedics, setShowAllMedics] = useState(false)
 
   const login = async (userCredentials) => {
     setLoading(true)
@@ -43,7 +44,9 @@ const FirebaseProvider = ({ children }) => {
   const logout = () => signOut(firebaseAuth)
 
   return (
-    <FirebaseContext.Provider value={{ login, user, logout, loading }}>
+    <FirebaseContext.Provider
+      value={{ login, user, logout, loading, setShowAllMedics, showAllMedics }}
+    >
       {children}
     </FirebaseContext.Provider>
   )
