@@ -4,6 +4,7 @@ import { useFirebaseContext } from '../context/UserContext'
 import styled from 'styled-components'
 import { Form } from '../components/MicroComponents/Form'
 import { Btn } from '../components/MicroComponents/Btn'
+import { ERRORS_LOGGING_USER } from '../firebase/errors'
 
 import Header from '../components/Header'
 
@@ -25,26 +26,31 @@ const Container = styled.div`
 `
 
 const ButtonRed = styled.button`
-	background-color: #fff;
-	color: #000000;
+
 	width: 50px;
 	height: 50px;
-	border: 1px solid #000;
+	
 	border-radius: 100%;
 	margin: 10px;
 
   &:hover {
-    background-color: #000;
+
     color: #fff;
+  }
+  img{
+    width: 100%;
+    height: 100%;
   }
 `
 
 const P = styled.p`
+  
   margin: 10px;
-  color: #000;
+  color: #b4cf66;
   font-size: 15px;
-  padding: 10px;
+  padding: 15px;
   padding-left: 135px;
+  inline-size: 100%;
   
   text-decoration: underline;
 
@@ -68,20 +74,23 @@ const DivLine = styled.div`
     font-size: 20px;
   }
 
-  hr {
-    width: 100%;
-    height: 1px;
-    background-color: #000;
+
+`
+const Span = styled.span`
+  margin: 10px; 
+  color: #146151;
+  font-size: 20px;
+  font-weight: 700;
+    &:hover {
+    cursor: pointer;
+    text-decoration: underline;
   }
 `
 
 const SignIn = () => {
   const [users, setUser] = useState({ email: '', password: '' })
-  const { login, user } = useFirebaseContext()
+  const { login } = useFirebaseContext()
   const navigate = useNavigate()
-
-  // destructuring
-  const { email, password } = users
 
   // input change
   const handleChange = (e) => {
@@ -96,14 +105,14 @@ const SignIn = () => {
 
     try {
       await login(users)
-      navigate(-1)
+      navigate('/profile')
     } catch (error) {
-      console.log(error)
+
     }
 
     // validate
     if (e.target.email.value === '' || e.target.password.value === '') {
-      console.log('error')
+      alert('Complete los campos')
     } else {
       // send data to firebase
       e.target.email.value = ''
@@ -115,9 +124,9 @@ const SignIn = () => {
   // add function for google and facebook
   const handleSubmitForGoogle = (e) => {
     if (e.target.value === '1') {
-      console.log('google')
+
     } else {
-      console.log('facebook')
+
     }
   }
 
@@ -145,20 +154,22 @@ const SignIn = () => {
           id='password'
           placeholder='Password'
         />
+<<<<<<< HEAD
         <P className='  '>Olvide mi password</P>
         <Btn className='mt-10 h-10 mb-5' type='submit'>Iniciar sesion</Btn>
+=======
+        <P className="  ">Olvide mi contrasena</P>
+        <Btn className='mt-10 h-10 mb-5' type="submit">Iniciar sesion</Btn>
+>>>>>>> ac0f94f96b071ad6fa1830aa8c74d72574c6e88f
       </Form>
 
-      <DivLine>
-        <hr />
-        <span>or</span>
-        <hr />
-      </DivLine>
+      <DivLine />
       <div>
         <ButtonRed onClick={handleSubmitForGoogle} value='1' className=''>
           {' '}
-          G
+          <img src="/public/Login Google.png" alt="" />
         </ButtonRed>
+<<<<<<< HEAD
         <ButtonRed onClick={handleSubmitForGoogle} value='2' className=''>
           F
         </ButtonRed>
@@ -167,6 +178,19 @@ const SignIn = () => {
       <div className=''>
         <Link to='/register'>
           <p className='text-2xl   '>Don't have an account?</p>
+=======
+        <ButtonRed onClick={handleSubmitForGoogle} value="2" className="">
+          <img src="/public/Login Facebook.png" alt="" />
+        </ButtonRed>
+      </div>
+
+      <div className="">
+        <Link to="/register" className='flex flex-col  place-items-center   '>
+          <p className="text-2xl   ">Aun no tienes cuenta ?
+
+          </p>
+          <Span>Crear una</Span>
+>>>>>>> ac0f94f96b071ad6fa1830aa8c74d72574c6e88f
         </Link>
       </div>
 

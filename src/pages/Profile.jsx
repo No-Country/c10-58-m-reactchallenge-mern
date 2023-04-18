@@ -23,14 +23,14 @@ const DivImg = styled.div`
   width: 100px;
   height: 100px;
   margin: 10px;
-  border-radius: 100%;
+  border-radius: 15px;
   background-color: #f6f6f6;
   
   img {
-    color:#f6f6f6
-    width: 90%;
-    height: 90%;
-    border-radius: 100%;
+    color:#f6f6f6;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
   }
 
 `
@@ -51,8 +51,11 @@ const SpanAddImg = styled.span`
 
 const Profile = () => {
   const { user, logout } = useFirebaseContext()
-  const navigate = useNavigate()
   console.log(user)
+  const navigate = useNavigate()
+  //destructuring
+  const {names,email,lastName,dni} = user
+ 
 
   const handleLogout = () => {
     logout()
@@ -61,10 +64,13 @@ const Profile = () => {
   // validate form
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('enviando')
+   
   }
   // change input
   const handleChange = (e) => {
+    e.preventDefault()
+
+
   }
 
   useEffect(() => {
@@ -72,36 +78,40 @@ const Profile = () => {
   }, [])
 
   return (
-    <>
+    <div>
       {
      user
        ? (
          <div className='w-full  flex justify-center text-black mb-10 '>
            <div className='w-5/6  '>
-             <div className='flex flex-col w-full h-52 place-content-center place-items-center '>
+             <div className='flex  w-full h-52 place-content-center place-items-center '>
                <DivImg>
                  <img src={user.avatarURL} alt='perfil-img' />
                </DivImg>
-               <h2>{user.firstName} {user.lastName}</h2>
+               <div>
+
+               <h2>{names} {lastName}</h2>
+             <Btn className='mt-5' onClick={handleLogout}>Log Out</Btn>
+               </div>
              </div>
              <hr className='mb-5' />
              <div className='justify-center w-full '>
                <Form onSubmit={handleSubmit} className='flex flex-col w-full '>
-                 <input type='text' placeholder='nombres' />
-                 <input type='text' placeholder='Apellidos' />
-                 <input type='text' placeholder='Correo' />
-                 <input type='text' placeholder='documento de identidad' />
-                 <input type='text' placeholder='Pais' />
-                 <input type='text' placeholder='Ciudad' />
+                 <input onChange={handleChange} type='text' placeholder={names} />
+                 <input onChange={handleChange} type='text' placeholder={lastName} />
+                 <input onChange={handleChange} type='text' placeholder={email} />
+                 <input onChange={handleChange} type='text' placeholder= {`DNI: ${dni}`} />
+                 <input onChange={handleChange} type='text' placeholder='Pais' />
+                 <input onChange={handleChange} type='text' placeholder='Ciudad' />
                  <Btn type='submit' className='mt-20'>Guardar cambios</Btn>
                </Form>
              </div>
-             <Btn className='' onClick={handleLogout}>Log Out</Btn>
+             
            </div>
          </div>)
        : (<Navigate to='/' replace />)
     }
-    </>
+    </div>
 
   )
 }
