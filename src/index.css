@@ -88,6 +88,7 @@
 }
 
 @keyframes ani {
+
   0%,
   100% {
     stroke-dashoffset: 440;
@@ -124,8 +125,6 @@
   text-align: center;
 }
 
-html,
-body,
-main {
-  min-height: 100vh;
+body {
+  background-color: #F8f8f8;
 }
