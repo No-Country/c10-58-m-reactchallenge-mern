@@ -7,24 +7,12 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   padding: 0 1rem;
   margin: 0 auto;
-  background-color: #fff;
-
-  input {
-    width: 100%;
-
-    background-color: #ebebeb;
-    margin: 0.5rem 0;
-    padding: 0.4rem 1rem;
-    border: 1px solid #ccc;
-    border-radius: 27px;
-    font-size: 1rem;
-    &:focus {
-      outline: none;
-      border-color: #000;
-    }
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    column-gap: 4rem;
   }
 
 `

@@ -4,7 +4,7 @@ import Navbar from './Navbar'
 
 const Header = () => {
   return (
-    <header className='fixed bottom-0 w-full h-12 flex justify-evenly items-center bg-slate-200'>
+    <header className='fixed bottom-0 w-screen h-12 flex justify-evenly items-center bg-slate-200'>
       <Navbar />
       {/* <User /> */}
     </header>
