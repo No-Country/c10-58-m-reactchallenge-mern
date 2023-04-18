@@ -23,14 +23,14 @@ const DivImg = styled.div`
   width: 100px;
   height: 100px;
   margin: 10px;
-  border-radius: 100%;
+  border-radius: 15px;
   background-color: #f6f6f6;
   
   img {
     color:#f6f6f6;
-    width: 90%;
-    height: 90%;
-    border-radius: 100%;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
   }
 
 `
@@ -78,18 +78,21 @@ const Profile = () => {
   }, [])
 
   return (
-    <>
+    <div>
       {
      user
        ? (
          <div className='w-full  flex justify-center text-black mb-10 '>
            <div className='w-5/6  '>
-             <div className='flex flex-col w-full h-52 place-content-center place-items-center '>
+             <div className='flex  w-full h-52 place-content-center place-items-center '>
                <DivImg>
                  <img src={user.avatarURL} alt='perfil-img' />
                </DivImg>
+               <div>
+
                <h2>{names} {lastName}</h2>
              <Btn className='mt-5' onClick={handleLogout}>Log Out</Btn>
+               </div>
              </div>
              <hr className='mb-5' />
              <div className='justify-center w-full '>
@@ -108,7 +111,7 @@ const Profile = () => {
          </div>)
        : (<Navigate to='/' replace />)
     }
-    </>
+    </div>
 
   )
 }

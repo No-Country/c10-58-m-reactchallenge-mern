@@ -47,5 +47,6 @@ export async function signInWithEmail (user) {
   } catch (error) {
     const errorCode = error.code
     throw new Error(ERRORS_LOGGING_USER[errorCode])
+   
   }
 }

@@ -13,7 +13,7 @@ const CardContainer = () => {
 	}, []);
 
 	return (
-		<div className='flex justify-center flex-col'>
+		<div className='flex justify-center flex-col gap-4'>
 			{medicos.map(medico => {
 				return <Card key={medico.id} medico={medico} />;
 			})}

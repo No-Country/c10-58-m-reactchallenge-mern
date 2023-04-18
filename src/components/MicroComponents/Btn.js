@@ -7,9 +7,10 @@ export const Btn = styled.button`
 	border: 'none';
 	border-radius: 20px;
 	padding: 0.4rem 1.5rem;
-	color: ${props => (props.$dark ? '#fff' : '#878787')};
-	background-color: ${props => (props.$dark ? '#878787' : '#fff')};
+	font-weight: 600;
+	color: ${props => (props.$dark ? '#fff' : '#146151')};
+	background-color: ${props => (props.$dark ? '#146151' : '#b4cf66')};
 	font-size: 0.8rem;
-	font-weight: 500;
+	
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 `;
