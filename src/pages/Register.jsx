@@ -202,7 +202,7 @@ const Register = () => {
             value={form.lastName}
             placeholder='Apellidos'
             onChange={handleChange}
-            // required
+            required
           />
           {errors.lastName && <p className='text-red-600'>{errors.lastName}</p>}
         </div>

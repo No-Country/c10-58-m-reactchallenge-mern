@@ -81,9 +81,6 @@ const SignIn = () => {
   const { login, user } = useFirebaseContext()
   const navigate = useNavigate()
 
-  // destructuring
-  const { email, password } = users
-
   // input change
   const handleChange = (e) => {
     // destructuring
