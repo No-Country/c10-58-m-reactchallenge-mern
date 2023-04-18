@@ -4,12 +4,13 @@ import Register from '../pages/Register'
 import SignIn from '../pages/SignIn'
 import App from '../App'
 import List from '../pages/List'
-import Profile from '../pages/Profile'
+import { Profile } from '../pages/Profile'
 import Calendar from '../pages/Calendar'
 import Emergency from '../pages/Emergency'
 import ProfileDoc from '../pages/ProfileDoc'
 import { getMedicData } from '../firebase/medics'
-// import { Appointments } from '../pages/Appointments'
+import { Appointments } from './../pages/Appointments'
+import EditProfile from '../pages/EditProfile'
 
 export const router = createBrowserRouter([
   {
@@ -52,10 +53,18 @@ export const router = createBrowserRouter([
         path: '/profile',
         element: <Profile />
       },
-      // {
-      //   path: '/profile/appointments',
-      //   element: <Appointments />
-      // },
+      {
+        path: '/editProfile',
+        element: <EditProfile />
+      },
+      {
+        path: '/pastappointments',
+        element: <Appointments title='Historial de citas' pastAppointments />
+      },
+      {
+        path: '/appointments',
+        element: <Appointments title='Mis citas' />
+      },
       {
         path: '/emergency',
         element: <Emergency />
