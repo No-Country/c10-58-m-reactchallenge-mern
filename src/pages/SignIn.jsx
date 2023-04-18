@@ -75,6 +75,13 @@ const DivLine = styled.div`
     background-color: #000;
   }
 `
+const Span = styled.span`
+  margin: 10px; 
+  color: #146151;
+  font-size: 20px;
+  font-weight: 700;
+`
+
 
 const SignIn = () => {
   const [users, setUser] = useState({ email: '', password: '' })
