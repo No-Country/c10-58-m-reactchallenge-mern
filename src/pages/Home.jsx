@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react'
 // import Footer from './Footer'
 import { motion } from 'framer-motion'
-import { IoSearchOutline } from 'react-icons/io5'
+import { IoSearchOutline, IoWarningOutline } from 'react-icons/io5'
 import Logo from '../../public/logo.svg'
 import { useNavigate } from 'react-router-dom'
 import { useFirebaseContext } from '../context/UserContext'
@@ -153,42 +153,53 @@ const Home = () => {
           </span>
         </section>
 
-        <section className="w-full h-full">
-          <div className="w-full h-full flex justify-between items-center ">
-            <h3 className="text-black word-break w-44 my-10 ml-10 ">
-              Tipos de tratamientos psicológicos
-            </h3>
-            <span
-              className="opacity-60 italic mr-4 cursor-pointer underline underline-offset-3"
-              onClick={() => allMedics(true)}
-            >
-              ver todos
-            </span>
-          </div>
-          <div className="flex items-center flex-col">
-            <motion.div style={slider} ref={positionSlider}>
-              <motion.div
-                style={inner}
-                drag="x"
-                dragConstraints={{
-                  right: 530,
-                  left: -530,
-                }}
-                initial={{ x: 0 }}
-                animate={{ x: 550 }}
-                transition={{ duratioon: 0.6 }}
+        {show ? (
+          <section className="w-full h-full">
+            <div className="w-full h-full flex justify-between items-center ">
+              <h3 className="text-black word-break w-44 my-10 ml-10 ">
+                Tipos de tratamientos psicológicos
+              </h3>
+              <span
+                className="opacity-60 italic mr-4 cursor-pointer underline underline-offset-3"
+                onClick={() => allMedics(true)}
               >
-                {tiposDeTerapias.map((terapia, i) => (
-                  <motion.div style={item} key={i}>
-                    <span className="w-[100px] break-word text-center">
-                      {terapia}
-                    </span>
-                  </motion.div>
-                ))}
+                ver todos
+              </span>
+            </div>
+            <div className="flex items-center flex-col">
+              <motion.div style={slider} ref={positionSlider}>
+                <motion.div
+                  style={inner}
+                  drag="x"
+                  dragConstraints={{
+                    right: 530,
+                    left: -530,
+                  }}
+                  initial={{ x: 0 }}
+                  animate={{ x: 550 }}
+                  transition={{ duratioon: 0.6 }}
+                >
+                  {tiposDeTerapias.map((terapia, i) => (
+                    <motion.div style={item} key={i}>
+                      <span className="w-[100px] break-word text-center">
+                        {terapia}
+                      </span>
+                    </motion.div>
+                  ))}
+                </motion.div>
               </motion.div>
-            </motion.div>
-          </div>
-        </section>
+            </div>
+          </section>
+        ) : (
+          <>
+            <h2 className="w-48 text-center text-[20px] m-auto mt-10">
+              De momento no tenemos servicios presenciales
+            </h2>
+            <span className="w-full ">
+              <IoWarningOutline className="m-auto mb-10 mt-2" size={50} />
+            </span>
+          </>
+        )}
         <section className="mt-5 text-center">
           <h3>¿Cómo funciona?</h3>
 
