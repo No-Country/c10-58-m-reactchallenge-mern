@@ -9,7 +9,7 @@ const FirebaseContext = createContext()
 export const useFirebaseContext = () => useContext(FirebaseContext)
 
 const FirebaseProvider = ({ children }) => {
-  const [isUserLoggedIn, setUserLoggedIn] = useState(null)
+  const [isUserLoggedIn, setUserLoggedIn] = useState(false)
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -19,18 +19,27 @@ const FirebaseProvider = ({ children }) => {
       const userLoggedIn = await signInWithEmail(userCredentials)
       setUser(userLoggedIn)
       setUserLoggedIn(true)
-      setLoading(false)
     } catch (error) {
       throw new Error(error)
+    } finally {
+      setLoading(false)
     }
   }
 
   useEffect(() => {
+    setUserLoggedIn(false)
+    setLoading(true)
     const unsubscribe = onAuthStateChanged(firebaseAuth, async (user) => {
-      const userFetched = await getCurrentUserInfo()
-      setUser(userFetched)
-      setUserLoggedIn(user)
-      setLoading(false)
+      try {
+        const userFetched = await getCurrentUserInfo()
+        setUser(userFetched)
+      } catch (error) {
+        setUserLoggedIn(false)
+        console.log(error)
+      } finally {
+        setUserLoggedIn(user)
+        setLoading(false)
+      }
     })
 
     return () => unsubscribe

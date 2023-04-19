@@ -108,7 +108,6 @@ const SignIn = () => {
         <P className=''>Olvide mi contraseña</P>
         <Btn className='h-10' type='submit'>Iniciar sesion</Btn>
       </LoginForm>
-      <Btn className='h-10' onClick={handleCheckUser}>Check User</Btn>
       <div>
         <ButtonRed onClick={handleSubmitForGoogle} value='1'>
           {' '}

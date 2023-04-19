@@ -1,9 +1,10 @@
 import React from 'react'
 import { ProfileImg } from './../components/MicroComponents/ProfileImages'
 import { Btn } from './../components/MicroComponents/Btn'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useFirebaseContext } from '../context/UserContext'
 import { deleteUser } from '../firebase/user'
+import { SpinnerComponent } from '../components/MicroComponents/Spinner'
 
 export const ProfileHome = () => {
   const { user, logout } = useFirebaseContext()
@@ -32,7 +33,7 @@ export const ProfileHome = () => {
               <Btn $dark onClick={deleteUser}>Eliminar usuario</Btn>
             </div>
           </div>)
-        : (<p>Loading...</p>)}
+        : (<SpinnerComponent />)}
     </>
   )
 }

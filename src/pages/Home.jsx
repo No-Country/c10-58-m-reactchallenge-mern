@@ -7,6 +7,7 @@ import Header from '../components/Header'
 import {  motion } from 'framer-motion'
 import { Search } from '../components/MicroComponents/Search'
 import { useNavigate } from 'react-router-dom'
+import { TratamientosCard } from '../components/MicroComponents/TratamientosCard'
 
 
 const Home = () => {
@@ -18,17 +19,9 @@ const Home = () => {
   }
   const inner = {
     display: 'flex',
-    gap: '8px',
+    gap: '18px',
   }
-  const item = {
-    width: '150px',
-    height: '80px',
-    background: '#ccc',
-    borderRadius: '6px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
+  
   const positionSlider = useRef()
 
   const { loading } = useFirebaseContext()
@@ -137,11 +130,9 @@ const Home = () => {
                 transition={{ duratioon: 0.6 }}
               >
                 {tiposDeTerapias.map((terapia, i) => (
-                  <motion.div style={item} key={i}>
-                    <span className="w-[100px] break-word text-center">
+                  <TratamientosCard key={i}>
                       {terapia}
-                    </span>
-                  </motion.div>
+                  </TratamientosCard>
                 ))}
               </motion.div>
             </motion.div>

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { COLORS } from './Colors'
 
 export const CardsContainer = styled.div`
   width: 100%;
@@ -29,4 +30,5 @@ justify-content: center;
 gap: 2rem;
 padding: 2rem 0px;
 padding-bottom: 70px;
+background-color: ${props => (props.$main ? COLORS.white : COLORS.teal)};
 `

@@ -47,7 +47,6 @@ export async function changeUserPassword (newPassword, confirmedPassword) {
 
 export async function getCurrentUserInfo () {
   const currentUser = firebaseAuth.currentUser
-  console.log(currentUser)
   if (currentUser === null) {
     return null
   }
@@ -55,7 +54,6 @@ export async function getCurrentUserInfo () {
   try {
     const user = await getDoc(doc(db, 'users', uid))
     const userData = user.data()
-    console.log(userData)
     return userData
   } catch (error) {
     throw new Error(error)

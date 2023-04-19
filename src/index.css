@@ -88,7 +88,6 @@
 }
 
 @keyframes ani {
-
   0%,
   100% {
     stroke-dashoffset: 440;
@@ -123,8 +122,4 @@
 .profile-doc-address {
   padding: 0.5rem;
   text-align: center;
-}
-
-body {
-  background-color: #EEF1E7;
 }
