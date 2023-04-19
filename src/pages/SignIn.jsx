@@ -4,7 +4,7 @@ import { useFirebaseContext } from '../context/UserContext'
 import styled from 'styled-components'
 import { Btn } from '../components/MicroComponents/Btn'
 import { LoginForm } from '../components/MicroComponents/LoginForm'
-import { PageTitle } from '../components/MicroComponents/Text'
+import { ErrorText, PageTitle } from '../components/MicroComponents/Text'
 
 // styles
 const ButtonRed = styled.button`
@@ -70,10 +70,8 @@ const SignIn = () => {
 
   return (
     <div className='flex flex-col items-center gap-8'>
-      <div>
-        <PageTitle className='text-4xl font-bold text-center'>Hola!</PageTitle>
-        <p>Inicia sesion en tu cuenta</p>
-      </div>
+      <PageTitle className='text-4xl font-bold text-center'>Hola!</PageTitle>
+      <p>Inicia sesion en tu cuenta</p>
       <LoginForm onSubmit={handleSubmit}>
         <label>
           Email:
@@ -95,7 +93,7 @@ const SignIn = () => {
             placeholder='Password'
           />
         </label>
-        {message && <p className='text-red-900 text-lg'>{message} (!)</p>}
+        {message && <ErrorText>{message} (!)</ErrorText>}
         <P className='self-end pr-1'>Olvide mi contraseña</P>
         <Btn type='submit'>Iniciar sesion</Btn>
       </LoginForm>
