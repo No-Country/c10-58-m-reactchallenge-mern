@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useFirebaseContext } from '../context/UserContext'
-import { SpinnerComponent } from './MicroComponents/Spinner'
 
 const User = () => {
   const { user } = useFirebaseContext()
 
-  if (!user) return (<SpinnerComponent />)
+  return (
+    <img
+      className='w-9 h-9 bg-slate-300 rounded-full'
+      src={user.avatarURL}
+      alt='avatar'
+    />
+  )
 }
+
 export default User

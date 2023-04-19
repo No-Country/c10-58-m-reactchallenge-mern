@@ -4,7 +4,7 @@ import { cancelAppointment } from '../firebase/appointment'
 import { useFirebaseContext } from '../context/UserContext'
 import { AppointmentCard } from './../components/AppointmentCard'
 import { CardsContainer, Container } from '../components/MicroComponents/Containers'
-import { PageTitle } from '../components/MicroComponents/Text'
+import { MainDivText, PageTitle } from '../components/MicroComponents/Text'
 import { SpinnerComponent } from '../components/MicroComponents/Spinner'
 
 export const Appointments = ({ title, pastAppointments }) => {
@@ -52,9 +52,9 @@ export const Appointments = ({ title, pastAppointments }) => {
                   })}
                 </CardsContainer>)
               : (
-                <PageTitle className='text-center'>
+                <MainDivText>
                   {pastAppointments ? ('No has tenido ninguna cita anterior con nosotros. Eres bienvenido a agendar las que quieras') : ('No tienes citas actualmente, puedes solicitar una con nuestros medicos en el inicio')}
-                </PageTitle>)}
+                </MainDivText>)}
           </Container>)
         : (<SpinnerComponent />)}
     </>

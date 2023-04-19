@@ -10,7 +10,6 @@ function App () {
     navigate(-1)
   }
   const location = useLocation()
-  console.log(location)
   const locationsNames = location.pathname.split('/')
   const isMain = locationsNames.includes('list')
   const showBackArrow = location.pathname === '/' || location.pathname === '/profile'

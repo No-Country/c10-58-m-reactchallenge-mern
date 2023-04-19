@@ -4,6 +4,7 @@ import { COLORS } from './Colors'
 
 export const TratamientosCard = styled(motion.span)`
   width: 150px;
+  height: 100px;
   min-height: auto;
   background-color: ${COLORS.strongGreen} ;
   color: ${COLORS.teal};
