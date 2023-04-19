@@ -5,6 +5,7 @@ import { useFirebaseContext } from '../context/UserContext'
 import { AppointmentCard } from './../components/AppointmentCard'
 import { CardsContainer, Container } from '../components/MicroComponents/Containers'
 import { PageTitle } from '../components/MicroComponents/Text'
+import { SpinnerComponent } from '../components/MicroComponents/Spinner'
 
 export const Appointments = ({ title, pastAppointments }) => {
   const [loading, setLoading] = useState(false)
@@ -50,10 +51,12 @@ export const Appointments = ({ title, pastAppointments }) => {
                     )
                   })}
                 </CardsContainer>)
-              : (<PageTitle>No tienes citas actualmente, puedes solicitar una con nuestros medicos en el inicio</PageTitle>)}
+              : (
+                <PageTitle className='text-center'>
+                  {pastAppointments ? ('No has tenido ninguna cita anterior con nosotros. Eres bienvenido a agendar las que quieras') : ('No tienes citas actualmente, puedes solicitar una con nuestros medicos en el inicio')}
+                </PageTitle>)}
           </Container>)
-
-        : (<h1>Loading...</h1>)}
+        : (<SpinnerComponent />)}
     </>
   )
 }
