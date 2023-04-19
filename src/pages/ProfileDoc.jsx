@@ -14,28 +14,23 @@ const ProfileDoc = () => {
   }
 
   return (
-    <div>
-      <button onClick={goBack}>
-        <img className='arrow-back' src='/registerarrowback.png' alt='Go Back' />
-      </button>
-      <div className='profile-doc'>
-        <img className='profile-doc-img' src={profilePhoto} alt={`${nombre} ${apellido}`} />
-        <h2 className='profile-doc-name'>
-          {nombre} {apellido}
-        </h2>
-        <p className='profile-doc-address'>{direccion}</p>
-        <p>
-          <b>Especialidad:</b>
-        </p>
-        <p className='mb-4'>{especialidad}</p>
-        <p>
-          <b>Teléfono:</b>
-        </p>
-        <p className='mb-4'>{telefono}</p>
-        <Link to={`/list/${medicId}/calendar`}>
-          <Btn $dark>Agendar</Btn>
-        </Link>
-      </div>
+    <div className='profile-doc'>
+      <img className='profile-doc-img' src={profilePhoto} alt={`${nombre} ${apellido}`} />
+      <h2 className='profile-doc-name'>
+        {nombre} {apellido}
+      </h2>
+      <p className='profile-doc-address'>{direccion}</p>
+      <p>
+        <b>Especialidad:</b>
+      </p>
+      <p className='mb-4'>{especialidad}</p>
+      <p>
+        <b>Teléfono:</b>
+      </p>
+      <p className='mb-4'>{telefono}</p>
+      <Link to={`/list/${medicId}/calendar`}>
+        <Btn $dark>Agendar</Btn>
+      </Link>
     </div>
   )
 }
