@@ -3,6 +3,8 @@ import { getFutureAppointments, getPastAppointments } from '../firebase/user'
 import { cancelAppointment } from '../firebase/appointment'
 import { useFirebaseContext } from '../context/UserContext'
 import { AppointmentCard } from './../components/AppointmentCard'
+import { CardsContainer, Container } from '../components/MicroComponents/Containers'
+import { PageTitle } from '../components/MicroComponents/Text'
 
 export const Appointments = ({ title, pastAppointments }) => {
   const [loading, setLoading] = useState(false)
@@ -25,27 +27,31 @@ export const Appointments = ({ title, pastAppointments }) => {
     }
   }
 
-  async function handleCancelAppointment (appointmentId) {
-    console.log(appointmentId)
-    setLoading(true)
-    await cancelAppointment({ appointmentId })
-    await getAppointments()
-  }
+  const handleCancelAppointment = pastAppointments
+    ? null
+    : async (appointmentId) => {
+      setLoading(true)
+      await cancelAppointment({ appointmentId })
+      await getAppointments()
+    }
 
   return (
     <>
-      {(appointments && user && !loading)
+      {(user && !loading)
         ? (
-          <div className='flex flex-col items-center gap-8 p-6'>
-            <h1 className='font-bold text-xl'>{title}</h1>
-            <div className='w-full grid grid-cols-newone text-center gap-4'>
-              {appointments.map(app => {
-                return (
-                  <AppointmentCard appointment={app} key={app.appointmentId} cancelAppointment={handleCancelAppointment} />
-                )
-              })}
-            </div>
-          </div>)
+          <Container>
+            <PageTitle className='font-bold text-xl'>{title}</PageTitle>
+            {appointments.length > 0
+              ? (
+                <CardsContainer>
+                  {appointments.map(app => {
+                    return (
+                      <AppointmentCard appointment={app} key={app.appointmentId} cancelAppointment={handleCancelAppointment} />
+                    )
+                  })}
+                </CardsContainer>)
+              : (<PageTitle>No tienes citas actualmente, puedes solicitar una con nuestros medicos en el inicio</PageTitle>)}
+          </Container>)
 
         : (<h1>Loading...</h1>)}
     </>

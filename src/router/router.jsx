@@ -11,6 +11,7 @@ import ProfileDoc from '../pages/ProfileDoc'
 import { getMedicData } from '../firebase/medics'
 import { Appointments } from './../pages/Appointments'
 import EditProfile from '../pages/EditProfile'
+import { ProfileHome } from './../pages/ProfileHome'
 
 export const router = createBrowserRouter([
   {
@@ -51,28 +52,30 @@ export const router = createBrowserRouter([
       },
       {
         path: '/profile',
-        element: <Profile />
-      },
-      {
-        path: '/editProfile',
-        element: <EditProfile />
-      },
-      {
-        path: '/pastappointments',
-        element: <Appointments title='Historial de citas' pastAppointments />
-      },
-      {
-        path: '/appointments',
-        element: <Appointments title='Mis citas' />
+        element: <Profile />,
+        children: [
+          {
+            path: '',
+            element: <ProfileHome />
+          },
+          {
+            path: 'editProfile',
+            element: <EditProfile />
+          },
+          {
+            path: 'pastappointments',
+            element: <Appointments title='Historial de citas' pastAppointments />
+          },
+          {
+            path: 'appointments',
+            element: <Appointments title='Mis citas' />
+          }
+        ]
       },
       {
         path: '/emergency',
         element: <Emergency />
       }
-      // {
-      //   path: '/valentin',
-      //   element: <TestingValentin />
-      // }
     ]
   }
 ])

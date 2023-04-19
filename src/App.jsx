@@ -1,7 +1,8 @@
 /* eslint-disable */
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import Header from './components/Header'
 import {ReactComponent as BackArrow} from './assets/svgs/arrowleft.svg'
+import { MainContainer } from './components/MicroComponents/Containers'
 
 function App() {
   const navigate = useNavigate()
@@ -9,13 +10,14 @@ function App() {
   function navigateBack () {
     navigate(-1)
   }
+  const location = useLocation()
 
   return (
-    <main className='w-screen min-h-screen flex flex-col justify-center pb-[50px]'>
-      <button className='absolute top-4 left-4' onClick={navigateBack}><BackArrow height={32} width={32}/></button>
+    <MainContainer>
+      {location.pathname !== '/' &&<button className='absolute top-4 left-4' onClick={navigateBack}><BackArrow height={32} width={32}/></button>}
       <Outlet />
       <Header />
-    </main>
+    </MainContainer>
   )
 }
 

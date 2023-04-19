@@ -43,10 +43,7 @@ const Calendar = () => {
   }
 
   return (
-    <div className='flex flex-col items-center gap-4 min-h-screen'>
-      <button onClick={goBack}>
-        <img src='/registerarrowback.png' alt='Arrow' />
-      </button>
+    <div className='flex flex-col items-center gap-4 min-h-screen justify-center gap-6'>
       <div className='flex h-10 items-center gap-4'>
         <h2 className='text-lg font-semibold text-center'>
           Agenda de {nombre} {apellido}
@@ -54,7 +51,6 @@ const Calendar = () => {
         <img className='h-10 rounded-full' src={profilePhoto} />
       </div>
       <h3>Especialidad: {especialidad}</h3>
-
       <div className='flex'>
         <label className='flex flex-col items-center gap-2'>
           <p className='text-sm text-center'>
@@ -81,7 +77,6 @@ const Calendar = () => {
             )
           : <p className='font-bold'>Elija un dia para ver las citas disponibles</p>}
       </div>
-      {/* <Btn $margin>Agendar cita</Btn> */}
       {message && <h4>{message}</h4>}
 
     </div>

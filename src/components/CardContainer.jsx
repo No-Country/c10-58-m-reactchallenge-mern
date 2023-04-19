@@ -1,24 +1,27 @@
-/* eslint-disable */
-import React from 'react';
-import Card from './Card';
-import { fetchCollection } from '../firebase/fetchCollection';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
+import Card from './Card'
+import { fetchCollection } from '../firebase/fetchCollection'
+import { CardsContainer, Container } from './MicroComponents/Containers'
+import { PageTitle } from './MicroComponents/Text'
 
 const CardContainer = () => {
-	const [medicos, setMedicos] = useState([]);
-	useEffect(() => {
-		fetchCollection({ collectionName: 'medicos' }).then(medicos => {
-			setMedicos(medicos);
-		});
-	}, []);
+  const [medicos, setMedicos] = useState([])
+  useEffect(() => {
+    fetchCollection({ collectionName: 'medicos' }).then(medicos => {
+      setMedicos(medicos)
+    })
+  }, [])
 
-	return (
-		<div className='flex justify-center flex-col gap-4'>
-			{medicos.map(medico => {
-				return <Card key={medico.id} medico={medico} />;
-			})}
-		</div>
-	);
-};
+  return (
+    <Container>
+      <PageTitle className='font-bold text-xl'>Lista de medicos</PageTitle>
+      <CardsContainer>
+        {medicos.map(medico => {
+          return <Card key={medico.id} medico={medico} />
+        })}
+      </CardsContainer>
+    </Container>
+  )
+}
 
-export default CardContainer;
+export default CardContainer

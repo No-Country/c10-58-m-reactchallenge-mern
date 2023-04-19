@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { createUserWithEmail } from '../firebase/userEmailAndPassword'
 import Header from '../components/Header'
-import { useFirebaseContext } from '../context/UserContext'
+import { Btn } from '../components/MicroComponents/Btn'
 
 const initialValues = {
   profilePic: '',
-  names: '',
+  firstName: '',
   lastName: '',
   dni: '',
   email: '',
@@ -87,11 +87,9 @@ const Register = () => {
     password: false,
     confirmPassword: false
   })
-  const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
   const [alert, setAlert] = useState(false)
   const [previewImg, setPreviewImg] = useState('')
-  const { login } = useFirebaseContext()
 
   const handleAlert = () => setAlert('')
 
@@ -133,15 +131,6 @@ const Register = () => {
       <Header />
       {loading && <Loading />}
       {alert && <Message handleAlert={handleAlert} msg={alert} />}
-      <div className='flex'>
-        <Link to='/'>
-          <img
-            className='cursor-pointer'
-            src='./registerarrowback.png'
-            alt='Arrow to navigate back'
-          />
-        </Link>
-      </div>
       <div className='flex justify-center my-10 relative p-4'>
         <label htmlFor='profile-pic'>
           <input
@@ -183,15 +172,14 @@ const Register = () => {
           <input
             className='inp-reg '
             type='text'
-            id='names'
-            name='names'
+            id='firstName'
+            name='firstName'
             required
-            value={form.names}
+            value={form.firstName}
             placeholder='Nombres'
             onChange={handleChange}
             autoFocus
           />
-          {errors.names && <p className='text-red-600'>{errors.names}</p>}
         </div>
         <div>
           <input
@@ -204,7 +192,6 @@ const Register = () => {
             onChange={handleChange}
             required
           />
-          {errors.lastName && <p className='text-red-600'>{errors.lastName}</p>}
         </div>
         <div>
           <input
@@ -218,7 +205,6 @@ const Register = () => {
             onChange={handleChange}
             required
           />
-          {errors.email && <p className='text-red-600'>{errors.email}</p>}
         </div>
         <div>
           <input
@@ -232,7 +218,6 @@ const Register = () => {
             onChange={handleChange}
             required
           />
-          {errors.dni && <p className='text-red-600'>{errors.dni}</p>}
         </div>
         <div>
           <div className='icon-eye-container'>
@@ -256,7 +241,6 @@ const Register = () => {
               />
             )}
           </div>
-          {errors.password && <p className='text-red-600'>{errors.password}</p>}
         </div>
         <div>
           <div className='icon-eye-container'>
@@ -284,9 +268,6 @@ const Register = () => {
               />
             )}
           </div>
-          {errors.confirmPassword && (
-            <p className='text-red-600'>{errors.confirmPassword}</p>
-          )}
         </div>
         <div className='my-2'>
           <div>
@@ -304,15 +285,14 @@ const Register = () => {
               <span className='ml-1 underline'>términos y condiciones</span>
             </label>
           </div>
-          {errors.terms && <p className='text-red-600'>{errors.terms}</p>}
         </div>
         <div className='flex justify-center my-20'>
-          <button
+          <Btn
             className='btn-reg w-36 border-2 border-black py-1 px-2 rounded-3xl text-gray-400'
             type='submit'
           >
             Registrarse
-          </button>
+          </Btn>
         </div>
       </form>
     </section>
