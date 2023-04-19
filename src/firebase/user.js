@@ -46,14 +46,16 @@ export async function changeUserPassword (newPassword, confirmedPassword) {
 }
 
 export async function getCurrentUserInfo () {
-  if (firebaseAuth.currentUser === null) {
+  const currentUser = firebaseAuth.currentUser
+  console.log(currentUser)
+  if (currentUser === null) {
     return null
   }
-  const currentUser = firebaseAuth.currentUser
   const { uid } = currentUser
   try {
     const user = await getDoc(doc(db, 'users', uid))
     const userData = user.data()
+    console.log(userData)
     return userData
   } catch (error) {
     throw new Error(error)
@@ -66,7 +68,8 @@ export async function deleteUser () {
   console.log(currentUser)
   try {
     await deleteDoc(doc(db, 'users', uid))
-    return currentUser.delete
+    await currentUser.delete()
+    return ('User was deleted')
   } catch (error) {
     const { code, message } = error
     throw new Error(`${code}: ${message}`)

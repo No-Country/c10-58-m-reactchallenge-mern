@@ -1,13 +1,14 @@
 import { createUserWithEmailAndPassword, setPersistence, signInWithEmailAndPassword, browserSessionPersistence } from 'firebase/auth'
 import { firebaseAuth, db } from './client'
 import { ERRORS_CREATING_USER, ERRORS_LOGGING_USER } from './errors'
-import { doc, setDoc, getDoc } from 'firebase/firestore'
+import { doc, setDoc } from 'firebase/firestore'
 import { getDefaultAvatar, uploadImage } from './storage'
 import { validateForm } from '../utils/validateForm'
+import { getCurrentUserInfo } from './user'
 
 export async function createUserWithEmail (userDataForm) {
   validateForm(userDataForm)
-  const { names, lastName, dni, email, terms, avatarImage, password } = userDataForm
+  const { firstName, lastName, dni, email, terms, avatarImage, password } = userDataForm
   try {
     const newUser = await createUserWithEmailAndPassword(firebaseAuth, email, password)
     let avatarURL
@@ -18,7 +19,7 @@ export async function createUserWithEmail (userDataForm) {
     }
     const newUserData = {
       avatarURL,
-      names,
+      firstName,
       lastName,
       dni: Number(dni),
       email,
@@ -38,16 +39,13 @@ export async function createUserWithEmail (userDataForm) {
 export async function signInWithEmail (user) {
   try {
     const { email, password } = user
+    await signInWithEmailAndPassword(firebaseAuth, email, password)
     await setPersistence(firebaseAuth, browserSessionPersistence)
-    const userSignIn = await signInWithEmailAndPassword(firebaseAuth, email, password)
-    const { uid } = userSignIn.user
-    const docSnapshot = await getDoc(doc(db, 'users', uid))
-    console.log(docSnapshot.data())
-    const userData = docSnapshot.data()
-    return userData
+    const userFetched = await getCurrentUserInfo()
+    console.log(userFetched)
+    return userFetched
   } catch (error) {
     const errorCode = error.code
     throw new Error(ERRORS_LOGGING_USER[errorCode])
-   
   }
 }
