@@ -11,7 +11,6 @@ export const Btn = styled.button`
 	font-weight: 600;
 	color: ${props => (props.$dark ? COLORS.teal : COLORS.strongGreen)};
 	background-color: ${props => (props.$dark ? COLORS.strongGreen : COLORS.lightGreen)};
-	font-size: 0.8rem;
-	
+	font-size: 1rem;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 `;

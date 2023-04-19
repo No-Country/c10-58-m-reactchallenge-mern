@@ -23,12 +23,8 @@ const ButtonRed = styled.button`
 `
 
 const P = styled.p`
-  margin: 10px;
-  color: #b4cf66;
+  color: #44803F;
   font-size: 15px;
-  padding: 15px;
-  padding-left: 135px;
-  inline-size: 100%;
   text-decoration: underline;
   &:hover {
     cursor: pointer;
@@ -105,10 +101,10 @@ const SignIn = () => {
           />
         </label>
         {message && <p className='text-red-900 text-lg'>{message} (!)</p>}
-        <P className=''>Olvide mi contraseña</P>
-        <Btn className='h-10' type='submit'>Iniciar sesion</Btn>
+        <P className='self-end pr-1'>Olvide mi contraseña</P>
+        <Btn type='submit'>Iniciar sesion</Btn>
       </LoginForm>
-      <div>
+      {/* <div>
         <ButtonRed onClick={handleSubmitForGoogle} value='1'>
           {' '}
           <img src='/public/Login Google.png' alt='' />
@@ -116,7 +112,7 @@ const SignIn = () => {
         <ButtonRed onClick={handleSubmitForGoogle} value='2'>
           <img src='/public/Login Facebook.png' alt='' />
         </ButtonRed>
-      </div>
+      </div> */}
       <p className='text-2xl'>Aun no tienes cuenta ?</p>
       <Link to='/register' className='flex flex-col place-items-center'>
         <Span>Crear una</Span>

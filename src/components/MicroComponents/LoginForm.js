@@ -22,13 +22,9 @@ label {
         border-color: #000;
       }
     }
-
-    @media (min-width: 768px) {
-      width: 75%;
-    }
   }
 
   @media (min-width: 768px) {
-      width: 50%;
+      width: 35%;
     }
 `

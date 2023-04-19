@@ -11,9 +11,11 @@ function App () {
   }
   const location = useLocation()
   console.log(location)
+  const locationsNames = location.pathname.split('/')
+  const isMain = locationsNames.includes('list')
   const showBackArrow = location.pathname === '/' || location.pathname === '/profile'
   return (
-    <MainContainer>
+    <MainContainer isMain={!isMain}>
       {!showBackArrow && <button className='absolute top-4 left-4' onClick={navigateBack}><img src={BackArrow} height={32} width={32} /></button>}
       <Outlet />
       <Header />

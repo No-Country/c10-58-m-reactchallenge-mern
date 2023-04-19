@@ -3,6 +3,7 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { useFirebaseContext } from '../context/UserContext';
 import { db } from '../firebase/client';
+import { SpinnerComponent } from './MicroComponents/Spinner';
 
 const User = () => {
 	const { user, loading } = useFirebaseContext();
@@ -16,7 +17,7 @@ const User = () => {
 		}
 	}, [user, loading]);
 
-	if (!showUser) return <p>Cargando...</p>;
+	if (!showUser) return (<SpinnerComponent />)
 
 	return (
 		<div className='flex items-center'>
