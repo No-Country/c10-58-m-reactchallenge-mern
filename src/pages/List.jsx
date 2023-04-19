@@ -1,8 +1,7 @@
-/* eslint-disable */
-import CardContainer from '../components/CardContainer';
+import CardContainer from '../components/CardContainer'
 
 const List = () => {
-	return <CardContainer />;
-};
+  return <CardContainer />
+}
 
-export default List;
+export default List

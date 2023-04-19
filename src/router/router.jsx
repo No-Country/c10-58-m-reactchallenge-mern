@@ -36,7 +36,9 @@ export const router = createBrowserRouter([
       },
       {
         path: '/list/:medicId/calendar',
-        element: <Calendar />,
+        element: (
+          <Calendar />
+        ),
         loader: async ({ params: { medicId } }) => {
           const data = await getMedicData({ medicId })
           return { medicId, data }

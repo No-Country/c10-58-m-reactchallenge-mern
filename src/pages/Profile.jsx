@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import { useFirebaseContext } from '../context/UserContext'
 import { SpinnerComponent } from '../components/MicroComponents/Spinner'

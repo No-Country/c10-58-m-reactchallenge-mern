@@ -4,7 +4,6 @@ import { useFirebaseContext } from '../context/UserContext'
 import styled from 'styled-components'
 import { Btn } from '../components/MicroComponents/Btn'
 import { LoginForm } from '../components/MicroComponents/LoginForm'
-import { getCurrentUserInfo } from '../firebase/user'
 import { PageTitle } from '../components/MicroComponents/Text'
 
 // styles
@@ -63,15 +62,11 @@ const SignIn = () => {
     }
   }
   // add function for google and facebook
-  const handleSubmitForGoogle = (e) => {
-    if (e.target.value === '1') {
-    } else {
-    }
-  }
-
-  async function handleCheckUser () {
-    console.log(await getCurrentUserInfo())
-  }
+  // const handleSubmitForGoogle = (e) => {
+  //   if (e.target.value === '1') {
+  //   } else {
+  //   }
+  // }
 
   return (
     <div className='flex flex-col items-center gap-8'>

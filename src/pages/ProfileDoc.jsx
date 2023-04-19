@@ -1,4 +1,4 @@
-import { Link, useLoaderData, useNavigate } from 'react-router-dom'
+import { Link, useLoaderData } from 'react-router-dom'
 import { Btn } from '../components/MicroComponents/Btn'
 
 const ProfileDoc = () => {
@@ -6,12 +6,6 @@ const ProfileDoc = () => {
     medicId,
     data: { profilePhoto, nombre, apellido, direccion, telefono, especialidad }
   } = useLoaderData()
-
-  const navigate = useNavigate()
-
-  function goBack () {
-    navigate(-1)
-  }
 
   return (
     <div className='profile-doc'>
