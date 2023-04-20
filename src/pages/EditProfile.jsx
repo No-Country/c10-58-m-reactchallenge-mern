@@ -50,7 +50,7 @@ const EditProfile = () => {
         <input onChange={handleChange} name="dni" type="text" value={formData.dni} />
       </label>
 
-      <Btn type="submit">Guardar cambios</Btn>
+      <Btn type="submit">Guardar </Btn>
     </Form>
    </div>
   )
