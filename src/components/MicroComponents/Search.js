@@ -16,4 +16,5 @@ export const Search = styled.input`
   &::placeholder {
     text-color: #94a3b8;
   }
+
 `

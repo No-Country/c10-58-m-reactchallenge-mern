@@ -1,22 +1,11 @@
-import React, { useState, useEffect } from 'react'
 import Card from './Card'
-import { fetchCollection } from '../firebase/fetchCollection'
 import { CardsContainer, Container } from './MicroComponents/Containers'
-import { PageTitle } from './MicroComponents/Text'
 
-const CardContainer = () => {
-  const [medicos, setMedicos] = useState([])
-  useEffect(() => {
-    fetchCollection({ collectionName: 'medicos' }).then(medicos => {
-      setMedicos(medicos)
-    })
-  }, [])
-
+const CardContainer = ({ medicos }) => {
   return (
-    <Container>
-      <PageTitle className='font-bold text-xl'>Lista de medicos</PageTitle>
+    <Container className="px-[2rem] !py-0">
       <CardsContainer>
-        {medicos.map(medico => {
+        {medicos.map((medico) => {
           return <Card key={medico.id} medico={medico} />
         })}
       </CardsContainer>
