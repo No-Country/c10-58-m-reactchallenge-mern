@@ -11,6 +11,5 @@ export const TogglePillDiv = styled.div`
   align-self: start;
   background-color: ${COLORS.lightGreen};
   color: ${COLORS.white};
-  font-size: medium;
   margin-left: 1rem;
 `

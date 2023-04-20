@@ -83,7 +83,7 @@ export const Faq = () => {
     })
   }
   return (
-    <div className='flex justify-center mt-5 gap-5 flex-wrap'>
+    <div className='flex justify-center gap-5 flex-wrap'>
       {faq.map((question) => (
         <FAQDiv
           key={question.id}

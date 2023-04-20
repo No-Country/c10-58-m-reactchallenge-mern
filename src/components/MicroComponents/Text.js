@@ -27,9 +27,13 @@ color: ${COLORS.strongGreen};
 export const MainDivText = styled.p`
 margin: 0px;
 font-weight: 500;
-font-size: 1.3rem;
+font-size: 1.1rem;
 color: ${COLORS.strongGreen};
 text-align: center;
+
+@media (min-width: 768px) {
+  font-size: 1.3rem;
+}
 `
 
 export const ErrorText = styled.p`
