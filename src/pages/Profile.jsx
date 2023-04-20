@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import  { useEffect ,useState} from 'react'
 import { Form } from '../components/MicroComponents/Form.js'
 import { Btn } from '../components/MicroComponents/Btn.js'
 import { useFirebaseContext } from '../context/UserContext'
@@ -51,7 +51,7 @@ const SpanAddImg = styled.span`
 
 const Profile = () => {
   const { user, logout } = useFirebaseContext()
-  console.log(user)
+  const [edit, setEdit] = useState(false)
   const navigate = useNavigate()
   //destructuring
   const {names,email,lastName,dni} = user
@@ -77,13 +77,18 @@ const Profile = () => {
     !user && navigate('/', { replace: true })
   }, [])
 
+  const handleEdit = () => {
+    setEdit(!edit)
+  }
+
   return (
     <div>
       {
      user
        ? (
+
          <div className='w-full  flex justify-center text-black mb-10 '>
-           <div className='w-5/6  '>
+           <div className='w-5/6 flex flex-col justify-center '>
              <div className='flex  w-full h-52 place-content-center place-items-center '>
                <DivImg>
                  <img src={user.avatarURL} alt='perfil-img' />
@@ -95,7 +100,11 @@ const Profile = () => {
                </div>
              </div>
              <hr className='mb-5' />
-             <div className='justify-center w-full '>
+           
+
+           
+                  <div className='justify-center w-full '>
+                
                <Form onSubmit={handleSubmit} className='flex flex-col w-full '>
                  <input onChange={handleChange} type='text' placeholder={names} />
                  <input onChange={handleChange} type='text' placeholder={lastName} />
@@ -105,12 +114,26 @@ const Profile = () => {
                  <input onChange={handleChange} type='text' placeholder='Ciudad' />
                  <Btn type='submit' className='mt-20'>Guardar cambios</Btn>
                </Form>
-             </div>
+               
+               </div>
+             
+              
+                  
+                  
+             
+
+
+           
+          
              
            </div>
-         </div>)
+         </div>
+         )
        : (<Navigate to='/' replace />)
     }
+    
+   
+   
     </div>
 
   )
