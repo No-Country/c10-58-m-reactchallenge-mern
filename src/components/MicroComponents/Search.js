@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { COLORS } from './Colors'
 
 export const Search = styled.input`
   display: block;
@@ -8,7 +9,8 @@ export const Search = styled.input`
   border-radius: 10px;
   padding: 8px 12px 8px 20px;
   background-color: #ebebeb;
-  font-size: 14px
+  font-size: 14px;
+  background-color: ${COLORS.white};
   &:focus {
     outline: none;
     border: 1px thin black;

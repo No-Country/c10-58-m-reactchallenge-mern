@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFirebaseContext } from '../context/UserContext'
 import styled from 'styled-components'
@@ -42,9 +42,15 @@ const Span = styled.span`
 
 const SignIn = () => {
   const [users, setUser] = useState({ email: '', password: '' })
-  const { login } = useFirebaseContext()
+  const { user, login } = useFirebaseContext()
   const [message, setMessage] = useState(null)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (user) {
+      navigate('/profile')
+    }
+  }, [user])
 
   const handleChange = (e) => {
     // destructuring

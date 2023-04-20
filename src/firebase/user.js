@@ -13,7 +13,7 @@ import {
 import { signOut, updatePassword } from 'firebase/auth'
 import { db, firebaseAuth } from './client'
 import { uploadImage } from './storage'
-import { getAppointmentData } from './appointment'
+import { cancelAppointment, getAppointmentData } from './appointment'
 
 export async function updateProfileImage ({ image }) {
   const { uid } = firebaseAuth.currentUser
@@ -76,7 +76,16 @@ export async function deleteUser () {
   const { uid } = currentUser
   console.log(currentUser)
   try {
-    await deleteDoc(doc(db, 'users', uid))
+    const userRef = doc(db, 'users', uid)
+    const userDoc = await getDoc(userRef)
+    const userData = userDoc.data()
+    console.log(userData)
+    const { appointments } = userData
+    if (appointments.length > 0) {
+      const deleteAppointmentsArray = appointments.map(appointmentId => cancelAppointment({ appointmentId }))
+      await Promise.all(deleteAppointmentsArray)
+    }
+    await deleteDoc(userRef)
     await currentUser.delete()
     return ('User was deleted')
   } catch (error) {

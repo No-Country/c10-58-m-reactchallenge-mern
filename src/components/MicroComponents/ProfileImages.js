@@ -15,7 +15,7 @@ export const ProfileImg = styled.img`
 export const MedicProfileImg = styled.img`
 height: 4rem;
 width:4rem;
-border-radius: 9999px;
+/* border-radius: 9999px; */
 object-fit: cover;
 
 `

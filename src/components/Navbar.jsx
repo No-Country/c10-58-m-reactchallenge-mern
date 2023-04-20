@@ -37,7 +37,7 @@ const Navbar = () => {
   const [selected, setSelected] = useState('')
 
   useEffect(() => {
-    setSelected(location.pathname)
+    setSelected(location.pathname.split('/'))
   }, [location])
 
   const { user } = useFirebaseContext()
@@ -46,39 +46,41 @@ const Navbar = () => {
     <NavBarStyled>
       <ul>
         <li>
-          {(selected === '/' || selected === '/list') && <NavSelectedPoint />}
-          <NavLink to="/">
-            <img src={selected === '/' ? variantHomeIcon : homeIcon} alt="" />
+          {(location.pathname === '/' || selected.includes('list')) && <NavSelectedPoint />}
+          <NavLink to='/'>
+            <img src={(location.pathname === '/' || selected.includes('list')) ? variantHomeIcon : homeIcon} alt='' />
           </NavLink>
         </li>
         <li>
-          {selected === '/emergency' && <NavSelectedPoint />}
-          <NavLink to="/emergency">
+          {selected.includes('emergency') && <NavSelectedPoint />}
+          <NavLink to='/emergency'>
             <img
               src={
-                selected === '/emergency' ? variantEmergencyIcon : emergencyIcon
+                selected.includes('emergency') ? variantEmergencyIcon : emergencyIcon
               }
-              alt=""
+              alt=''
             />
           </NavLink>
         </li>
         <li>
-          {(selected === '/profile' || selected === '/login') && (
+          {(selected.includes('profile') || selected.includes('login')) && (
             <NavSelectedPoint />
           )}
-          <NavLink to="/profile">
-            {user ? (
-              <User />
-            ) : (
-              <img
-                src={
-                  selected === '/profile' || selected === '/login'
-                    ? variantProfileIcon
-                    : profileIcon
+          <NavLink to='/profile'>
+            {user
+              ? (
+                <User />
+                )
+              : (
+                <img
+                  src={
+                    (selected.includes('profile') || selected.includes('login'))
+                      ? variantProfileIcon
+                      : profileIcon
                 }
-                alt=""
-              />
-            )}
+                  alt=''
+                />
+                )}
           </NavLink>
         </li>
       </ul>

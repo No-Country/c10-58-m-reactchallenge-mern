@@ -18,7 +18,6 @@ export const MainDivTitle = styled.h2`
   font-size: 1.4rem;
   padding-left: 2rem;
   color: ${COLORS.strongGreen};
-  text-align: center;
   @media (min-width: 768px) {
     padding-left: 4rem;
   }

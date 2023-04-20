@@ -3,8 +3,8 @@ import navbarIcon from '../../../public/navbar_icon.svg'
 
 export const NavBarPoint = styled.img`
 position: absolute;
-top: -12px;
-left: 9px;
+top: -13px;
+left: 8px;
 z-index: 999;
 `
 

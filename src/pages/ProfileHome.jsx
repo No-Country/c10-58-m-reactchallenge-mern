@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ProfileImg } from './../components/MicroComponents/ProfileImages'
 import { Btn } from './../components/MicroComponents/Btn'
 import { useNavigate } from 'react-router-dom'
 import { useFirebaseContext } from '../context/UserContext'
 import { deleteUser } from '../firebase/user'
 import { SpinnerComponent } from '../components/MicroComponents/Spinner'
+import { MainDivTitle } from '../components/MicroComponents/Text'
 
 export const ProfileHome = () => {
   const { user, logout } = useFirebaseContext()
   const { avatarURL, firstName, lastName } = user
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
 
   async function handleLogout () {
     await logout()

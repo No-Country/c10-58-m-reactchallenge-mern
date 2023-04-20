@@ -3,40 +3,50 @@ import { PageTitle } from '../components/MicroComponents/Text'
 import { Search } from '../components/MicroComponents/Search'
 import { fetchCollection } from '../firebase/fetchCollection'
 import { useState, useEffect } from 'react'
+import { SpinnerComponent } from '../components/MicroComponents/Spinner'
 
 const List = () => {
   const [listMedics, setListMedics] = useState([])
+  const [medicsToShow, setMedicsToShow] = useState([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     fetchCollection({ collectionName: 'medicos' }).then((medicos) => {
       setListMedics(medicos)
+      setMedicsToShow(medicos)
+      setLoading(false)
     })
   }, [])
 
   const handleChangeSearch = async (e) => {
     const input = e.target.value
-    if (input.length > 0) {
-      const newList = listMedics.filter((medico) =>
-        medico.especialidades.find((value) =>
-          value.toLowerCase().includes(input.toLowerCase())
-        )
+    const newList = listMedics.filter((medico) =>
+      medico.especialidades.find((value) =>
+        value.toLowerCase().includes(input.toLowerCase())
       )
-      setListMedics(newList)
-    } else if (input === '') {
-      const medicos = await fetchCollection({ collectionName: 'medicos' })
-      setListMedics(medicos)
-    }
+    )
+    setMedicsToShow(newList)
   }
   return (
     <>
-      <PageTitle className="font-bold text-xl">Lista de medicos</PageTitle>
-      <Search
-        onChange={handleChangeSearch}
-        type="search"
-        placeholder="Buscar medicos"
-        className="self-center"
-      />
-      <CardContainer medicos={listMedics} />
+      <PageTitle className='font-bold text-xl'>Lista de medicos</PageTitle>
+      {!loading
+        ? (
+          <>
+            <label className='self-center flex gap-4 items-center'>
+              Especialidad:
+              <Search
+                onChange={handleChangeSearch}
+                type='search'
+                placeholder='psiquiatria, psicologia infantil, ...'
+
+              />
+            </label>
+            <CardContainer medicos={medicsToShow} />
+          </>
+          )
+        : (<SpinnerComponent />)}
     </>
   )
 }

@@ -1,50 +1,47 @@
-import React from "react";
-import styled from "styled-components";
-import { Btn } from "./MicroComponents/Btn";
-import { useNavigate } from "react-router-dom";
-import { useFirebaseContext } from "../context/UserContext";
-
+import React from 'react'
+import styled from 'styled-components'
+import { Btn } from './MicroComponents/Btn'
+import { useNavigate } from 'react-router-dom'
+import { useFirebaseContext } from '../context/UserContext'
+import { COLORS } from './MicroComponents/Colors'
 
 // styled components
 const Img = styled.img`
-  width: 90px;
-  height: 90px;
+  width: 60px;
+  height: 60px;
   border-radius: 10%;
-  margin: 5px;
-`;
+`
 const CardContainer = styled.div`
-  width: 350px;
-padding: 5px;
+  width: 330px;
+  height: 210px;
+  padding: 1rem;
+  display: flex;
   background-color: #fff;
   border-radius: 10px;
-
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
+  justify-content: space-between;
+  border: 1px solid ${COLORS.strongGreen};
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease-in-out;
   &:hover {
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   }
-`;
+`
 const P = styled.p`
-  font-size: 15px;
-  margin-bottom: 10px;
-
-  overflow: hidden;
-`;
+  font-size: 0.8rem;
+  padding:0.25rem 0.5rem;
+  text-align: justify;
+`
 const Span = styled.span`
   color: #146151;
-  font-size: 16px;
+  font-size: 0.8rem;
   font-weight: 400;
-`;
+`
 const H3 = styled.h3`
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 600;
-  
- color: #146151;
-`;
+  color: ${COLORS.strongGreen};
+`
 
 const Card = ({ medico }) => {
   const {
@@ -52,63 +49,53 @@ const Card = ({ medico }) => {
     profilePhoto,
     apellido,
     especialidades,
-   
     id,
- 
     titulo
-  } = medico;
-  const { user } = useFirebaseContext();
-  console.log(medico);
-  const navigate = useNavigate();
+  } = medico
+  const { user } = useFirebaseContext()
+  console.log(medico)
+  const navigate = useNavigate()
   const handleClickAgendar = () => {
     if (user) {
-      navigate(`/list/${id}/calendar`);
+      navigate(`/list/${id}/calendar`)
     } else {
-      navigate("/login");
+      navigate('/login')
     }
-  };
-
+  }
 
   const handleClickProfile = () => {
     if (user) {
-      navigate(`/list/${id}/`);
+      navigate(`/list/${id}/`)
     } else {
-      navigate("/login");
+      navigate('/login')
     }
-  };
-  //agregar , a las especialidades
-  const especialidadesString = especialidades.join(", ");
-
+  }
+  // agregar , a las especialidades
+  const especialidadesString = especialidades.join(', ').toLowerCase()
 
   return (
     <CardContainer>
-      <div className="dates flex flex-col">
-        <div className="flex ">
-          <Img src={profilePhoto} alt="images--Dr." />
-          <div className="date pt-5 pl-1">
-            <H3>
-              {nombre} <span>{apellido}</span>
-            </H3>
-            <P>{titulo}</P>
-            
-          </div>
-        </div>
-        <div className="descripcion pl-3">
-          <P>
-           
-            <Span>Especialista en:  </Span>
-            {especialidadesString}
-          </P>
-        </div>
-        <div className=" gap-5 mb-3 pr-5 pt-3 flex justify-end">
-          <Btn className="" onClick={handleClickProfile}>
-            Ver perfil
-          </Btn>
-          <Btn $dark onClick={handleClickAgendar}>Agendar</Btn>
+      <div className='flex items-center gap-4'>
+        <Img src={profilePhoto} alt={`foto de perfil ${nombre} ${apellido}`} />
+        <div>
+          <H3>
+            {nombre} <span>{apellido}</span>
+          </H3>
+          <P>{titulo}</P>
         </div>
       </div>
+      <P>
+        <Span>Especialista en:  </Span>
+        {especialidadesString}.
+      </P>
+      <div className='gap-5 flex justify-end'>
+        <Btn $textSm onClick={handleClickProfile}>
+          Ver perfil
+        </Btn>
+        <Btn $dark $textSm onClick={handleClickAgendar}>Agendar</Btn>
+      </div>
     </CardContainer>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

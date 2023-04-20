@@ -6,7 +6,7 @@ const User = () => {
 
   return (
     <img
-      className='w-9 h-9 bg-slate-300 rounded-full'
+      className='w-10 h-10 bg-slate-300 rounded-full'
       src={user.avatarURL}
       alt='avatar'
     />
