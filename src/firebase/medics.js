@@ -16,6 +16,7 @@ export async function getMedicData ({ medicId }) {
     const medicRef = doc(db, 'medicos', medicId)
     const medicDoc = await getDoc(medicRef)
     const medicData = medicDoc.data()
+    console.log('MedicData from GetMedicData', medicData)
     return medicData
   } catch (error) {
     throw new Error(error)
