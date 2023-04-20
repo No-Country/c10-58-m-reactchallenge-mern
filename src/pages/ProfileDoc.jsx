@@ -4,18 +4,20 @@ import styled from 'styled-components'
 
 // styles
 const Card = styled.div`
-  width: 100%;
+width: 100%;
   height: 100%;
- 
+  background-color: white;
   border-radius: 5px;
-  padding: 20px;
-  margin-top: 30px;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+  @media (min-width: 768px) {
+    width: auto;
+  }
 `
 const Img = styled.img`
  display: block;
@@ -27,38 +29,35 @@ const Img = styled.img`
 const ProfileDoc = () => {
   const {
     medicId,
-    data: { profilePhoto, nombre, apellido, direccion, telefono, especialidades ,
-      formacion_profesional}
+    data: {
+      profilePhoto, nombre, apellido, direccion, telefono, especialidades,
+      formacion_profesional
+    }
   } = useLoaderData()
-  const especialidadesString = especialidades.join(", ");
+  const especialidadesString = especialidades.join(', ')
 
   return (
-    <div className='profile-doc '>
+    <div className='flex flex-col items-center justify-center gap-6'>
       <div>
-      <Img src={profilePhoto} alt={`${nombre} ${apellido}`} />
-      <h2 className='profile-doc-name'>
-        {nombre} {apellido}
-      </h2>
-      <p className='profile-doc-address'>{direccion}</p>
+        <Img src={profilePhoto} alt={`${nombre} ${apellido}`} />
+        <h2 className='profile-doc-name'>
+          {nombre} {apellido}
+        </h2>
+        <p className='profile-doc-address'>{direccion}</p>
 
       </div>
       <Card>
-        <div>
-
-
-      <p>
-        <b>Especialidad:</b>
-      </p>
-      <p className='mb-4'>{especialidadesString}</p>
-      <b>Formacion profesional :</b>
-      <p className='mb-4'>{formacion_profesional}</p>
-
+        <div className='flex flex-col text-justify gap-2'>
+          <b>Especialidad:</b>
+          <p>{especialidadesString}</p>
+          <b>Formacion profesional :</b>
+          <p>{formacion_profesional}</p>
         </div>
         <Link to={`/list/${medicId}/calendar`}>
-        <Btn $dark>Agendar</Btn>
-      </Link>
+          <Btn className='mt-4' $dark>Agendar</Btn>
+        </Link>
       </Card>
-     
+
     </div>
   )
 }

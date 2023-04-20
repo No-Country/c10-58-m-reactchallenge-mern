@@ -32,7 +32,7 @@ const Home = () => {
           <img src={escuchaderoLogo} alt='logo escuchadero' />
           <div className='flex flex-col gap-4'>
             <PageTitle>Escuchadero</PageTitle>
-            <MainDivText>Estamos aca para vos</MainDivText>
+            <MainDivText>Estamos acá para vos</MainDivText>
             <SearchMedic />
           </div>
           <TogglePillDiv onClick={handleToggle}>

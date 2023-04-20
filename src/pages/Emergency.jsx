@@ -1,24 +1,17 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Btn } from '../components/MicroComponents/Btn'
-const P = styled.p`
-  color: #000;
-  font-size: 15px;
-  font-weight: 400;
-  margin: 10px;
-  padding-left: 10px;
-  text-align: center;
-`
+import { MainDivText, MainDivTitle } from '../components/MicroComponents/Text'
 
 const Emergency = () => {
   return (
-    <div className='w-full m-h-full flex flex-col items-center justify-center gap-10'>
-      <div className='flex flex-col place-items-center place-self-center gap-10'>
-        <P>Encaso de tener un cuadro de crisis haz click en el boton de emergencia</P>
+    <div className='flex flex-col items-center justify-center gap-10'>
+      <div className='flex flex-col place-items-center place-self-center gap-2'>
+        <MainDivText>Encaso de tener un cuadro de crisis haz click en el boton de emergencia</MainDivText>
         <img src='/public/telefono.png' alt='llamada' />
-        <P>Usa esta linea de contacto adecuadamente y solo para emergencias</P>
+        <MainDivText>Usa esta linea de contacto adecuadamente y solo para emergencias</MainDivText>
       </div>
       <Btn onClick={() => console.log('Emergencia!')}>Emergencia</Btn>
+      <MainDivText>Esta funcionalidad todavia no esta terminada, lo sentimos.</MainDivText>
     </div>
   )
 }
