@@ -42,9 +42,7 @@ export async function getAppointmentData ({ appointmentId }) {
     const appointmentDoc = await getDoc(appointmentRef)
     const appointmentData = appointmentDoc.data()
     const { medicId, userId, date } = appointmentData
-    const [userDoc, medicDoc] = await Promise.all([getUserData({ userId }), getMedicData({ medicId })])
-    const userData = userDoc
-    const medicData = medicDoc
+    const [userData, medicData] = await Promise.all([getUserData({ userId }), getMedicData({ medicId })])
     return { medicId, userId, appointmentId, medicData, userData, date }
   } catch (error) {
     throw new Error(error)

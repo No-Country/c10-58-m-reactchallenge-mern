@@ -2,10 +2,36 @@ import { useLoaderData } from 'react-router-dom'
 import { Btn } from '../components/MicroComponents/Btn'
 import { useEffect, useState } from 'react'
 import { createAppointment, getOneWeekAppointments } from '../firebase/appointment'
+<<<<<<< HEAD
 import { CalendarButton, CalendarCol, CalendarDay, CalendarDisabled, CalendarDiv, CalendarLabel, MedicImg, TitleDiv } from '../components/MicroComponents/Calendar'
 import { MainDivText } from '../components/MicroComponents/Text'
 import { Container } from '../components/MicroComponents/Containers'
 import { MedicProfileImg } from '../components/MicroComponents/ProfileImages'
+=======
+import { format, parseISO } from 'date-fns'
+import styled from 'styled-components'
+
+//card
+const Card = styled.div`
+
+width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 30px;
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color:  #44803F;  ;
+  }
+  
+ 
+  
+`
+>>>>>>> b84c3aeb5e97a861a44e28182b7dcff7f5a87f99
 
 const Calendar = () => {
   const [dateSelected, setDateSelected] = useState(null)
@@ -41,17 +67,23 @@ const Calendar = () => {
   }
 
   return (
-    <Container>
-      <TitleDiv>
-        <MainDivText>
-          Agenda de {nombre} {apellido}, {formacion_profesional}
-        </MainDivText>
-        <MedicImg className='h-10 rounded-full' src={profilePhoto} />
-      </TitleDiv>
-      <CalendarLabel>Fecha:
-        <input type='date' name='dateSelected' onChange={event => handleChange(event)} />
-      </CalendarLabel>
-      <CalendarDiv>
+    <Card className='flex flex-col items-center gap-4 justify-center'>
+      <div className='flex h-10 items-center gap-4'>
+        <h2 className='text-lg font-semibold text-center'>
+          Agenda de {nombre} {apellido}
+        </h2>
+        <img className='h-10 rounded-full' src={profilePhoto} />
+      </div>
+      <h3>Especialidades: {especialidades.map(especialidad => especialidad).join(', ')}.</h3>
+      <div className='flex'>
+        <label className='flex flex-col items-center gap-2'>
+          <p className='text-sm text-center'>
+            Elige el dia y la hora en la que quieres tu cita
+          </p>
+          <input type='date' name='dateSelected' onChange={event => handleChange(event)} />
+        </label>
+      </div>
+      <div className='flex mx-auto gap-2 items-center text-center justify-center h-full'>
         {appointments
 			  ? (
               Object.keys(appointments).map(day => (
@@ -70,7 +102,12 @@ const Calendar = () => {
           : <MainDivText className='font-bold'>Elija un dia para ver las citas disponibles</MainDivText>}
       </CalendarDiv>
       {message && <h4>{message}</h4>}
+<<<<<<< HEAD
     </Container>
+=======
+
+    </Card>
+>>>>>>> b84c3aeb5e97a861a44e28182b7dcff7f5a87f99
   )
 }
 

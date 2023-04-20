@@ -1,50 +1,58 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Form } from '../components/MicroComponents/Form.js'
 import { Btn } from '../components/MicroComponents/Btn.js'
+
 import { useFirebaseContext } from '../context/UserContext.jsx'
+import { updateUserInfo } from '../firebase/user.js'
+
 
 const EditProfile = () => {
   const { user } = useFirebaseContext()
-  console.log(user)
-  // destructuring
-  const { firstName, email, lastName, dni } = user
-
-  const handleSubmit = (e) => {
+  const { firstName, email, lastName, dni,avatarUrl } = user
+  const [formData, setFormData] = useState({ firstName, email, lastName, dni })
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    try {
+      await updateUserInfo(formData)
+    
+    } catch (error) {
+     
+    }
   }
-  // change input
+
   const handleChange = (e) => {
-    e.preventDefault()
+    const { name, value } = e.target
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }))
   }
 
   return (
+   <div>
+   
+
     <Form onSubmit={handleSubmit}>
       <label>
         Nombre:
-        <input onChange={handleChange} type='text' value={firstName} />
+        <input onChange={handleChange} name="firstName" type="text" value={formData.firstName} />
       </label>
       <label>
         Apellido:
-        <input onChange={handleChange} type='text' value={lastName} />
+        <input onChange={handleChange} name="lastName" type="text" value={formData.lastName} />
       </label>
       <label>
         Email:
-        <input onChange={handleChange} type='text' value={email} />
+        <input onChange={handleChange} name="email" type="text" value={formData.email} />
       </label>
       <label>
         DNI:
-        <input onChange={handleChange} type='text' value={dni} />
+        <input onChange={handleChange} name="dni" type="text" value={formData.dni} />
       </label>
-      <label>
-        Pais:
-        <input onChange={handleChange} type='text' value='Pais' />
-      </label>
-      <label>
-        Ciudad:
-        <input onChange={handleChange} type='text' value='Ciudad' />
-      </label>
-      <Btn type='submit'>Guardar cambios</Btn>
+
+      <Btn type="submit">Guardar </Btn>
     </Form>
+   </div>
   )
 }
 

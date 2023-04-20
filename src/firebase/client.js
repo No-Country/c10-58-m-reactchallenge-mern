@@ -6,6 +6,7 @@ import { getStorage } from 'firebase/storage'
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_KEY,
   authDomain: 'escuchadero-dd909.firebaseapp.com',
+  databaseURL: 'https://escuchadero-dd909-default-rtdb.firebaseio.com',
   projectId: 'escuchadero-dd909',
   storageBucket: 'escuchadero-dd909.appspot.com',
   messagingSenderId: '667891683792',

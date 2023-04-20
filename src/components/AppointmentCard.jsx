@@ -6,6 +6,7 @@ import { CardContainer } from './MicroComponents/Cards'
 
 export const AppointmentCard = ({ appointment, cancelAppointment }) => {
   const { medicData, date } = appointment
+  console.log('appointment: ', appointment)
   return (
     <CardContainer>
       <MedicProfileImg src={medicData.profilePhoto} />
