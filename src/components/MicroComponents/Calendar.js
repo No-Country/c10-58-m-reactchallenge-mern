@@ -22,7 +22,7 @@ color: ${COLORS.strongGreen};
 
 export const CalendarDay = styled.p`
 font-size: 1.125rem;
-font-weight: 600;
+font-weight: 400;
 `
 
 export const CalendarButton = styled.button`
