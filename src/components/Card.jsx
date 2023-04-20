@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Botonpildora } from './MicroComponents/BotonesPildoras'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useFirebaseContext } from '../context/UserContext'
 
 // styled components

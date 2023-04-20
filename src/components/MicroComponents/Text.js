@@ -5,11 +5,11 @@ export const PageTitle = styled.h1`
 margin: 0px;
 font-weight: 700;
 color: ${COLORS.strongGreen};
-font-size: 3rem;
+font-size: 2.5rem;
 text-align: center;
 
 @media (min-width: 768px) {
-  font-size: 4rem;
+  font-size: 3rem;
 }
 `
 
