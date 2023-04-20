@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { COLORS } from './Colors'
 
 export const PageTitle = styled.h1`
+margin: 0px;
 font-weight: 700;
 color: ${COLORS.strongGreen};
 font-size: 3rem;
@@ -24,6 +25,7 @@ color: ${COLORS.strongGreen};
 `
 
 export const MainDivText = styled.p`
+margin: 0px;
 font-weight: 500;
 font-size: 1.3rem;
 color: ${COLORS.strongGreen};

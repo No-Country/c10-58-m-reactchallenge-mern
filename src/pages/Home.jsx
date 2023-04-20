@@ -12,7 +12,7 @@ import { TogglePillButton } from '../components/TogglePill'
 import { TogglePillDiv } from '../components/MicroComponents/TogglePillDiv'
 import { IoWarningOutline } from 'react-icons/io5'
 import escuchaderoLogo from '../../public/logo.svg'
-import { MainDivTitle, PageTitle } from './../components/MicroComponents/Text'
+import { MainDivText, MainDivTitle, PageTitle } from './../components/MicroComponents/Text'
 import { Faq } from '../components/FAQ'
 import { TratamientosPresencial } from '../components/TratamientosPresencial'
 import { TratamientosOnline } from '../components/TratamientosOnline'
@@ -32,9 +32,13 @@ const Home = () => {
       <Header />
       <section className='flex items-center flex-col gap-5'>
         <img src={escuchaderoLogo} alt='logo escuchadero' />
-        <PageTitle>Escuchadero</PageTitle>
+        <div className='flex flex-col'>
+          <PageTitle>Escuchadero</PageTitle>
+          <MainDivText>Estamos aca para vos</MainDivText>
+        </div>
         <div>
-          <label className='relative block'>
+          <label className='relative flex items-center gap-4'>
+            Buscar medicos
             <Search
               placeholder='Servicio'
               type='text'
