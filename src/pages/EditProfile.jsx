@@ -35,14 +35,7 @@ const EditProfile = () => {
         DNI:
         <input onChange={handleChange} type='text' value={dni} />
       </label>
-      <label>
-        Pais:
-        <input onChange={handleChange} type='text' value='Pais' />
-      </label>
-      <label>
-        Ciudad:
-        <input onChange={handleChange} type='text' value='Ciudad' />
-      </label>
+     
       <Btn type='submit'>Guardar cambios</Btn>
     </Form>
   )
