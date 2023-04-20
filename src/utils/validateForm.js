@@ -1,12 +1,12 @@
 export function validateForm (userDataForm) {
-  const { names, lastName, dni, email, password, confirmPassword, terms } = userDataForm
-  if (!names || !lastName || !dni || !email || !password || !confirmPassword || !terms) {
+  const { firstName, lastName, dni, email, password, confirmPassword, terms } = userDataForm
+  if (!firstName || !lastName || !dni || !email || !password || !confirmPassword || !terms) {
     throw new Error('Todos los campos deben estar completos')
   }
-  if (names.length < 2 || names.length > 20) {
+  if (firstName.length < 2 || firstName.length > 20) {
     throw new Error('El nombre debe contener mas de un caracter y menos de 20')
   }
-  if (names === '') { throw new Error('El campo nombre no puede estar vacío') }
+  if (firstName === '') { throw new Error('El campo nombre no puede estar vacío') }
   if (lastName.length < 2 || lastName.length > 20) {
     throw new Error('El apellido debe contener mas de un caracter y menos de 20')
   }

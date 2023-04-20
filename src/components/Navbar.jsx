@@ -1,9 +1,5 @@
-/* eslint-disable comma-dangle */
-/* eslint-disable no-tabs */
-/* eslint-disable jsx-quotes */
-import { NavLink } from 'react-router-dom'
-import { useState } from 'react'
-// import navbarIcon from '../../public/navbar_icon.svg'
+import { NavLink, useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import homeIcon from '../../public/home_icon.svg'
 import variantHomeIcon from '../../public/home_variant.svg'
 import emergencyIcon from '../../public/emergency_icon.svg'
@@ -11,57 +7,84 @@ import variantEmergencyIcon from '../../public/emergency_variant.svg'
 import profileIcon from '../../public/profile_icon.svg'
 import variantProfileIcon from '../../public/profile_variant.svg'
 import { useFirebaseContext } from '../context/UserContext'
+import User from './User'
+import { NavSelectedPoint } from './MicroComponents/NavSelectedPoint'
+import styled from 'styled-components'
+import { COLORS } from './MicroComponents/Colors'
+
+const NavBarStyled = styled.nav`
+width: 100vw;
+height: 60px;
+position: sticky;
+bottom: 0px;
+background-color: ${COLORS.strongGreen};
+
+ul {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  li{
+    position: relative;
+  }
+}
+`
 
 const Navbar = () => {
-  const [selected, setSelected] = useState('homeIcon')
-  const { user } = useFirebaseContext()
-  console.log(user)
+  const location = useLocation()
+  const [selected, setSelected] = useState('')
 
-  const handleNavLinkClick = (icon) => {
-    setSelected(icon)
-  }
+  useEffect(() => {
+    setSelected(location.pathname)
+  }, [location])
+
+  const { user } = useFirebaseContext()
 
   return (
-    <nav className="w-full h-[50px] fixed bottom-0">
-      <ul className="w-full h-full flex justify-evenly items-center">
-        <li className="">
-          <NavLink to="/" onClick={() => handleNavLinkClick('homeIcon')}>
+    <NavBarStyled>
+      <ul>
+        <li>
+          {selected === '/' && (
+            <NavSelectedPoint />
+          )}
+          <NavLink to='/'>
+            <img src={selected === '/' ? variantHomeIcon : homeIcon} alt='' />
+          </NavLink>
+        </li>
+        <li>
+          {selected === '/emergency' && (
+            <NavSelectedPoint />
+          )}
+          <NavLink className='' to='/emergency'>
             <img
-              src={selected === 'homeIcon' ? homeIcon : variantHomeIcon}
-              alt=""
+              src={
+                selected === '/emergency' ? variantEmergencyIcon : emergencyIcon
+              }
+              alt=''
             />
           </NavLink>
         </li>
-        <li className="">
-          <NavLink
-            to="/emergency"
-            onClick={() => handleNavLinkClick('emergencyIcon')}
-          >
-            <img
-              src={
-                selected === 'emergencyIcon'
-                  ? emergencyIcon
-                  : variantEmergencyIcon
-              }
-              alt=""
-            />
-          </NavLink>
-        </li>
-        <li className="">
-          <NavLink
-            to={user ? '/profile' : '/login'}
-            onClick={() => handleNavLinkClick('profileIcon')}
-          >
-            <img
-              src={
-                selected === 'profileIcon' ? profileIcon : variantProfileIcon
-              }
-              alt=""
-            />
+        <li>
+          {(selected === '/profile' || selected === '/login') && (
+            <NavSelectedPoint />
+          )}
+          <NavLink className='' to='/profile'>
+            {user
+              ? (
+                <User />
+                )
+              : (
+                <img
+                  src={selected === '/profile' ? variantProfileIcon : profileIcon}
+                  alt=''
+                />
+                )}
           </NavLink>
         </li>
       </ul>
-    </nav>
+    </NavBarStyled>
   )
 }
 

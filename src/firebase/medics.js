@@ -2,14 +2,10 @@ import { dateToSeconds } from '../utils/formatDateFirebase'
 import { db } from './client'
 import { getDoc, getDocs, addDoc, doc, collection, where, query, Timestamp, collectionGroup } from 'firebase/firestore'
 
-export async function createMedic () {
+export async function createMedic ({ medicDataForm }) {
   const medicData = {
-    apellido: 'Smith',
-    especialidad: 'Psicologia',
-    nombre: 'Emily',
-    profilePhoto: 'https://st2.depositphotos.com/5934840/11980/v/950/depositphotos_119808072-stock-illustration-medic-or-doctor-icon.jpg',
-    direccion: '456 Calle Elm, Ciudad Ejemplo',
-    telefono: '123-345-4567',
+    ...medicDataForm,
+    profilePhoto: 'https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg',
     appointments: []
   }
   await addDoc(collection(db, 'medicos'), medicData)
