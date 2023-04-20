@@ -6,9 +6,7 @@ import { SpinnerComponent } from '../components/MicroComponents/Spinner'
 export const Profile = () => {
   const { isUserLoggedIn, loading } = useFirebaseContext()
 
-  const handleEdit = () => {
-    setEdit(!edit)
-  }
+ 
 
   return (
     <>

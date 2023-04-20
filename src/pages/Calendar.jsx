@@ -3,6 +3,28 @@ import { Btn } from '../components/MicroComponents/Btn'
 import { useEffect, useState } from 'react'
 import { createAppointment, getOneWeekAppointments } from '../firebase/appointment'
 import { format, parseISO } from 'date-fns'
+import styled from 'styled-components'
+
+//card
+const Card = styled.div`
+
+width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 30px;
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color:  #44803F;  ;
+  }
+  
+ 
+  
+`
 
 const Calendar = () => {
   const [dateSelected, setDateSelected] = useState(null)
@@ -38,7 +60,7 @@ const Calendar = () => {
   }
 
   return (
-    <div className='flex flex-col items-center gap-4 justify-center'>
+    <Card className='flex flex-col items-center gap-4 justify-center'>
       <div className='flex h-10 items-center gap-4'>
         <h2 className='text-lg font-semibold text-center'>
           Agenda de {nombre} {apellido}
@@ -74,7 +96,7 @@ const Calendar = () => {
       </div>
       {message && <h4>{message}</h4>}
 
-    </div>
+    </Card>
   )
 }
 

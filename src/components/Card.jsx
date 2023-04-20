@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Botonpildora } from "./MicroComponents/BotonesPildoras";
+import { Btn } from "./MicroComponents/Btn";
 import { useNavigate } from "react-router-dom";
 import { useFirebaseContext } from "../context/UserContext";
+
 
 // styled components
 const Img = styled.img`
@@ -12,7 +13,7 @@ const Img = styled.img`
   margin: 5px;
 `;
 const CardContainer = styled.div`
-  width: 450px;
+  width: 350px;
 padding: 5px;
   background-color: #fff;
   border-radius: 10px;
@@ -99,11 +100,11 @@ const Card = ({ medico }) => {
             {especialidadesString}
           </P>
         </div>
-        <div className="buttons gap-5 mb-3 pr-5 pt-3 flex justify-end">
-          <Botonpildora $primary onClick={handleClickProfile}>
+        <div className=" gap-5 mb-3 pr-5 pt-3 flex justify-end">
+          <Btn className="" onClick={handleClickProfile}>
             Ver perfil
-          </Botonpildora>
-          <Botonpildora onClick={handleClickAgendar}>Agendar cita</Botonpildora>
+          </Btn>
+          <Btn $dark onClick={handleClickAgendar}>Agendar</Btn>
         </div>
       </div>
     </CardContainer>

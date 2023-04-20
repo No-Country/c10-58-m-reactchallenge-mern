@@ -15,5 +15,5 @@ height: 4rem;
 width:4rem;
 border-radius: 9999px;
 object-fit: cover;
-align-self: flex-start;
+
 `

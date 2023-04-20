@@ -5,8 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useFirebaseContext } from '../context/UserContext'
 import { deleteUser } from '../firebase/user'
 import { SpinnerComponent } from '../components/MicroComponents/Spinner'
-import { medicData } from '../assets/medicData'
-import { createMedic } from '../firebase/medics'
+
 
 export const ProfileHome = () => {
   const { user, logout } = useFirebaseContext()
