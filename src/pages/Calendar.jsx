@@ -8,11 +8,10 @@ const Calendar = () => {
   const [dateSelected, setDateSelected] = useState(null)
   const [appointments, setAppointments] = useState([])
   const [message, setMessage] = useState(null)
-  const navigate = useNavigate()
 
   const {
     medicId,
-    data: { profilePhoto, nombre, apellido, direccion, telefono, especialidad }
+    data: { profilePhoto, nombre, apellido, direccion, telefono, especialidades }
   } = useLoaderData()
 
   useEffect(() => {
@@ -38,19 +37,15 @@ const Calendar = () => {
     return appointment
   }
 
-  function goBack () {
-    navigate(-1)
-  }
-
   return (
-    <div className='flex flex-col items-center gap-4 min-h-screen justify-center gap-6'>
+    <div className='flex flex-col items-center gap-4 justify-center'>
       <div className='flex h-10 items-center gap-4'>
         <h2 className='text-lg font-semibold text-center'>
           Agenda de {nombre} {apellido}
         </h2>
         <img className='h-10 rounded-full' src={profilePhoto} />
       </div>
-      <h3>Especialidad: {especialidad}</h3>
+      <h3>Especialidades: {especialidades.map(especialidad => especialidad).join(', ')}.</h3>
       <div className='flex'>
         <label className='flex flex-col items-center gap-2'>
           <p className='text-sm text-center'>

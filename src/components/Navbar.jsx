@@ -13,23 +13,23 @@ import styled from 'styled-components'
 import { COLORS } from './MicroComponents/Colors'
 
 const NavBarStyled = styled.nav`
-width: 100vw;
-height: 60px;
-position: sticky;
-bottom: 0px;
-background-color: ${COLORS.strongGreen};
+  width: 100vw;
+  height: 60px;
+  position: sticky;
+  bottom: 0px;
+  background-color: ${COLORS.strongGreen};
 
-ul {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 
-  li{
-    position: relative;
+    li {
+      position: relative;
+    }
   }
-}
 `
 
 const Navbar = () => {
@@ -46,23 +46,19 @@ const Navbar = () => {
     <NavBarStyled>
       <ul>
         <li>
-          {selected === '/' && (
-            <NavSelectedPoint />
-          )}
-          <NavLink to='/'>
-            <img src={selected === '/' ? variantHomeIcon : homeIcon} alt='' />
+          {(selected === '/' || selected === '/list') && <NavSelectedPoint />}
+          <NavLink to="/">
+            <img src={selected === '/' ? variantHomeIcon : homeIcon} alt="" />
           </NavLink>
         </li>
         <li>
-          {selected === '/emergency' && (
-            <NavSelectedPoint />
-          )}
-          <NavLink className='' to='/emergency'>
+          {selected === '/emergency' && <NavSelectedPoint />}
+          <NavLink to="/emergency">
             <img
               src={
                 selected === '/emergency' ? variantEmergencyIcon : emergencyIcon
               }
-              alt=''
+              alt=""
             />
           </NavLink>
         </li>
@@ -70,17 +66,19 @@ const Navbar = () => {
           {(selected === '/profile' || selected === '/login') && (
             <NavSelectedPoint />
           )}
-          <NavLink className='' to='/profile'>
-            {user
-              ? (
-                <User />
-                )
-              : (
-                <img
-                  src={selected === '/profile' ? variantProfileIcon : profileIcon}
-                  alt=''
-                />
-                )}
+          <NavLink to="/profile">
+            {user ? (
+              <User />
+            ) : (
+              <img
+                src={
+                  selected === '/profile' || selected === '/login'
+                    ? variantProfileIcon
+                    : profileIcon
+                }
+                alt=""
+              />
+            )}
           </NavLink>
         </li>
       </ul>
