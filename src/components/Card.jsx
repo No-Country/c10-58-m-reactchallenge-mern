@@ -35,13 +35,13 @@ const P = styled.p`
 `;
 const Span = styled.span`
   color: #146151;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
 `;
 const H3 = styled.h3`
   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 10px;
+  
  color: #146151;
 `;
 
@@ -51,11 +51,10 @@ const Card = ({ medico }) => {
     profilePhoto,
     apellido,
     especialidades,
-    telefono,
-    direccion,
+   
     id,
-    formacion_profesional,
-    titulo,
+ 
+    titulo
   } = medico;
   const { user } = useFirebaseContext();
   console.log(medico);
@@ -68,6 +67,7 @@ const Card = ({ medico }) => {
     }
   };
 
+
   const handleClickProfile = () => {
     if (user) {
       navigate(`/list/${id}/`);
@@ -75,6 +75,9 @@ const Card = ({ medico }) => {
       navigate("/login");
     }
   };
+  //agregar , a las especialidades
+  const especialidadesString = especialidades.join(", ");
+
 
   return (
     <CardContainer>
@@ -83,17 +86,17 @@ const Card = ({ medico }) => {
           <Img src={profilePhoto} alt="images--Dr." />
           <div className="date pt-5 pl-1">
             <H3>
-              {nombre} <span>{apellido}</span>{" "}
+              {nombre} <span>{apellido}</span>
             </H3>
-            <p>{titulo}</p>
+            <P>{titulo}</P>
             
           </div>
         </div>
         <div className="descripcion pl-3">
           <P>
-            {" "}
-            <Span>Especialista en: </Span>
-            {especialidades}{" "}
+           
+            <Span>Especialista en:  </Span>
+            {especialidadesString}
           </P>
         </div>
         <div className="buttons gap-5 mb-3 pr-5 pt-3 flex justify-end">
