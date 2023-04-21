@@ -1,9 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { Btn } from "./MicroComponents/Btn";
-import { useNavigate } from "react-router-dom";
-import { useFirebaseContext } from "../context/UserContext";
-
+import React from 'react'
+import styled from 'styled-components'
+import { Btn } from './MicroComponents/Btn'
+import { useNavigate } from 'react-router-dom'
+import { useFirebaseContext } from '../context/UserContext'
 
 // styled components
 const Img = styled.img`
@@ -11,10 +10,10 @@ const Img = styled.img`
   height: 90px;
   border-radius: 10%;
   margin: 5px;
-`;
+`
 const CardContainer = styled.div`
   width: 350px;
-padding: 5px;
+  padding: 5px;
   background-color: #fff;
   border-radius: 10px;
 
@@ -27,24 +26,27 @@ padding: 5px;
   &:hover {
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   }
-`;
+`
 const P = styled.p`
   font-size: 15px;
   margin-bottom: 10px;
-
-  overflow: hidden;
-`;
-const Span = styled.span`
   color: #146151;
-  font-size: 16px;
+  overflow: hidden;
+`
+const Span = styled.span`
+  font-size: 14px;
   font-weight: 400;
-`;
+
+  &.title {
+    font-size: 16px;
+  }
+`
 const H3 = styled.h3`
   font-size: 20px;
   font-weight: 600;
-  
- color: #146151;
-`;
+
+  color: #146151;
+`
 
 const Card = ({ medico }) => {
   const {
@@ -52,33 +54,30 @@ const Card = ({ medico }) => {
     profilePhoto,
     apellido,
     especialidades,
-   
+
     id,
- 
-    titulo
-  } = medico;
-  const { user } = useFirebaseContext();
-  console.log(medico);
-  const navigate = useNavigate();
+
+    titulo,
+  } = medico
+  const { user } = useFirebaseContext()
+  const navigate = useNavigate()
   const handleClickAgendar = () => {
     if (user) {
-      navigate(`/list/${id}/calendar`);
+      navigate(`/list/${id}/calendar`)
     } else {
-      navigate("/login");
+      navigate('/login')
     }
-  };
-
+  }
 
   const handleClickProfile = () => {
     if (user) {
-      navigate(`/list/${id}/`);
+      navigate(`/list/${id}/`)
     } else {
-      navigate("/login");
+      navigate('/login')
     }
-  };
+  }
   //agregar , a las especialidades
-  const especialidadesString = especialidades.join(", ");
-
+  const especialidadesString = especialidades.join('\n')
 
   return (
     <CardContainer>
@@ -89,26 +88,26 @@ const Card = ({ medico }) => {
             <H3>
               {nombre} <span>{apellido}</span>
             </H3>
-            <P>{titulo}</P>
-            
+            <Span className="title">{titulo}</Span>
           </div>
         </div>
-        <div className="descripcion pl-3">
-          <P>
-           
-            <Span>Especialista en:  </Span>
+        <div className="descripcion px-3 flex items-center gap-2">
+          <P className="self-start">Especialista en:</P>
+          <Span className="whitespace-pre text-[8px]">
             {especialidadesString}
-          </P>
+          </Span>
         </div>
         <div className=" gap-5 mb-3 pr-5 pt-3 flex justify-end">
           <Btn className="" onClick={handleClickProfile}>
             Ver perfil
           </Btn>
-          <Btn $dark onClick={handleClickAgendar}>Agendar</Btn>
+          <Btn $dark onClick={handleClickAgendar}>
+            Agendar
+          </Btn>
         </div>
       </div>
     </CardContainer>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

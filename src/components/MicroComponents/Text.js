@@ -15,13 +15,10 @@ export const PageTitle = styled.h1`
 
 export const MainDivTitle = styled.h2`
   font-weight: 700;
-  font-size: 1.4rem;
-  padding-left: 2rem;
+  font-size: clamp(1.2rem, 1.5vw, 1.6rem);
   color: ${COLORS.strongGreen};
   text-align: center;
-  @media (min-width: 768px) {
-    padding-left: 4rem;
-  }
+  margin-top: 20px;
 `
 
 export const MainDivText = styled.p`
