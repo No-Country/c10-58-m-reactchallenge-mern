@@ -2,6 +2,10 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { createUserWithEmail } from '../firebase/userEmailAndPassword'
 import { Btn } from '../components/MicroComponents/Btn'
+import uploadProfilePic from '../assets/imgs/uploadprofilepic.png'
+import botonDeImg from '../assets/imgs/btn_del_img.png'
+import eyeIcon from '../assets/imgs/eye_icon.png'
+import eyeIconSlash from '../assets/imgs/eye_icon_slash.png'
 
 const initialValues = {
   profilePic: '',
@@ -144,14 +148,14 @@ const Register = () => {
             ? (
               <img
                 className='cursor-pointer w-28 h-28 rounded-full object-cover'
-                src={previewImg || './uploadprofilepic.png'}
+                src={previewImg || uploadProfilePic}
                 alt='Upload your profile picture'
               />
               )
             : (
               <img
                 className='cursor-pointer object-cover'
-                src={previewImg || './uploadprofilepic.png'}
+                src={previewImg || uploadProfilePic}
                 alt='Upload your profile picture'
               />
               )}
@@ -159,7 +163,7 @@ const Register = () => {
         {previewImg && (
           <img
             className='w-7 h-7 absolute bottom-3 right-36 cursor-pointer'
-            src='./btn_del_img.png'
+            src={botonDeImg}
             alt='Button to remove profile picture'
             onClick={() => setPreviewImg('')}
           />
@@ -233,7 +237,7 @@ const Register = () => {
               <img
                 id='password'
                 className='eye-icon'
-                src={showPass.password ? 'eye_icon_slash.png' : '/eye_icon.png'}
+                src={showPass.password ? eyeIconSlash : eyeIcon}
                 alt='Eye icon to show password'
                 onClick={handleClick}
               />
@@ -258,8 +262,8 @@ const Register = () => {
                 className='eye-icon'
                 src={
 									showPass.confirmPassword
-									  ? 'eye_icon_slash.png'
-									  : '/eye_icon.png'
+									  ? eyeIconSlash
+									  : eyeIcon
 								}
                 alt='Eye icon to show password'
                 onClick={handleClick}
