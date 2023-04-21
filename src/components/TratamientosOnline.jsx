@@ -20,7 +20,7 @@ const tiposDeTerapias = [
   { img: celos, therapy: 'Celos' },
   { img: autoestima, therapy: 'Autoestima' },
   { img: drogadiccion, therapy: 'Drogadicción' },
-  { img: orientacionProfesional, therapy: 'Orientación profesional' },
+  { img: orientacionProfesional, therapy: 'Orientación profesional' }
 ]
 
 export const TratamientosOnline = () => {
@@ -31,7 +31,7 @@ export const TratamientosOnline = () => {
           src={terapia.img}
           key={i}
           terapia={terapia.therapy}
-        ></TratamientosCard>
+        />
       ))}
     </TratamientosCardsDiv>
   )

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { createUserWithEmail } from '../firebase/userEmailAndPassword'
-import Header from '../components/Header'
 import { Btn } from '../components/MicroComponents/Btn'
 
 const initialValues = {
@@ -128,7 +127,6 @@ const Register = () => {
 
   return (
     <section className=' max-w-md mx-auto'>
-      <Header />
       {loading && <Loading />}
       {alert && <Message handleAlert={handleAlert} msg={alert} />}
       <div className='flex justify-center my-10 relative p-4'>
