@@ -9,10 +9,12 @@ const EditProfile = () => {
   const { user } = useFirebaseContext()
   const { firstName, email, lastName, dni, avatarUrl } = user
   const [formData, setFormData] = useState({ firstName, email, lastName, dni })
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       await updateUserInfo(formData)
+      location.reload()
     } catch (error) {
       console.log(error)
     }
