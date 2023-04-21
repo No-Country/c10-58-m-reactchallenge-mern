@@ -13,7 +13,7 @@ function App () {
   const locationsNames = location.pathname.split('/')
   const isMain = locationsNames.includes('list')
   const showBackArrow =
-    location.pathname === '/' || location.pathname === '/profile'
+    location.pathname === '/' || location.pathname === '/profile' || location.pathname === '/login'
   return (
     <MainContainer className='overflow-x-hidden' isMain={!isMain}>
       {!showBackArrow && (
