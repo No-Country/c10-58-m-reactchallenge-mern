@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import navbarIcon from '../../../public/navbar_icon.svg'
+import navbarIcon from '../../assets/imgs/navbar_icon.svg'
 
 export const NavBarPoint = styled.img`
 position: absolute;

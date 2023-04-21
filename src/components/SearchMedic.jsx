@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { COLORS } from './MicroComponents/Colors'
+import searchIcon from '../assets/imgs/icon.svg'
 
 const SearchBar = styled.span`
 display: flex;
@@ -25,7 +26,7 @@ export const SearchMedic = () => {
       onClick={() => navigate('/list')}
       className='flex items-center'
     > Buscar medicos
-      <img src='../../public/icon.svg' alt='search icon' />
+      <img src={searchIcon} alt='search icon' />
     </SearchBar>
   )
 }

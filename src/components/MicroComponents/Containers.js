@@ -31,6 +31,6 @@ export const MainContainer = styled.main`
   justify-content: center;
   position: relative;
   gap: 2rem;
-  padding: 2rem 0px 60px 0px;
+  padding: 2rem 0px 65px 0px;
   background-color: ${COLORS.teal};
 `

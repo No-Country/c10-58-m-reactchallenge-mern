@@ -4,7 +4,7 @@ import { useFirebaseContext } from '../context/UserContext'
 import { SpinnerComponent } from '../components/MicroComponents/Spinner'
 import { TogglePillButton } from '../components/TogglePill'
 import { TogglePillDiv } from '../components/MicroComponents/TogglePillDiv'
-import escuchaderoLogo from '../../public/logo.svg'
+import escuchaderoLogo from '../assets/imgs/logo.svg'
 import {
   MainDivText,
   MainDivTitle,
