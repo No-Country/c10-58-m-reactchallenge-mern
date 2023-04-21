@@ -46,8 +46,8 @@ const Calendar = () => {
   }
 
   return (
-    <Container>
-      <div className='flex items-center gap-4'>
+    <Container justifyBetween>
+      <div className='flex h-full justify-between items-center gap-4'>
         <MainDivTitle className='text-lg font-semibold text-center'>
           Agenda de {nombre} {apellido}, {formacion_profesional}.
         </MainDivTitle>

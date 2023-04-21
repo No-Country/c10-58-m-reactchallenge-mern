@@ -15,17 +15,17 @@ import { COLORS } from './MicroComponents/Colors'
 const NavBarStyled = styled.nav`
   width: 100vw;
   height: 60px;
-  position: sticky;
+  position: fixed;
   bottom: 0px;
+  left: 0px;
   background-color: ${COLORS.strongGreen};
-
+  display: block;
   ul {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-
     li {
       position: relative;
     }

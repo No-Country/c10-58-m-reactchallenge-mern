@@ -3,10 +3,7 @@ import styled from 'styled-components'
 import { Btn } from './MicroComponents/Btn'
 import { useNavigate } from 'react-router-dom'
 import { useFirebaseContext } from '../context/UserContext'
-<<<<<<< HEAD
 import { COLORS } from './MicroComponents/Colors'
-=======
->>>>>>> 15993e6a77a6575abcf66433c5386a023d4d1e94
 
 // styled components
 const Img = styled.img`
@@ -56,7 +53,6 @@ const Card = ({ medico }) => {
     titulo
   } = medico
   const { user } = useFirebaseContext()
-  console.log(medico)
   const navigate = useNavigate()
   const handleClickAgendar = () => {
     if (user) {

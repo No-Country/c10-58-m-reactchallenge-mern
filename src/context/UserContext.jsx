@@ -1,9 +1,6 @@
-/* eslint-disable no-sequences */
-/* eslint-disable comma-dangle */
-/*eslint-disable*/
 import { createContext, useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { onAuthStateChanged, signOut } from 'firebase/auth'
+import { onAuthStateChanged } from 'firebase/auth'
 import { firebaseAuth } from '../firebase/client'
 import { signInWithEmail } from '../firebase/userEmailAndPassword'
 import { getCurrentUserInfo, logOutUser } from '../firebase/user'
@@ -61,7 +58,7 @@ const FirebaseProvider = ({ children }) => {
 }
 
 FirebaseProvider.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 }
 
 export default FirebaseProvider
