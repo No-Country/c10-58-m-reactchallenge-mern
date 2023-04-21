@@ -12,23 +12,23 @@ export const CardsContainer = styled.div`
 `
 
 export const Container = styled.div`
-width: 100vw;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 2rem;
-padding:2rem;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
 `
 
 export const MainContainer = styled.main`
-width: 100vw;
-min-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-gap: 2rem;
-padding: 2rem 0px;
-padding-bottom: 70px;
-background-color: ${COLORS.teal};
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem 0px;
+  padding-bottom: 70px;
+  background-color: ${COLORS.teal};
 `
