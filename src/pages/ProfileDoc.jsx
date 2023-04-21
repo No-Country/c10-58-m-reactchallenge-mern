@@ -14,17 +14,16 @@ width: 100%;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-
   @media (min-width: 768px) {
     width: auto;
   }
 `
 const Img = styled.img`
- display: block;
+  display: block;
   width: 100px;
   margin-inline: auto;
-  border-radius: 50%; 
-  `
+  border-radius: 50%;
+`
 
 const ProfileDoc = () => {
   const {

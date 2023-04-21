@@ -35,12 +35,19 @@ const Home = () => {
             <MainDivText>Estamos acá para vos</MainDivText>
             <SearchMedic />
           </div>
-          <TogglePillDiv onClick={handleToggle}>
-            <TogglePillButton show={toggle}>En línea</TogglePillButton>
-            <TogglePillButton show={!toggle}>Presencial</TogglePillButton>
-          </TogglePillDiv>
+          <div className='w-full flex items-center justify-between pr-3 sm:justify-around sm:pr-0 sm:gap-20'>
+            <TogglePillDiv onClick={handleToggle}>
+              <TogglePillButton show={toggle}>En línea</TogglePillButton>
+              <TogglePillButton show={!toggle}>Presencial</TogglePillButton>
+            </TogglePillDiv>
+            <span
+              onClick={() => navigate('/list')}
+              className='pr-3 cursor-pointer'
+            >
+              <img src='./icon.svg' alt='search icon' />
+            </span>
+          </div>
         </div>
-
       </section>
       <MainDivTitle>Tipos de tratamientos psicológicos</MainDivTitle>
       {toggle ? <TratamientosOnline /> : <TratamientosPresencial />}

@@ -42,36 +42,50 @@ const faq = [
 ]
 
 const FAQDiv = styled.div`
-display: flex;
-flex-direction: column;
-gap: 0.75rem;
-align-items: center;
-justify-content: center;
-background-color: ${COLORS.strongGreen};
-color: ${COLORS.teal};
-cursor: pointer;
-text-align: center;
-margin: 0 1.75rem;
-border-radius: 0.375rem;
-width: 100%;
-padding: 0.75rem;
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-
-h4{
-  font-weight: 600;
-  font-size: 1.1rem;
-  width: 100%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: center;
+  background-color: ${COLORS.strongGreen};
+  color: ${COLORS.teal};
+  cursor: pointer;
   text-align: center;
-}
+  margin: 0 1.75rem;
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
 
-p{
-  padding: 0rem 2rem 1rem 2rem;
-  text-align: justify;
-
-  @media (min-width: 768px) {
-    padding: 0rem 4rem 1rem 4rem;
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 40%;
+    min-height: 100px;
   }
-}
+  @media only screen and (min-width: 1200px) {
+    min-height: 100%;
+    width: 30%;
+    padding: 1.5rem 0.75rem;
+  }
+
+  h4 {
+    font-weight: 600;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    width: 100%;
+    text-align: center;
+  }
+
+  p {
+    padding: 0rem 2rem 1rem;
+    text-align: justify;
+
+    @media (min-width: 768px) {
+      text-align: left;
+      width: 100%;
+      padding: 0rem 0.5rem 1rem;
+    }
+  }
 `
 
 export const Faq = () => {
@@ -83,16 +97,15 @@ export const Faq = () => {
     })
   }
   return (
-    <div className='flex justify-center gap-5 flex-wrap'>
+    <div className='flex flex-col m-auto items-center justify-center gap-5 md:gap-3 md:flex-row md:flex-wrap'>
       {faq.map((question) => (
         <FAQDiv
+          className='w-[90%]'
           key={question.id}
           onClick={() => toggleFaq(question.id)}
         >
           <h4>{question.option}</h4>
-          {faqState[question.id] && (
-            <p>{question.description}</p>
-          )}
+          {faqState[question.id] && <p>{question.description}</p>}
         </FAQDiv>
       ))}
     </div>

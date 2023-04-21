@@ -1,11 +1,9 @@
 import { useLoaderData } from 'react-router-dom'
-import { Btn } from '../components/MicroComponents/Btn'
 import { useEffect, useState } from 'react'
 import { createAppointment, getOneWeekAppointments } from '../firebase/appointment'
-import { CalendarButton, CalendarCol, CalendarDay, CalendarDisabled, CalendarDiv, CalendarLabel, MedicImg, TitleDiv } from '../components/MicroComponents/Calendar'
+import { CalendarButton, CalendarCol, CalendarDay, CalendarDisabled, CalendarDiv } from '../components/MicroComponents/Calendar'
 import { MainDivText, MainDivTitle } from '../components/MicroComponents/Text'
 import { Container } from '../components/MicroComponents/Containers'
-import { MedicProfileImg } from '../components/MicroComponents/ProfileImages'
 
 const Calendar = () => {
   const [dateSelected, setDateSelected] = useState(null)
@@ -19,7 +17,10 @@ const Calendar = () => {
 
   useEffect(() => {
     const fetchApps = async () => {
-      const appsFetched = await getOneWeekAppointments({ medicId, date: dateSelected })
+      const appsFetched = await getOneWeekAppointments({
+        medicId,
+        date: dateSelected
+      })
       setAppointments(appsFetched)
     }
     fetchApps()
@@ -35,7 +36,11 @@ const Calendar = () => {
     const [day, month] = date.split('/')
     const dateFormatted = `2023-${month}-${day}`
     const hourFormatted = hour.split(':')[0]
-    const appointment = await createAppointment({ date: dateFormatted, hour: hourFormatted, medicId })
+    const appointment = await createAppointment({
+      date: dateFormatted,
+      hour: hourFormatted,
+      medicId
+    })
     setMessage(`La cita ha sido creada el dia ${day} a las ${hour}`)
     return appointment
   }
