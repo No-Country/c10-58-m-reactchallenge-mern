@@ -1,8 +1,8 @@
 import { Link, useLoaderData } from 'react-router-dom'
 import { Btn } from '../components/MicroComponents/Btn'
 import styled from 'styled-components'
+import { COLORS } from '../components/MicroComponents/Colors'
 
-// styles
 const Card = styled.div`
 width: 100%;
   height: 100%;
@@ -23,6 +23,7 @@ const Img = styled.img`
   width: 100px;
   margin-inline: auto;
   border-radius: 50%;
+  border: 1px solid ${COLORS.strongGreen};
 `
 
 const ProfileDoc = () => {
