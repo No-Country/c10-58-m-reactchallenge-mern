@@ -9,12 +9,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "date-fns": "^2.29.3",
     "firebase": "9.18.0",
+    "framer-motion": "^10.10.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.8.0",
     "react-query": "3.39.3",
     "react-router-dom": "6.9.0",
-    "styled-components": "5.3.9"
+    "styled-components": "5.3.9",
+    "vite-plugin-svgr": "^2.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
