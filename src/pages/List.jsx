@@ -34,8 +34,8 @@ const List = () => {
       {!loading
         ? (
           <>
-            <label className='self-center flex gap-4 items-center'>
-              Especialidad:
+            <label className='self-center flex-col gap-4 items-center text-center'>
+              <p>Especialidad</p>
               <Search
                 onChange={handleChangeSearch}
                 type='search'

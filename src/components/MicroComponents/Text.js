@@ -15,7 +15,6 @@ export const PageTitle = styled.h1`
 
 export const MainDivTitle = styled.h2`
   font-weight: 700;
-  width: 100%;
   text-align: center;
   font-size: 1.3rem;
   color: ${COLORS.strongGreen};
