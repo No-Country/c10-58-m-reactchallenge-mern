@@ -29,7 +29,7 @@ const CardContainer = styled.div`
 `
 const P = styled.p`
   font-size: 0.8rem;
-  padding:0.25rem 0.5rem;
+  padding: 0.25rem 0.5rem;
   text-align: justify;
 `
 const Span = styled.span`
@@ -44,14 +44,7 @@ const H3 = styled.h3`
 `
 
 const Card = ({ medico }) => {
-  const {
-    nombre,
-    profilePhoto,
-    apellido,
-    especialidades,
-    id,
-    titulo
-  } = medico
+  const { nombre, profilePhoto, apellido, especialidades, id, titulo } = medico
   const { user } = useFirebaseContext()
   const navigate = useNavigate()
   const handleClickAgendar = () => {
@@ -70,11 +63,11 @@ const Card = ({ medico }) => {
     }
   }
   // agregar , a las especialidades
-  const especialidadesString = especialidades.join(', ').toLowerCase()
+  const especialidadesString = especialidades.join('\n').toLowerCase()
 
   return (
     <CardContainer>
-      <div className='flex items-center gap-4'>
+      <div className="flex items-center gap-4">
         <Img src={profilePhoto} alt={`foto de perfil ${nombre} ${apellido}`} />
         <div>
           <H3>
@@ -83,15 +76,19 @@ const Card = ({ medico }) => {
           <P>{titulo}</P>
         </div>
       </div>
-      <P>
-        <Span>Especialista en:  </Span>
-        {especialidadesString}.
-      </P>
-      <div className='gap-5 flex justify-end'>
+      <div className="flex gap-3  mb-1">
+        <Span>Especialista en: </Span>
+        <p className="whitespace-pre capitalize text-xs ">
+          {especialidadesString}.
+        </p>
+      </div>
+      <div className="gap-5 flex justify-end">
         <Btn $textSm onClick={handleClickProfile}>
           Ver perfil
         </Btn>
-        <Btn $dark $textSm onClick={handleClickAgendar}>Agendar</Btn>
+        <Btn $dark $textSm onClick={handleClickAgendar}>
+          Agendar
+        </Btn>
       </div>
     </CardContainer>
   )

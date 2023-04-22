@@ -5,7 +5,6 @@ import Navbar from './components/Navbar'
 
 function App() {
   const navigate = useNavigate()
-  // probando a ver si funciona
 
   function navigateBack() {
     navigate(-1)

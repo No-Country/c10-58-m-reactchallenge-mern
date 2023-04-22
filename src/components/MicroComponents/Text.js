@@ -19,23 +19,18 @@ export const MainDivTitle = styled.h2`
   text-align: center;
   font-size: 1.3rem;
   color: ${COLORS.strongGreen};
-  @media (min-width: 768px) {
-    width: auto;
-    text-align: left;
-    padding-left: 4rem;
-  }
 `
 
 export const MainDivText = styled.p`
-margin: 0px;
-font-weight: 500;
-font-size: 1.1rem;
-color: ${COLORS.strongGreen};
-text-align: center;
+  margin: 0px;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: ${COLORS.strongGreen};
+  text-align: center;
 
-@media (min-width: 768px) {
-  font-size: 1.3rem;
-}
+  @media (min-width: 768px) {
+    font-size: 1.3rem;
+  }
 `
 
 export const ErrorText = styled.p`
