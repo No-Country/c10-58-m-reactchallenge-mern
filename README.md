@@ -1,5 +1,7 @@
 # Escuchadero
 
+[Link de deploy](https://c10-58-m-reactchallenge-mern.vercel.app/).
+
 Escuchadero es una aplicación que tiene como objetivo unir a profesionales de la salud mental con usuarios que necesitan de sus servicios. La aplicación permite que los usuarios puedan buscar y agendar citas con los profesionales de la salud mental disponibles en la plataforma, y también les envía recordatorios por correo electrónico para que no olviden sus citas.
 
 Además, Escuchadero tiene pensadas varias funcionalidades futuras que se podrían desarrollar, como un botón de emergencia que permita a los usuarios conectarse en tiempo real con un psicólogo que pueda brindarles asistencia en caso de una crisis emocional.
