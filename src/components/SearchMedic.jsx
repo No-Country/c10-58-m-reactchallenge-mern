@@ -25,7 +25,7 @@ export const SearchMedic = () => {
     <SearchBar
       onClick={() => navigate('/list')}
       className='flex items-center'
-    > Buscar medicos
+    > Buscar médicos
       <img src={searchIcon} alt='search icon' />
     </SearchBar>
   )
